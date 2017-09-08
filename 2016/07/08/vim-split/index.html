@@ -93,14 +93,17 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="Mufool">
-<meta property="og:url" content="http://mufool.com/404.html">
+<meta name="description" content="打开分屏vim中打开分屏">
+<meta property="og:type" content="article">
+<meta property="og:title" content="vim分屏操作">
+<meta property="og:url" content="http://mufool.com/2016/07/08/vim-split/index.html">
 <meta property="og:site_name" content="Mufool">
+<meta property="og:description" content="打开分屏vim中打开分屏">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-09-08T03:45:38.062Z">
+<meta property="og:updated_time" content="2017-09-08T03:45:38.065Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Mufool">
+<meta name="twitter:title" content="vim分屏操作">
+<meta name="twitter:description" content="打开分屏vim中打开分屏">
 
 
 
@@ -128,13 +131,13 @@
 
 
 
-  <link rel="canonical" href="http://mufool.com/404.html"/>
+  <link rel="canonical" href="http://mufool.com/2016/07/08/vim-split/"/>
 
 
 
 
 
-  <title> | Mufool</title>
+  <title>vim分屏操作 | Mufool</title>
   
 
 
@@ -298,32 +301,190 @@
             
 
   <div id="posts" class="posts-expand">
-  <header class="post-header">
+    
 
-	<h1 class="post-title" itemprop="name headline"></h1>
+  
 
+  
+  
+  
 
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://mufool.com/2016/07/08/vim-split/">
 
-</header>
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Mufool">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/default_avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mufool">
+    </span>
 
     
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">vim分屏操作</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-07-08T12:16:24+08:00">
+                2016-07-08
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2016/07/08/vim-split/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2016/07/08/vim-split/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
     
-      <!DOCTYPE HTML>
-<html>
-<head>
-	<meta http-equiv="content-type" content="text/html;charset=utf-8;">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-	<meta name="robots" content="all">
-	<meta name="robots" content="index,follow">
-</head>
-<body>
 
-<script type="text/javascript" src="http://www.qq.com/404/search_children.js" charset="utf-8" homepageurl="your site url " homepagename="回到我的主页"></script>
+    <div class="post-body" itemprop="articleBody">
 
-</body>
-</html>
+      
+      
 
-    
+      
+        <h2 id="打开分屏"><a href="#打开分屏" class="headerlink" title="打开分屏"></a>打开分屏</h2><h3 id="vim中打开分屏"><a href="#vim中打开分屏" class="headerlink" title="vim中打开分屏"></a>vim中打开分屏</h3><a id="more"></a>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">:sp filename		水平分屏</div><div class="line">:split filename</div><div class="line">:vsp filename		垂直分屏</div><div class="line">:vsplit filename</div><div class="line">:sview filename		只读分屏打开文件</div><div class="line"></div><div class="line">:split		水平打开当前文件分屏</div><div class="line">ctrl+W s	水平打开当前文件分屏</div><div class="line">:vspilt		垂直打开当前文件分屏</div><div class="line">ctrl+W v	垂直打开当前文件分屏</div><div class="line"></div><div class="line">:30split 打开一个高度为30的窗口</div><div class="line">:30vsplit 打开一个宽带为30的窗口</div></pre></td></tr></table></figure>
+<h3 id="shell中打开分屏"><a href="#shell中打开分屏" class="headerlink" title="shell中打开分屏"></a>shell中打开分屏</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">vim -On file1, file2 ...  垂直分屏</div><div class="line">vim -on file1, file2 ...  水平分屏</div></pre></td></tr></table></figure>
+<p>其中n为分几个屏</p>
+<h2 id="切换分屏"><a href="#切换分屏" class="headerlink" title="切换分屏"></a>切换分屏</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">Ctrl+w w			后一个</div><div class="line">Ctrl+w p			前一个</div><div class="line">ctrl+w h,j,k,l		上下左右操作</div><div class="line">ctrl+w 				上下左右键头</div></pre></td></tr></table></figure>
+<h2 id="关闭分屏"><a href="#关闭分屏" class="headerlink" title="关闭分屏"></a>关闭分屏</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">ctrl+W c 	关闭当前窗口</div><div class="line">ctrl+w q 	关闭当前窗口，若只有一个分屏且退出vim</div><div class="line">ctrl+w o	关闭其他窗口</div><div class="line">:only  		仅保留当前分屏</div><div class="line">:hide  		关闭当前分屏</div></pre></td></tr></table></figure>
+<h2 id="调整分屏的大小"><a href="#调整分屏的大小" class="headerlink" title="调整分屏的大小"></a>调整分屏的大小</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">ctrl+w = 		所有分屏都统一高度</div><div class="line">ctrl+w + 		增加高度</div><div class="line">:res[ize] +N	使得当前窗口高度加N(默认值是1), 如果在 &apos;vertical&apos; 之后使用，则使得宽度加N</div><div class="line"></div><div class="line">ctrl+w - 		减少高度</div><div class="line">:res[ize] -N		使得当前窗口高度减N(默认值是1), 如果在 &apos;vertical&apos; 之后使用，则使得宽度减N</div><div class="line"></div><div class="line">10 ctrl+w +		增加10行高度</div><div class="line">10 ctrl+w -		减少10行高度</div><div class="line"></div><div class="line">:res[ize] [N]</div><div class="line">CTRL-W _ 		设置当前窗口的高度为 N (默认值为最大可能高度)。</div><div class="line"></div><div class="line">:vertical res[ize] [N]</div><div class="line">CTRL-W |			设置当前窗口的宽度为 N (默认值为最大可能宽度)。</div><div class="line"></div><div class="line">CTRL-W &lt;			使得当前窗口宽度减 N (默认值是 1)</div><div class="line">CTRL-W &gt;			使得当前窗口宽度加 N (默认值是 1)</div></pre></td></tr></table></figure>
+<h2 id="移动分屏"><a href="#移动分屏" class="headerlink" title="移动分屏"></a>移动分屏</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ctrl+W H,J,K,L</div></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    <div>
+      
+        
+<div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/images/weixin.jpg" alt="Mufool wechat" style="width: 200px; max-width: 100%;"/>
+    <div>微信打赏</div>
+</div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/07/07/vim-cscope/" rel="next" title="vim插件cscope">
+                <i class="fa fa-chevron-left"></i> vim插件cscope
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/07/08/vim-nerdtree/" rel="prev" title="NERDTree快捷键">
+                NERDTree快捷键 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_cqq"></a>
+  <a class="jiathis_button_douban"></a>
+  <a class="jiathis_button_renren"></a>
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a class="jiathis_button_copy"></a>
+  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+  var jiathis_config={
+    hideMore:false
+  }
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+      
+    </div>
   </div>
 
 
@@ -362,8 +523,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/default_avatar.jpg"
@@ -460,6 +630,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#打开分屏"><span class="nav-number">1.</span> <span class="nav-text">打开分屏</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#vim中打开分屏"><span class="nav-number">1.1.</span> <span class="nav-text">vim中打开分屏</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#shell中打开分屏"><span class="nav-number">1.2.</span> <span class="nav-text">shell中打开分屏</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#切换分屏"><span class="nav-number">2.</span> <span class="nav-text">切换分屏</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#关闭分屏"><span class="nav-number">3.</span> <span class="nav-text">关闭分屏</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#调整分屏的大小"><span class="nav-number">4.</span> <span class="nav-text">调整分屏的大小</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#移动分屏"><span class="nav-number">5.</span> <span class="nav-text">移动分屏</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -578,10 +764,10 @@
   
 
   
-    <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
 <script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
 
-  
+
 
   
 
@@ -602,9 +788,9 @@
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'http://mufool.com/404.html';
-          this.page.identifier = '404.html';
-          this.page.title = '';
+          this.page.url = 'http://mufool.com/2016/07/08/vim-split/';
+          this.page.identifier = '2016/07/08/vim-split/';
+          this.page.title = 'vim分屏操作';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://www-mufool-com.disqus.com/embed.js';

@@ -77,7 +77,7 @@
 <link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="LINUX," />
 
 
 
@@ -93,14 +93,18 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="Mufool">
-<meta property="og:url" content="http://mufool.com/404.html">
+<meta name="description" content="在运维Linux服务器时，会碰到需要查看硬盘空间的情况，这时候，通常会使用df -lh命令来检查每个挂载了文件系统的硬盘的总量和已使用量，或者，可以使用du -sh [directory]命令来统计某个目录下所有文件的空间占用。 在使用df、du命令时，常常会遇到统计的硬盘使用情况不一致的问题。比如du统计根目录下文件总共大小为2G，而df判断挂载在根目录的硬盘已用空间达到了3G，20G甚至更多。">
+<meta name="keywords" content="LINUX">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux硬盘使用不一致问题">
+<meta property="og:url" content="http://mufool.com/2016/07/13/df-du/index.html">
 <meta property="og:site_name" content="Mufool">
+<meta property="og:description" content="在运维Linux服务器时，会碰到需要查看硬盘空间的情况，这时候，通常会使用df -lh命令来检查每个挂载了文件系统的硬盘的总量和已使用量，或者，可以使用du -sh [directory]命令来统计某个目录下所有文件的空间占用。 在使用df、du命令时，常常会遇到统计的硬盘使用情况不一致的问题。比如du统计根目录下文件总共大小为2G，而df判断挂载在根目录的硬盘已用空间达到了3G，20G甚至更多。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-09-08T03:45:38.062Z">
+<meta property="og:updated_time" content="2017-09-08T03:45:38.063Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Mufool">
+<meta name="twitter:title" content="Linux硬盘使用不一致问题">
+<meta name="twitter:description" content="在运维Linux服务器时，会碰到需要查看硬盘空间的情况，这时候，通常会使用df -lh命令来检查每个挂载了文件系统的硬盘的总量和已使用量，或者，可以使用du -sh [directory]命令来统计某个目录下所有文件的空间占用。 在使用df、du命令时，常常会遇到统计的硬盘使用情况不一致的问题。比如du统计根目录下文件总共大小为2G，而df判断挂载在根目录的硬盘已用空间达到了3G，20G甚至更多。">
 
 
 
@@ -128,13 +132,13 @@
 
 
 
-  <link rel="canonical" href="http://mufool.com/404.html"/>
+  <link rel="canonical" href="http://mufool.com/2016/07/13/df-du/"/>
 
 
 
 
 
-  <title> | Mufool</title>
+  <title>Linux硬盘使用不一致问题 | Mufool</title>
   
 
 
@@ -298,32 +302,194 @@
             
 
   <div id="posts" class="posts-expand">
-  <header class="post-header">
+    
 
-	<h1 class="post-title" itemprop="name headline"></h1>
+  
 
+  
+  
+  
 
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://mufool.com/2016/07/13/df-du/">
 
-</header>
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Mufool">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/default_avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mufool">
+    </span>
 
     
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Linux硬盘使用不一致问题</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-07-13T15:01:31+08:00">
+                2016-07-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2016/07/13/df-du/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2016/07/13/df-du/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
     
-      <!DOCTYPE HTML>
-<html>
-<head>
-	<meta http-equiv="content-type" content="text/html;charset=utf-8;">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-	<meta name="robots" content="all">
-	<meta name="robots" content="index,follow">
-</head>
-<body>
 
-<script type="text/javascript" src="http://www.qq.com/404/search_children.js" charset="utf-8" homepageurl="your site url " homepagename="回到我的主页"></script>
+    <div class="post-body" itemprop="articleBody">
 
-</body>
-</html>
+      
+      
 
-    
+      
+        <p>在运维Linux服务器时，会碰到需要查看硬盘空间的情况，这时候，通常会使用df -lh命令来检查每个挂载了文件系统的硬盘的总量和已使用量，或者，可以使用du -sh [directory]命令来统计某个目录下所有文件的空间占用。</p>
+<p>在使用df、du命令时，常常会遇到统计的硬盘使用情况不一致的问题。比如du统计根目录下文件总共大小为2G，而df判断挂载在根目录的硬盘已用空间达到了3G，20G甚至更多。发生这种情况，有以下三种原因：</p>
+<a id="more"></a>
+<h2 id="预留空间"><a href="#预留空间" class="headerlink" title="预留空间"></a>预留空间</h2><p>为了预防紧急情况，linux ext文件系统会预留部分硬盘空间，具体预留的数值可以通过tune2fs -l [dev_name] | grep “Reserved block count”查看到（dev_name是设备名），这里预留的空间会被df计算到已用空间中，从而导致df和du统计不一致。如果需要调整预留空间大小，我们可以使用tune2fs -m [size] [dev_name]来进行调整。</p>
+<h2 id="幻影文件-phantom-file"><a href="#幻影文件-phantom-file" class="headerlink" title="幻影文件(phantom file)"></a>幻影文件(phantom file)</h2><p>du是统计被文件系统记录到的每个文件的大小，然后进行累加得到的大小，这是通过文件系统获取到的。而df主要是从超级块（superblock）中读入硬盘使用信息，df获取到的是磁盘块被使用的情况。当一个文件被删除时，如果有别的进程正在使用它（占有句柄）， 这个文件将不会被du统计到，但是这个文件被占用的磁盘空间却依然会被df统计到。这些文件，以及正在使用这些文件的进程可以通过lsof | grep deleted查到。当进程停止或者被kill时，这些空间将被释放。</p>
+<h2 id="未统计到的文件"><a href="#未统计到的文件" class="headerlink" title="未统计到的文件"></a>未统计到的文件</h2><p>如果上面两种情况都排除了，但是数据还是不一致，那是怎么回事？这里隐藏着一种情况：当我们将一个目录挂在到一个新的设备（硬盘）上之前，如果这个目录里面已经有数据，那么这一部分数据不会被du感知，在文件系统中也看不到这些数据，但是这些数据又是确实占用了磁盘空间，是能够被df所统计到的。这时候通过du/df统计原设备的空间使用情况，就会发现df统计到的比du要多。遇到这样的情况时，使用fuser -km [directory]杀死占用该目录的所有进程（小心操作！），然后使用umount [directory]将该目录挂载的设备卸载，这时，目录里面原来已有的数据就会出现，我们将其删除之后，再重新挂载设备（mount -t [type] [dev] [directory]）即可。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+<div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/images/weixin.jpg" alt="Mufool wechat" style="width: 200px; max-width: 100%;"/>
+    <div>微信打赏</div>
+</div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/LINUX/" rel="tag"># LINUX</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/07/12/video-test/" rel="next" title="video嵌入测试">
+                <i class="fa fa-chevron-left"></i> video嵌入测试
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/07/13/linux-top/" rel="prev" title="top命令详解">
+                top命令详解 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_cqq"></a>
+  <a class="jiathis_button_douban"></a>
+  <a class="jiathis_button_renren"></a>
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a class="jiathis_button_copy"></a>
+  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+  var jiathis_config={
+    hideMore:false
+  }
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+      
+    </div>
   </div>
 
 
@@ -362,8 +528,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/default_avatar.jpg"
@@ -460,6 +635,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#预留空间"><span class="nav-number">1.</span> <span class="nav-text">预留空间</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#幻影文件-phantom-file"><span class="nav-number">2.</span> <span class="nav-text">幻影文件(phantom file)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#未统计到的文件"><span class="nav-number">3.</span> <span class="nav-text">未统计到的文件</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -578,10 +769,10 @@
   
 
   
-    <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
 <script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
 
-  
+
 
   
 
@@ -602,9 +793,9 @@
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'http://mufool.com/404.html';
-          this.page.identifier = '404.html';
-          this.page.title = '';
+          this.page.url = 'http://mufool.com/2016/07/13/df-du/';
+          this.page.identifier = '2016/07/13/df-du/';
+          this.page.title = 'Linux硬盘使用不一致问题';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://www-mufool-com.disqus.com/embed.js';

@@ -77,7 +77,7 @@
 <link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="HLS," />
 
 
 
@@ -93,14 +93,18 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="Mufool">
-<meta property="og:url" content="http://mufool.com/404.html">
+<meta name="description" content="前段时间在一个直播项目中遇到一个直播流在pc，android均可以正常播放，但是在ios上无法播放的问题；检查过后发现并不是数据生成的异常导致的，最后怀疑可能是数据流本身的编解码参数有错误。通过ffmeg拉流解析发现，video的profile为h264 high 4:2:2，而ios设备目前并不支持profile高于high级别高于4.1的视频的解码。">
+<meta name="keywords" content="HLS">
+<meta property="og:type" content="article">
+<meta property="og:title" content="iOS上hls无法播放问题">
+<meta property="og:url" content="http://mufool.com/2016/08/01/hls-ios-profile/index.html">
 <meta property="og:site_name" content="Mufool">
+<meta property="og:description" content="前段时间在一个直播项目中遇到一个直播流在pc，android均可以正常播放，但是在ios上无法播放的问题；检查过后发现并不是数据生成的异常导致的，最后怀疑可能是数据流本身的编解码参数有错误。通过ffmeg拉流解析发现，video的profile为h264 high 4:2:2，而ios设备目前并不支持profile高于high级别高于4.1的视频的解码。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-09-08T03:45:38.062Z">
+<meta property="og:updated_time" content="2017-09-08T03:45:38.064Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Mufool">
+<meta name="twitter:title" content="iOS上hls无法播放问题">
+<meta name="twitter:description" content="前段时间在一个直播项目中遇到一个直播流在pc，android均可以正常播放，但是在ios上无法播放的问题；检查过后发现并不是数据生成的异常导致的，最后怀疑可能是数据流本身的编解码参数有错误。通过ffmeg拉流解析发现，video的profile为h264 high 4:2:2，而ios设备目前并不支持profile高于high级别高于4.1的视频的解码。">
 
 
 
@@ -128,13 +132,13 @@
 
 
 
-  <link rel="canonical" href="http://mufool.com/404.html"/>
+  <link rel="canonical" href="http://mufool.com/2016/08/01/hls-ios-profile/"/>
 
 
 
 
 
-  <title> | Mufool</title>
+  <title>iOS上hls无法播放问题 | Mufool</title>
   
 
 
@@ -298,32 +302,216 @@
             
 
   <div id="posts" class="posts-expand">
-  <header class="post-header">
+    
 
-	<h1 class="post-title" itemprop="name headline"></h1>
+  
 
+  
+  
+  
 
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://mufool.com/2016/08/01/hls-ios-profile/">
 
-</header>
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Mufool">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/default_avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mufool">
+    </span>
 
     
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">iOS上hls无法播放问题</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-08-01T18:09:53+08:00">
+                2016-08-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2016/08/01/hls-ios-profile/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2016/08/01/hls-ios-profile/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
     
-      <!DOCTYPE HTML>
-<html>
-<head>
-	<meta http-equiv="content-type" content="text/html;charset=utf-8;">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-	<meta name="robots" content="all">
-	<meta name="robots" content="index,follow">
-</head>
-<body>
 
-<script type="text/javascript" src="http://www.qq.com/404/search_children.js" charset="utf-8" homepageurl="your site url " homepagename="回到我的主页"></script>
+    <div class="post-body" itemprop="articleBody">
 
-</body>
-</html>
+      
+      
 
-    
+      
+        <p>前段时间在一个直播项目中遇到一个直播流在pc，android均可以正常播放，但是在ios上无法播放的问题；检查过后发现并不是数据生成的异常导致的，最后怀疑可能是数据流本身的编解码参数有错误。通过ffmeg拉流解析发现，video的profile为h264 high 4:2:2，而ios设备目前并不支持profile高于high级别高于4.1的视频的解码。</p>
+<a id="more"></a>
+<blockquote>
+<p>File format for the file segmenter can be a QuickTime movie, MPEG-4 video, or MP3 audio, using the specified encoding.</p>
+<p>Stream format for the stream segmenter must be MPEG elementary audio and video streams, wrapped in an MPEG-2 transport stream, and using the following encoding. The Audio Technologies and Video Technologies list supported compression formats.</p>
+<ul>
+<li><p>Encode video using H.264 compression</p>
+<ul>
+<li>H.264 Baseline 3.0: All devices</li>
+<li>H.264 Baseline 3.1: iPhone 3G and later, and iPod touch 2nd generation and later.</li>
+<li>H.264 Main profile 3.1: iPad (all versions), Apple TV 2 and later, and iPhone 4 and later.</li>
+<li>H.264 Main Profile 4.0: Apple TV 3 and later, iPad 2 and later, and iPhone 4S and later</li>
+<li>H.264 High Profile 4.0: Apple TV 3 and later, iPad 2 and later, and iPhone 4S and later.</li>
+<li>H.264 High Profile 4.1: iPad 2 and later and iPhone 4S and later.</li>
+</ul>
+</li>
+<li><p>A frame rate of 10 fps is recommended for video streams under 200 kbps. For video streams under 300 kbps, a frame rate of 12 to 15 fps is recommended. For all other streams, a frame rate of 29.97 is recommended.</p>
+</li>
+<li><p>Encode audio as either of the following:</p>
+<ul>
+<li>HE-AAC or AAC-LC, stereo</li>
+<li>MP3 (MPEG-1 Audio Layer 3), stereo</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<p>以上是iOS设备上支持的音视频编解码格式，以及相关参数的推荐设置。</p>
+<p>参考：<br><a href="https://developer.apple.com/library/ios/documentation/NetworkingInternet/Conceptual/StreamingMediaGuide/UsingHTTPLiveStreaming/UsingHTTPLiveStreaming.html#//apple_ref/doc/uid/TP40008332-CH102-SW21" target="_blank" rel="external">HTTP Live Streaming Overview</a><br><a href="http://blog.csdn.net/sphone89/article/details/17492433" target="_blank" rel="external">h264 profile &amp; level</a></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+<div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/images/weixin.jpg" alt="Mufool wechat" style="width: 200px; max-width: 100%;"/>
+    <div>微信打赏</div>
+</div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/HLS/" rel="tag"># HLS</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/07/18/hexo-tips/" rel="next" title="hexo博客颜色设置">
+                <i class="fa fa-chevron-left"></i> hexo博客颜色设置
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/09/20/ffmpeg-h265/" rel="prev" title="编译支持h265的ffmpeg">
+                编译支持h265的ffmpeg <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_cqq"></a>
+  <a class="jiathis_button_douban"></a>
+  <a class="jiathis_button_renren"></a>
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a class="jiathis_button_copy"></a>
+  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+  var jiathis_config={
+    hideMore:false
+  }
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+      
+    </div>
   </div>
 
 
@@ -578,10 +766,10 @@
   
 
   
-    <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
 <script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
 
-  
+
 
   
 
@@ -602,9 +790,9 @@
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'http://mufool.com/404.html';
-          this.page.identifier = '404.html';
-          this.page.title = '';
+          this.page.url = 'http://mufool.com/2016/08/01/hls-ios-profile/';
+          this.page.identifier = '2016/08/01/hls-ios-profile/';
+          this.page.title = 'iOS上hls无法播放问题';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://www-mufool-com.disqus.com/embed.js';

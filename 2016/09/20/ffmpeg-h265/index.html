@@ -77,7 +77,7 @@
 <link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="FFMPEG," />
 
 
 
@@ -93,14 +93,22 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="Mufool">
-<meta property="og:url" content="http://mufool.com/404.html">
+<meta name="description" content="准备cmake要升级要2.8.8 yasm要升级到1.2.0">
+<meta name="keywords" content="FFMPEG">
+<meta property="og:type" content="article">
+<meta property="og:title" content="编译支持h265的ffmpeg">
+<meta property="og:url" content="http://mufool.com/2016/09/20/ffmpeg-h265/index.html">
 <meta property="og:site_name" content="Mufool">
+<meta property="og:description" content="准备cmake要升级要2.8.8 yasm要升级到1.2.0">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-09-08T03:45:38.062Z">
+<meta property="og:image" content="http://mufool.qiniudn.com/ffmpeg/h265-1.png">
+<meta property="og:image" content="http://mufool.qiniudn.com/ffmpeg/h265-2.png">
+<meta property="og:image" content="http://mufool.qiniudn.com/ffmpeg/h265-3.png">
+<meta property="og:updated_time" content="2017-09-08T03:45:38.063Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Mufool">
+<meta name="twitter:title" content="编译支持h265的ffmpeg">
+<meta name="twitter:description" content="准备cmake要升级要2.8.8 yasm要升级到1.2.0">
+<meta name="twitter:image" content="http://mufool.qiniudn.com/ffmpeg/h265-1.png">
 
 
 
@@ -128,13 +136,13 @@
 
 
 
-  <link rel="canonical" href="http://mufool.com/404.html"/>
+  <link rel="canonical" href="http://mufool.com/2016/09/20/ffmpeg-h265/"/>
 
 
 
 
 
-  <title> | Mufool</title>
+  <title>编译支持h265的ffmpeg | Mufool</title>
   
 
 
@@ -298,32 +306,208 @@
             
 
   <div id="posts" class="posts-expand">
-  <header class="post-header">
+    
 
-	<h1 class="post-title" itemprop="name headline"></h1>
+  
 
+  
+  
+  
 
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://mufool.com/2016/09/20/ffmpeg-h265/">
 
-</header>
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Mufool">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/default_avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mufool">
+    </span>
 
     
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">编译支持h265的ffmpeg</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-09-20T15:01:31+08:00">
+                2016-09-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2016/09/20/ffmpeg-h265/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2016/09/20/ffmpeg-h265/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
     
-      <!DOCTYPE HTML>
-<html>
-<head>
-	<meta http-equiv="content-type" content="text/html;charset=utf-8;">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-	<meta name="robots" content="all">
-	<meta name="robots" content="index,follow">
-</head>
-<body>
 
-<script type="text/javascript" src="http://www.qq.com/404/search_children.js" charset="utf-8" homepageurl="your site url " homepagename="回到我的主页"></script>
+    <div class="post-body" itemprop="articleBody">
 
-</body>
-</html>
+      
+      
 
-    
+      
+        <h2 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h2><p>cmake要升级要2.8.8 yasm要升级到1.2.0</p>
+<a id="more"></a>
+<h2 id="安装x264"><a href="#安装x264" class="headerlink" title="安装x264"></a>安装x264</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">git clone git://git.videolan.org/x264.git</div><div class="line">cd x264</div><div class="line">./configure --enable-static --disable-opencl --disable-avs</div><div class="line">--disable-cli --disable-ffms --disable-gpac --disable-lavf</div><div class="line">--disable-swscale</div><div class="line">make</div><div class="line">sudo make install</div><div class="line">sudo ldconfig</div></pre></td></tr></table></figure>
+<h2 id="安装x265"><a href="#安装x265" class="headerlink" title="安装x265"></a>安装x265</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">hg <span class="built_in">clone</span> https://bitbucket.org/multicoreware/x265</div><div class="line">hg checkout 0.8</div><div class="line"><span class="built_in">cd</span> x265/build/linux</div><div class="line">./make-Makefiles.bash</div><div class="line"><span class="comment"># 这里将 LOG_CU_STATISTICS　设置为ON，然后，按下“c”，实现configure，按下“q”退出</span></div><div class="line">make</div><div class="line">sudo make install</div><div class="line">sudo ldconfig</div></pre></td></tr></table></figure>
+<h2 id="编译ffmpeg"><a href="#编译ffmpeg" class="headerlink" title="编译ffmpeg"></a>编译ffmpeg</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">./configure --enable-gpl --enable-libx264 --enable-libx265 --disable-stripping --disable-optimizations --extra-cflags=-g --enable-libfaac --enable-nonfree --enable-libspeex --extra-cflags=-I/usr/local/include --extra-ldflags=-L/usr/local/lib</div><div class="line">make</div></pre></td></tr></table></figure>
+<p>出错：<br><img src="http://mufool.qiniudn.com/ffmpeg/h265-1.png" alt=""></p>
+<p>查看config.log</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">In file included from /tmp/ffconf.gFGcukGK.c:1:</div><div class="line">/usr/local/include/x264.h:40:4: warning: #warning You must include stdint.h or inttypes.h before x264.h</div><div class="line">check_pkg_config x265 x265.h x265_encoder_encode</div><div class="line">pkg-config --exists --print-errors x265</div><div class="line">Package x265 was not found in the pkg-config search path.</div><div class="line">Perhaps you should add the directory containing `x265.pc&apos;</div><div class="line">to the PKG_CONFIG_PATH environment variable</div><div class="line">No package &apos;x265&apos; found</div><div class="line">ERROR: x265 not found</div></pre></td></tr></table></figure>
+<p>提示找不到x265的链接库文件x265.pc, 将编译目录下的x265.pc拷贝到/usr/local/lib下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cp x265.pc /usr/local/lib</div></pre></td></tr></table></figure>
+<p>然后修改/etc/profile中的环境变量PKG_CONFIG_PATH:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:/usr/local/lib/</div></pre></td></tr></table></figure>
+<p>查看是否已包含h265</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pkg-config --list-all | greo x265</div></pre></td></tr></table></figure>
+<p>重新编译ffmpeg，还是出错：<br><img src="http://mufool.qiniudn.com/ffmpeg/h265-2.png" alt=""></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">#ls  /usr/local/lib | grep libx264</div><div class="line">libx264.a</div><div class="line">libx264.so</div><div class="line">libx264.so.146</div></pre></td></tr></table></figure>
+<p>可能原先我做过编译，在/usr/local目录下面安装了x264，可能有冲突，把x264在/usr/local目录下的一些相关文件卸载掉，重新编译x264，再编译ffmpeg</p>
+<p>运行ffmpeg，已包含x265<br><img src="http://mufool.qiniudn.com/ffmpeg/h265-3.png" alt=""></p>
+<p>接下来转码一个h.265视频到h.264看看效果。<br>ffmpeg -i h265.mkv -c:v libx264 -preset medium -c:a aac -strict experimental -f mp4 -b:a 128k outputh264.mp4</p>
+<p>参考：<br><a href="http://scateu.me/2014/03/06/compile-ffmpeg-on-linux-with-x264-and-x265-support.html" target="_blank" rel="external">Linux编译FFmpeg，支持x264和x265(HEVC)</a></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+<div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/images/weixin.jpg" alt="Mufool wechat" style="width: 200px; max-width: 100%;"/>
+    <div>微信打赏</div>
+</div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/FFMPEG/" rel="tag"># FFMPEG</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/08/01/hls-ios-profile/" rel="next" title="iOS上hls无法播放问题">
+                <i class="fa fa-chevron-left"></i> iOS上hls无法播放问题
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/10/11/dns-parse/" rel="prev" title="DNS解析原理">
+                DNS解析原理 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_cqq"></a>
+  <a class="jiathis_button_douban"></a>
+  <a class="jiathis_button_renren"></a>
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a class="jiathis_button_copy"></a>
+  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+  var jiathis_config={
+    hideMore:false
+  }
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+      
+    </div>
   </div>
 
 
@@ -362,8 +546,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/default_avatar.jpg"
@@ -460,6 +653,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#准备"><span class="nav-number">1.</span> <span class="nav-text">准备</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装x264"><span class="nav-number">2.</span> <span class="nav-text">安装x264</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装x265"><span class="nav-number">3.</span> <span class="nav-text">安装x265</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#编译ffmpeg"><span class="nav-number">4.</span> <span class="nav-text">编译ffmpeg</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -578,10 +787,10 @@
   
 
   
-    <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
 <script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
 
-  
+
 
   
 
@@ -602,9 +811,9 @@
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'http://mufool.com/404.html';
-          this.page.identifier = '404.html';
-          this.page.title = '';
+          this.page.url = 'http://mufool.com/2016/09/20/ffmpeg-h265/';
+          this.page.identifier = '2016/09/20/ffmpeg-h265/';
+          this.page.title = '编译支持h265的ffmpeg';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://www-mufool-com.disqus.com/embed.js';

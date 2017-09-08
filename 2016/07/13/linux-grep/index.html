@@ -1,0 +1,1615 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="LINUX," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="grep简介grep （global search regular expression(RE) and print out the line,全面搜索正则表达式并把行打印出来）是一种强大的文本搜索工具，它能使用正则表达式搜索文本，并把匹配的行打印出来。Unix的grep家族包 括grep、egrep和fgrep。egrep和fgrep的命令只跟grep有很小不同。egrep是grep的扩展，支持">
+<meta name="keywords" content="LINUX">
+<meta property="og:type" content="article">
+<meta property="og:title" content="grep使用详解">
+<meta property="og:url" content="http://mufool.com/2016/07/13/linux-grep/index.html">
+<meta property="og:site_name" content="Mufool">
+<meta property="og:description" content="grep简介grep （global search regular expression(RE) and print out the line,全面搜索正则表达式并把行打印出来）是一种强大的文本搜索工具，它能使用正则表达式搜索文本，并把匹配的行打印出来。Unix的grep家族包 括grep、egrep和fgrep。egrep和fgrep的命令只跟grep有很小不同。egrep是grep的扩展，支持">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2017-09-08T03:45:38.064Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="grep使用详解">
+<meta name="twitter:description" content="grep简介grep （global search regular expression(RE) and print out the line,全面搜索正则表达式并把行打印出来）是一种强大的文本搜索工具，它能使用正则表达式搜索文本，并把匹配的行打印出来。Unix的grep家族包 括grep、egrep和fgrep。egrep和fgrep的命令只跟grep有很小不同。egrep是grep的扩展，支持">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://mufool.com/2016/07/13/linux-grep/"/>
+
+
+
+
+
+  <title>grep使用详解 | Mufool</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?a2b17a34748630d2b13839f4712009d1";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Mufool</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">my blog</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            技术
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://mufool.com/2016/07/13/linux-grep/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Mufool">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/default_avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mufool">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">grep使用详解</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-07-13T17:08:37+08:00">
+                2016-07-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2016/07/13/linux-grep/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2016/07/13/linux-grep/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="grep简介"><a href="#grep简介" class="headerlink" title="grep简介"></a>grep简介</h2><p>grep （global search regular expression(RE) and print out the line,全面搜索正则表达式并把行打印出来）是一种强大的文本搜索工具，它能使用正则表达式搜索文本，并把匹配的行打印出来。Unix的grep家族包 括grep、egrep和fgrep。egrep和fgrep的命令只跟grep有很小不同。egrep是grep的扩展，支持更多的re元字符， fgrep就是fixed grep或fast grep，它们把所有的字母都看作单词，也就是说，正则表达式中的元字符表示回其自身的字面意义，不再特殊。linux使用GNU版本的grep。它功能 更强，可以通过-G、-E、-F命令行选项来使用egrep和fgrep的功能。</p>
+<a id="more"></a>
+<p>grep的工作方式是这样的，它在一个或多个文件中搜索字符串模板。如果模板包括空格，则必须被引用，模板后的所有字符串被看作文件名。搜索的结果被送到屏幕，不影响原文件内容。</p>
+<p>grep可用于shell脚本，因为grep通过返回一个状态值来说明搜索的状态，如果模板搜索成功，则返回0，如果搜索不成功，则返回1，如果搜索的文件不存在，则返回2。我们利用这些返回值就可进行一些自动化的文本处理工作。</p>
+<h2 id="grep正则表达式元字符集（基本集）"><a href="#grep正则表达式元字符集（基本集）" class="headerlink" title="grep正则表达式元字符集（基本集）"></a>grep正则表达式元字符集（基本集）</h2><table>
+<thead>
+<tr>
+<th>元字符</th>
+<th>基本功能</th>
+<th>示例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>^</td>
+<td>锚定行的开始</td>
+<td>‘^grep’匹配所有以grep开头的行</td>
+</tr>
+<tr>
+<td>$</td>
+<td>锚定行的结束</td>
+<td>‘grep$’匹配所有以grep结尾的行</td>
+</tr>
+<tr>
+<td>.</td>
+<td>匹配一个非换行符的字符</td>
+<td>‘gr.p’匹配gr后接一个任意字符，然后是p</td>
+</tr>
+<tr>
+<td>*</td>
+<td>匹配零个或多个先前字符</td>
+<td>‘<em>grep’匹配所有一个或多个空格后紧跟grep的行。 .</em>一起用代表任意字符</td>
+</tr>
+<tr>
+<td>[]</td>
+<td>匹配一个指定范围内的字符</td>
+<td>‘[Gg]rep’匹配Grep和grep</td>
+</tr>
+<tr>
+<td>[^]</td>
+<td>匹配一个不在指定范围内的字符</td>
+<td>‘[^A-FH-Z]rep’匹配不包含A-R和T-Z的一个字母开头，紧跟rep的行</td>
+</tr>
+<tr>
+<td>(..)</td>
+<td>标记匹配字符</td>
+<td>‘(love)‘，love被标记为1</td>
+</tr>
+<tr>
+<td>\&lt;</td>
+<td>锚定单词的开始</td>
+<td>‘\&lt;grep’匹配包含以grep开头的单词的行</td>
+</tr>
+<tr>
+<td>></td>
+<td>锚定单词的结束</td>
+<td>‘grep>‘匹配包含以grep结尾的单词的行</td>
+</tr>
+<tr>
+<td>x{m}</td>
+<td>重复字符x，m次</td>
+<td>‘0{5}‘匹配包含5个o的行</td>
+</tr>
+<tr>
+<td>x{m,}</td>
+<td>重复字符x,至少m次</td>
+<td>‘o{5,}‘匹配至少有5个o的行</td>
+</tr>
+<tr>
+<td>x{m,n}</td>
+<td>重复字符x，至少m次，不多于n次</td>
+<td>‘o{5,10}‘匹配5–10个o的行</td>
+</tr>
+<tr>
+<td>\w</td>
+<td>匹配文字和数字字符，也就是[A-Za-z0-9</td>
+<td>‘G\w*p’匹配以G后跟零个或多个文字或数字字符，然后是p</td>
+</tr>
+<tr>
+<td>\W</td>
+<td>\w的反置形式，匹配一个或多个非单词字符</td>
+<td>点号句号等</td>
+</tr>
+<tr>
+<td>\b</td>
+<td>单词锁定符</td>
+<td>‘\bgrep\b’只匹配grep</td>
+</tr>
+</tbody>
+</table>
+<h2 id="用于egrep和-grep-E的元字符扩展集"><a href="#用于egrep和-grep-E的元字符扩展集" class="headerlink" title="用于egrep和 grep -E的元字符扩展集"></a>用于egrep和 grep -E的元字符扩展集</h2><p>+——匹配一个或多个先前的字符。如：’[a-z]+able’，匹配一个或多个小写字母后跟able的串，如loveable,enable,disable等。</p>
+<p>?——匹配零个或多个先前的字符。如：’gr?p’匹配gr后跟一个或没有字符，然后是p的行。</p>
+<p>a|b|c——匹配a或b或c。如：grep|sed匹配grep或sed</p>
+<p>()——分组符号，如：love(able|rs)ov+匹配loveable或lovers，匹配一个或多个ov。</p>
+<p>x{m},x{m,},x{m,n}——作用同x{m},x{m,},x{m,n}</p>
+<h2 id="POSIX字符类"><a href="#POSIX字符类" class="headerlink" title="POSIX字符类"></a>POSIX字符类</h2><p>为了在不同国家的字符编码中保持一至，POSIX(The Portable Operating System Interface)增加了特殊的字符类，如[:alnum:]是A-Za-z0-9的另一个写法。要把它们放到[]号内才能成为正则表达式，如[A- Za-z0-9]或[[:alnum:]]。在linux下的grep除fgrep外，都支持POSIX的字符类。</p>
+<table>
+<thead>
+<tr>
+<th>POSIX字符组</th>
+<th>说明</th>
+<th>ASCII语言环境</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>[:alnum:]</td>
+<td>文字数字字符</td>
+<td>[a-zA-Z0-9]</td>
+</tr>
+<tr>
+<td>[:alpha:]</td>
+<td>文字字符</td>
+<td>[a-zA-Z]</td>
+</tr>
+<tr>
+<td>[:digit:]</td>
+<td>数字字符</td>
+<td>[0-9]</td>
+</tr>
+<tr>
+<td>[:graph:]</td>
+<td>非空字符（非空格、控制字符）</td>
+<td>[\x21-\x7E]</td>
+</tr>
+<tr>
+<td>[:lower:]</td>
+<td>小写字符</td>
+<td>[a-z]</td>
+</tr>
+<tr>
+<td>[:cntrl:]</td>
+<td>控制字符</td>
+<td>[\x00-\x1F\x7F]</td>
+</tr>
+<tr>
+<td>[:print:]</td>
+<td>非空字符（包括空格）</td>
+<td>[\x20-\x7E]</td>
+</tr>
+<tr>
+<td>[:punct:]</td>
+<td>标点符号</td>
+<td>[][!”#$%&amp;’()*+,./:;&lt;=&gt;?@\^_`{&#124;}~-]</td>
+</tr>
+<tr>
+<td>[:space:]</td>
+<td>所有空白字符（新行,空格,制表符）</td>
+<td>[ \t\r\n\v\f]</td>
+</tr>
+<tr>
+<td>[:upper:]</td>
+<td>大写字符</td>
+<td>[A-Z]</td>
+</tr>
+<tr>
+<td>[:xdigit:]</td>
+<td>十六进制数字（0-9，a-f，A-F）</td>
+<td>[A-Fa-f0-9]</td>
+</tr>
+<tr>
+<td>[:word:]</td>
+<td>字母字符</td>
+<td>[A-Za-z0-9_]</td>
+</tr>
+<tr>
+<td>[:ascii:]</td>
+<td>ASCII字符</td>
+<td>[\x00-\x7F]</td>
+</tr>
+<tr>
+<td>[:blank:]</td>
+<td>空格字符和制表符</td>
+<td>[ \t]</td>
+</tr>
+</tbody>
+</table>
+<h2 id="grep选项"><a href="#grep选项" class="headerlink" title="grep选项"></a>grep选项</h2><table>
+<thead>
+<tr>
+<th>选项</th>
+<th>含义</th>
+<th>选项</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>匹配模式选择:</td>
+<td>-</td>
+<td>输入控制:</td>
+<td>-</td>
+</tr>
+<tr>
+<td>-E, –extended-regexp</td>
+<td>扩展正则表达式egrep</td>
+<td>-m, –max-count=NUM</td>
+<td>匹配的最大数 </td>
+</tr>
+<tr>
+<td>-F, –fixed-strings</td>
+<td>一个换行符分隔的字符串的集合fgrep</td>
+<td>-b, –byte-offset</td>
+<td>打印匹配行前面打印该行所在的块号码</td>
+</tr>
+<tr>
+<td>-G, –basic-regexp</td>
+<td>基本正则</td>
+<td>-n, –line-number</td>
+<td>显示的加上匹配所在的行号 </td>
+</tr>
+<tr>
+<td>-P, –perl-regexp</td>
+<td>调用的perl正则</td>
+<td>–line-buffered</td>
+<td>刷新输出每一行 </td>
+</tr>
+<tr>
+<td>-e, –regexp=PATTERN</td>
+<td>后面根正则模式，默认无</td>
+<td>-H, –with-filename</td>
+<td>当搜索多个文件时，显示匹配文件名前缀 </td>
+</tr>
+<tr>
+<td>-f, –file=FILE</td>
+<td>从文件中获得匹配模式</td>
+<td>-h, –no-filename</td>
+<td>当搜索多个文件时，不显示匹配文件名前缀 </td>
+</tr>
+<tr>
+<td>-i, –ignore-case</td>
+<td>不区分大小写</td>
+<td>–label=LABEL</td>
+<td>print LABEL as filename for standard input</td>
+</tr>
+<tr>
+<td>-w, –word-regexp</td>
+<td>匹配整个单词</td>
+<td>-o, –only-matching</td>
+<td>show only the part of a line matching PATTERN</td>
+</tr>
+<tr>
+<td>-x, –line-regexp</td>
+<td>匹配整行</td>
+<td>-q, –quiet, –silent</td>
+<td>不显示任何东西</td>
+</tr>
+<tr>
+<td>-z, –null-data</td>
+<td>a data line ends in 0 byte, not newline</td>
+<td>–binary-files=TYPE</td>
+<td>assume that binary files are TYPE</td>
+</tr>
+<tr>
+<td>杂项:</td>
+<td>-</td>
+<td>-a, –text</td>
+<td>匹配二进制的东西 </td>
+</tr>
+<tr>
+<td>-s, –no-messages</td>
+<td>不显示错误信息</td>
+<td>-I</td>
+<td>不匹配二进制的东西</td>
+</tr>
+<tr>
+<td>-v, –invert-match</td>
+<td>显示不匹配的行</td>
+<td>-d, –directories=ACTION</td>
+<td>目录操作，读取，递归，跳过</td>
+</tr>
+<tr>
+<td>-V, –version</td>
+<td>显示版本号</td>
+<td>-D, –devices=ACTION</td>
+<td>设置对设备，FIFO,管道的操作，读取，跳过</td>
+</tr>
+<tr>
+<td>–help</td>
+<td>显示帮助信息</td>
+<td>-R, -r, –recursive</td>
+<td>递归调用 </td>
+</tr>
+<tr>
+<td>–mmap</td>
+<td>use memory-mapped input if possible</td>
+<td>–include=PATTERN</td>
+<td>files that match PATTERN will be examined</td>
+</tr>
+<tr>
+<td>文件控制:</td>
+<td>-</td>
+<td>–exclude=PATTERN</td>
+<td>files that match PATTERN will be skipped</td>
+</tr>
+<tr>
+<td>-B, –before-context=NUM</td>
+<td>打印匹配本身以及前面的几个行由NUM控制</td>
+<td>–exclude-from=FILE</td>
+<td>files that match PATTERN in FILE will be skipped</td>
+</tr>
+<tr>
+<td>-A, –after-context=NUM</td>
+<td>打印匹配本身以及随后的几个行由NUM控制</td>
+<td>-L, –files-without-match</td>
+<td>匹配多个文件时，显示不匹配的文件名 </td>
+</tr>
+<tr>
+<td>-C, –context=NUM</td>
+<td>打印匹配本身以及随后，前面的几个行由NUM控制</td>
+<td>-l, –files-with-matches</td>
+<td>匹配多个文件时，显示匹配的文件名 </td>
+</tr>
+<tr>
+<td>-NUM</td>
+<td>根-C的用法一样的</td>
+<td>-c, –count</td>
+<td>显示匹配了多少次 </td>
+</tr>
+<tr>
+<td>–colo[u]r[=WHEN]</td>
+<td>use markers to distinguish the matching string</td>
+<td>-Z, –null</td>
+<td>print 0 byte after FILE name</td>
+</tr>
+<tr>
+<td>-U, –binary</td>
+<td>do not strip CR characters at EOL (MSDOS)</td>
+<td>-</td>
+<td>- </td>
+</tr>
+<tr>
+<td>-u, –unix-byte-offsets</td>
+<td>report offsets as if CRs were not there (MSDOS)</td>
+<td>-</td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<p>注：部分选项对应的取值<br>–binary-files=TYPE：TYPE is ‘binary’, ‘text’, or ‘without-match’<br>-d, –directories=ACTION：ACTION is ‘read’, ‘recurse’, or ‘skip’<br>-D, –devices=ACTION：ACTION is ‘read’ or ‘skip’<br>–colour[=WHEN]：WHEN may be <code>always&#39;,</code>never’ or `auto’</p>
+<h2 id="应用举例"><a href="#应用举例" class="headerlink" title="应用举例"></a>应用举例</h2><ol>
+<li><p>匹配包含root的行</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">[root@jsyd-1 shell]# grep root gtest</div><div class="line">root:x:0:0:root:/root:/bin/bash</div></pre></td></tr></table></figure>
+</li>
+<li><p>匹配以root或者zhang开始的行，使用反斜杠或者-E</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">[root@jsyd-1 shell]# cat gtest | grep &apos;^\(root\|zhang\)&apos;</div><div class="line">root:x:0:0:root:/root:/bin/bash</div><div class="line">zhangy:x:1000:100:,,,:/home/zhangy:/bin/bash</div><div class="line"></div><div class="line">[root@jsyd-1 shell]#  cat gtest | grep -E &apos;^(root|zhang)&apos;</div><div class="line">zhangsan:x:1000:100:,,,:/home/zhangjx:/bin/bash</div><div class="line">zhangsan:x:33:33::/srv/http:/bin/false/zhangsan</div></pre></td></tr></table></figure>
+</li>
+<li><p>匹配以zhang开头且只包含字母的行</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">[root@jsyd-1 shell]# echo zhangjiaxing | grep &apos;zhang[a-z]*$&apos;</div><div class="line">zhangsan</div></pre></td></tr></table></figure>
+</li>
+<li><p>-n参数显示匹配的行数</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">[root@jsyd-1 shell]# cat gtest | grep -n zhang</div><div class="line">7:zhangy:x:1000:100:,,,:/home/zhangy:/bin/bash </div><div class="line">13:ba:x:1002:1002::/home/zhangy:/bin/bash </div><div class="line">15:@zhangsan:*:1004:1004::/home/test:/bin/bash</div></pre></td></tr></table></figure>
+</li>
+<li><p>-v参数反选，不包含bin的行</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">[root@jsyd-1 shell]# cat gtest | grep -nv &apos;bin&apos;</div><div class="line">16:policykit:x:102:1005:Po</div></pre></td></tr></table></figure>
+</li>
+<li><p>-c输出匹配的行数，不以bin开头的行数</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">[root@jsyd-1 shell]# cat gtest | grep -cv &apos;^bin&apos;</div><div class="line">15</div></pre></td></tr></table></figure>
+</li>
+<li><p>-i忽略大小写匹配</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">[root@jsyd-1 shell]# cat gtest | grep system</div><div class="line">[root@jsyd-1 shell]# cat gtest | grep -i system</div><div class="line">dbus:x:81:81:System message bus:/:/bin/false</div></pre></td></tr></table></figure>
+</li>
+<li><p>-w必须匹配整个单词</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">[root@jsyd-1 shell]# cat gtest | grep -w zhang</div><div class="line">[root@jsyd-1 shell]# cat gtest | grep -w zhangy</div><div class="line">zhangy:x:1000:100:,,,:/home/zhangy:/bin/bash </div><div class="line">ba:x:1002:1002::/home/zhangy:/bin/bash</div></pre></td></tr></table></figure>
+</li>
+<li><p>-x必须正行都和关键字相同</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">[root@jsyd-1 shell]# cat gtest | grep aaaa</div><div class="line">bin:x:1:1:bin:/bin:/bin/false,aaa,bbbb,cccc,aaaaaa</div><div class="line">aaaa</div><div class="line"></div><div class="line">[root@jsyd-1 shell]# cat gtest | grep -x aaaa</div><div class="line">aaaa</div></pre></td></tr></table></figure>
+</li>
+<li><p>-m设定匹配的最大次数，只输出前两个匹配到的行</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">[root@jsyd-1 shell]# cat gtest | grep -m 2 zhang</div><div class="line">zhangy:x:1000:100:,,,:/home/zhangy:/bin/bash</div><div class="line">ba:x:1002:1002::/home/zhangy:/bin/bash</div></pre></td></tr></table></figure>
+</li>
+<li><p>-b显示匹配到时所在的字节数</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">[root@jsyd-1 shell]# cat gtest | grep -b zhang</div><div class="line">253:zhangy:x:1000:100:,,,:/home/zhangy:/bin/bash</div><div class="line">504:ba:x:1002:1002::/home/zhangy:/bin/bash</div><div class="line">586:@zhangying:*:1004:1004::/home/test:/bin/bash</div></pre></td></tr></table></figure>
+</li>
+<li><p>-H多文件匹配输出文件名，-h不输出</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">[root@jsyd-1 shell]# grep -H zhang gtest*</div><div class="line">gtest:@zhangjiaxing:*:1004:1004::/home/test:/bin/bash</div><div class="line">gtest:zhangjx:x:1000:100:,,,:/home/zhangjx:/bin/bash</div><div class="line">gtest:zhangjx:x:33:33::/srv/http:/bin/false/zhangjx</div><div class="line">gtest1:zhangy:x:1000:100:,,,:/home/zhangy:/bin/bash</div><div class="line">gtest1:ba:x:1002:1002::/home/zhangy:/bin/bash</div><div class="line">gtest1:@zhangying:*:1004:1004::/home/test:/bin/bash</div></pre></td></tr></table></figure>
+</li>
+<li><p>-l只输出匹配到的文件名，-L相反输出没有匹配到的文件名，可通过$?查看匹配的结果</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">[root@jsyd-1 shell]# grep -l zhang gtest*</div><div class="line">gtest</div><div class="line">gtest1</div><div class="line"></div><div class="line">[root@jsyd-1 shell]# grep -L zhang gtest*</div></pre></td></tr></table></figure>
+</li>
+<li><p>-o输出匹配到的部分，而不是整行</p>
+</li>
+<li><p>-q不输出任何内容，可通过echo $?查看匹配的结果</p>
+</li>
+<li><p>-R对目录进行递归匹配，shell为文件目录</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">grep zhang -R shell/</div></pre></td></tr></table></figure>
+</li>
+<li><p>输出匹配前后的行</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">cat gtest | gerp -A 3 zhang 输出匹配后三行</div><div class="line">cat gtest1 | grep -B 3 zhang 输出匹配前三行</div><div class="line">cat gtest1 | grep -3 zhang == cat gtest1 | grep -C 3 zhang 出匹配前后个三行</div></pre></td></tr></table></figure>
+</li>
+<li><p>显示颜色</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cat gtest1 | grep  zhang --colour=always</div></pre></td></tr></table></figure>
+</li>
+<li><p>从文件g1中获取匹配的关键字</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">grep -f g1 gtest1</div></pre></td></tr></table></figure>
+</li>
+<li><p>匹配zhang后接一个小写字符，POSIX字符使用需要两个[]</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">[root@jsyd-1 shell]# grep zhang[[:lower:]] gtest</div><div class="line">@zhangjiaxing:*:1004:1004::/home/test:/bin/bash</div><div class="line">zhangjx:x:1000:100:,,,:/home/zhangjx:/bin/bash</div><div class="line">zhangjx:x:33:33::/srv/http:/bin/false/zhangjx</div></pre></td></tr></table></figure>
+</li>
+<li><p>匹配zhang后接3个小写字符</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">[root@jsyd-1 shell]# egrep zhang[[:lower:]]&#123;3&#125; gtest</div><div class="line">@zhangjiaxing:*:1004:1004::/home/test:/bin/bash</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<h2 id="grep中模式之间的or、and、not操作"><a href="#grep中模式之间的or、and、not操作" class="headerlink" title="grep中模式之间的or、and、not操作"></a>grep中模式之间的or、and、not操作</h2><ol>
+<li><p>grep或(or)操作四种方式</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$grep &apos;pattern1\|pattern2&apos; filename 使用\|</div><div class="line">$grep -E &apos;pattern1|pattern2&apos; filename 使用grep -E</div><div class="line">$egrep -E &apos;pattern1|pattern2&apos; filename 使用egrep：同上</div><div class="line">$grep -e pattern1 -e pattern2 filename 通过制定多个-e</div></pre></td></tr></table></figure>
+</li>
+<li><p>grep与(and)操作</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$grep -E &apos;pattern1.*pattern2|pattern2.*pattern1&apos; filename 使用-E选项和模式字符, 查找同时包含两个模式的行</div><div class="line">$grep &apos;pattern1&apos; filename | grep &apos;pattern2&apos; 用管道实现</div></pre></td></tr></table></figure>
+</li>
+<li><p>grep非(not)操作</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$grep -v zhang filename 使用-v选项实现</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<h2 id="grep与egrep、fgrep、pgrep的区别"><a href="#grep与egrep、fgrep、pgrep的区别" class="headerlink" title="grep与egrep、fgrep、pgrep的区别"></a>grep与egrep、fgrep、pgrep的区别</h2><p>grep家族由命令grep、egrep、fgrep组成。grep命令是在文件中逐行全局查找指定的正则表达式，并且打印所有包含该表达式的行。egrep and fgrep均是grep的变体。egrep命令是扩展的grep，它能支持更多的正则表达式元字符。fgrep命令是固定的grep(fixed grep),有时也称作快速grep，它按字面解释所有字符，也就是说，正则表达式元字符不会被特殊处理，它们只匹配自己。自由软件基金会提供了grep的免费版本，称作GNU grep。Linux系统上使用的就是这种版本的grep。</p>
+<ul>
+<li><p>grep命令:<br>由来：grep = global regular expression print 它表示”全局查找正正则表达式(RE)并且打印结果行”。</p>
+</li>
+<li><p>egrep (扩展的grep):<br>使用egrep的主要好处是它在grep提供的正则表达式元字符集的基础上添加了更多的元字符。但是egrep 不支持使用( ) 和{ }。如果使用的Linux系统，请参考GNU的grep -E命令.</p>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>元字符</th>
+<th>功能</th>
+<th>实例</th>
+<th>匹配对象</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>+</td>
+<td>匹配一个或多个前导字符</td>
+<td>[a-z]+ove</td>
+<td>匹配一个或多个小写字符后跟ove</td>
+</tr>
+<tr>
+<td>？</td>
+<td>匹配0个或1个前导字符</td>
+<td>lo?ve</td>
+<td>匹配l后跟0个或者1个o以及字符ve</td>
+</tr>
+<tr>
+<td>a&#124;b</td>
+<td>匹配a或b</td>
+<td>love&#124;hate</td>
+<td>匹配love或者hate两个之一</td>
+</tr>
+<tr>
+<td>()</td>
+<td>字符组</td>
+<td>love(able&#124;ly)(ov)+</td>
+<td>匹配loveable或lovely匹配ov的一次或多次</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><p>fgrep（固定的grep或快速的grep）<br>fgrep命令的运行方式grep类似，但它不对任何正则表达式元字符做特殊处理。所有字符都只代表它自己的本身作为字符的意思。美元符就是美元符，全部如此。</p>
+</li>
+<li><p>pgrep（将模式解释为perl PE）<br>参考grep -P</p>
+</li>
+</ul>
+<p>参考：<br><a href="http://blog.51yip.com/linux/1008.html" target="_blank" rel="external">http://blog.51yip.com/linux/1008.html</a><br><a href="http://man.chinaunix.net/newsoft/grep/open.htm" target="_blank" rel="external">http://man.chinaunix.net/newsoft/grep/open.htm</a><br><a href="http://blog.csdn.net/gaoyingju/article/details/7737651" target="_blank" rel="external">http://blog.csdn.net/gaoyingju/article/details/7737651</a></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+<div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/images/weixin.jpg" alt="Mufool wechat" style="width: 200px; max-width: 100%;"/>
+    <div>微信打赏</div>
+</div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/LINUX/" rel="tag"># LINUX</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/07/13/rtmpd-deploy/" rel="next" title="crtmpserver编译部署">
+                <i class="fa fa-chevron-left"></i> crtmpserver编译部署
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/07/18/hexo-tips/" rel="prev" title="hexo博客颜色设置">
+                hexo博客颜色设置 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_cqq"></a>
+  <a class="jiathis_button_douban"></a>
+  <a class="jiathis_button_renren"></a>
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a class="jiathis_button_copy"></a>
+  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+  var jiathis_config={
+    hideMore:false
+  }
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/default_avatar.jpg"
+               alt="Mufool" />
+          <p class="site-author-name" itemprop="name">Mufool</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">60</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">25</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/mufool/" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="your-weibo-url" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  Weibo
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="your-zhihu-url" target="_blank" title="ZhiHu">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  ZhiHu
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+          <div class="cc-license motion-element" itemprop="license">
+            <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" target="_blank">
+              <img src="/images/cc-by-nc-sa.svg" alt="Creative Commons" />
+            </a>
+          </div>
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#grep简介"><span class="nav-number">1.</span> <span class="nav-text">grep简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#grep正则表达式元字符集（基本集）"><span class="nav-number">2.</span> <span class="nav-text">grep正则表达式元字符集（基本集）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#用于egrep和-grep-E的元字符扩展集"><span class="nav-number">3.</span> <span class="nav-text">用于egrep和 grep -E的元字符扩展集</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#POSIX字符类"><span class="nav-number">4.</span> <span class="nav-text">POSIX字符类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#grep选项"><span class="nav-number">5.</span> <span class="nav-text">grep选项</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#应用举例"><span class="nav-number">6.</span> <span class="nav-text">应用举例</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#grep中模式之间的or、and、not操作"><span class="nav-number">7.</span> <span class="nav-text">grep中模式之间的or、and、not操作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#grep与egrep、fgrep、pgrep的区别"><span class="nav-number">8.</span> <span class="nav-text">grep与egrep、fgrep、pgrep的区别</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Mufool</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+  
+  <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://www-mufool-com.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://mufool.com/2016/07/13/linux-grep/';
+          this.page.identifier = '2016/07/13/linux-grep/';
+          this.page.title = 'grep使用详解';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://www-mufool-com.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

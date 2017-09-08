@@ -77,7 +77,7 @@
 <link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="JS," />
 
 
 
@@ -93,14 +93,18 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="Mufool">
-<meta property="og:url" content="http://mufool.com/404.html">
+<meta name="description" content="Grunt是一个自动化的项目构建工具. 如果你需要重复的执行像压缩, 编译, 单元测试, 代码检查以及打包发布的任务。">
+<meta name="keywords" content="JS">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Centos下安装Grunt">
+<meta property="og:url" content="http://mufool.com/2017/08/21/centos-grunt/index.html">
 <meta property="og:site_name" content="Mufool">
+<meta property="og:description" content="Grunt是一个自动化的项目构建工具. 如果你需要重复的执行像压缩, 编译, 单元测试, 代码检查以及打包发布的任务。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-09-08T03:45:38.062Z">
+<meta property="og:updated_time" content="2017-09-08T03:45:38.063Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Mufool">
+<meta name="twitter:title" content="Centos下安装Grunt">
+<meta name="twitter:description" content="Grunt是一个自动化的项目构建工具. 如果你需要重复的执行像压缩, 编译, 单元测试, 代码检查以及打包发布的任务。">
 
 
 
@@ -128,13 +132,13 @@
 
 
 
-  <link rel="canonical" href="http://mufool.com/404.html"/>
+  <link rel="canonical" href="http://mufool.com/2017/08/21/centos-grunt/"/>
 
 
 
 
 
-  <title> | Mufool</title>
+  <title>Centos下安装Grunt | Mufool</title>
   
 
 
@@ -298,32 +302,211 @@
             
 
   <div id="posts" class="posts-expand">
-  <header class="post-header">
+    
 
-	<h1 class="post-title" itemprop="name headline"></h1>
+  
 
+  
+  
+  
 
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://mufool.com/2017/08/21/centos-grunt/">
 
-</header>
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Mufool">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/default_avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mufool">
+    </span>
 
     
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Centos下安装Grunt</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-21T12:46:56+08:00">
+                2017-08-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/08/21/centos-grunt/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/08/21/centos-grunt/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
     
-      <!DOCTYPE HTML>
-<html>
-<head>
-	<meta http-equiv="content-type" content="text/html;charset=utf-8;">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-	<meta name="robots" content="all">
-	<meta name="robots" content="index,follow">
-</head>
-<body>
 
-<script type="text/javascript" src="http://www.qq.com/404/search_children.js" charset="utf-8" homepageurl="your site url " homepagename="回到我的主页"></script>
+    <div class="post-body" itemprop="articleBody">
 
-</body>
-</html>
+      
+      
 
-    
+      
+        <p>Grunt是一个自动化的项目构建工具. 如果你需要重复的执行像压缩, 编译, 单元测试, 代码检查以及打包发布的任务。</p>
+<a id="more"></a>
+<h2 id="CentOS-下安装-Node-js"><a href="#CentOS-下安装-Node-js" class="headerlink" title="CentOS 下安装 Node.js"></a>CentOS 下安装 Node.js</h2><p>1、下载源码，你需要在<code>https://nodejs.org/en/download/</code>下载最新的Nodejs版本，本文以v0.10.24为例:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">cd /usr/local/src/</div><div class="line">wget http://nodejs.org/dist/v0.10.24/node-v0.10.24.tar.gz</div></pre></td></tr></table></figure>
+<p>2、解压源码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">tar zxvf node-v0.10.24.tar.gz</div></pre></td></tr></table></figure>
+<p>3、 编译安装</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">cd node-v0.10.24</div><div class="line">./configure --prefix=/usr/local/node/0.10.24</div><div class="line">make</div><div class="line">make install</div></pre></td></tr></table></figure>
+<p>4、 配置NODE_HOME，进入profile编辑环境变量<code>vim /etc/profile</code></p>
+<p>设置nodejs环境变量，添加如下内容:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">#set for nodejs</div><div class="line">export NODE_HOME=/usr/local/node/0.10.24</div><div class="line">export PATH=$NODE_HOME/bin:$PATH</div></pre></td></tr></table></figure>
+<p><code>:wq</code>保存并退出，编译/etc/profile 使配置生效</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">source /etc/profile</div></pre></td></tr></table></figure>
+<p>验证是否安装配置成功<code>node -v</code>，输出 v0.10.24 表示配置成功。</p>
+<h2 id="安装NPM"><a href="#安装NPM" class="headerlink" title="安装NPM"></a>安装NPM</h2><p>装好NodeJS后，可以在你的终端执行下面的命令安装NPM：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">curl http://npmjs.org/install.sh | sh</div></pre></td></tr></table></figure>
+<p>检查是否安装成功<code>npm -v</code></p>
+<h2 id="Grunt安装"><a href="#Grunt安装" class="headerlink" title="Grunt安装"></a>Grunt安装</h2><p>Grunt和Grunt插件都是通过npm, Node.js包管理器安装和管理的。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install -g grunt-cli</div></pre></td></tr></table></figure>
+<p>这条命令将会把grunt命令植入到你的系统路径中，这样就允许你从任意目录中运行Grunt(定位到任意目录运行grunt命令)。</p>
+<p>查看是否安装成功<code>grunt --version</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">grunt-cli v1.2.0</div></pre></td></tr></table></figure>
+<p>注意：安装grunt-cli并不等于安装了Grunt任务运行器! Grunt CLI的工作很简单：在Gruntfile所在目录调用运行已安装好的相应版本的Grunt。这就意味着可以在同一台机器上同时安装多个版本的Grunt。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+<div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/images/weixin.jpg" alt="Mufool wechat" style="width: 200px; max-width: 100%;"/>
+    <div>微信打赏</div>
+</div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/JS/" rel="tag"># JS</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/08/21/p2p-nat/" rel="next" title="p2p之NAT详解">
+                <i class="fa fa-chevron-left"></i> p2p之NAT详解
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/08/25/cookie-session/" rel="prev" title="Cookie和Session原理">
+                Cookie和Session原理 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_cqq"></a>
+  <a class="jiathis_button_douban"></a>
+  <a class="jiathis_button_renren"></a>
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a class="jiathis_button_copy"></a>
+  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+  var jiathis_config={
+    hideMore:false
+  }
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+      
+    </div>
   </div>
 
 
@@ -362,8 +545,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/default_avatar.jpg"
@@ -460,6 +652,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#CentOS-下安装-Node-js"><span class="nav-number">1.</span> <span class="nav-text">CentOS 下安装 Node.js</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装NPM"><span class="nav-number">2.</span> <span class="nav-text">安装NPM</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Grunt安装"><span class="nav-number">3.</span> <span class="nav-text">Grunt安装</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -578,10 +786,10 @@
   
 
   
-    <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
 <script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
 
-  
+
 
   
 
@@ -602,9 +810,9 @@
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'http://mufool.com/404.html';
-          this.page.identifier = '404.html';
-          this.page.title = '';
+          this.page.url = 'http://mufool.com/2017/08/21/centos-grunt/';
+          this.page.identifier = '2017/08/21/centos-grunt/';
+          this.page.title = 'Centos下安装Grunt';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://www-mufool-com.disqus.com/embed.js';

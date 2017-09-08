@@ -77,7 +77,7 @@
 <link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="P2P," />
 
 
 
@@ -93,14 +93,23 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="Mufool">
-<meta property="og:url" content="http://mufool.com/404.html">
+<meta name="description" content="NAT简介&amp;emsp;&amp;emsp;NAT，网络地址转换，就是替换IP报文头部的地址信息。NAT通常部署在一个组织的网络出口位置，通过将内部网络IP地址替换为出口的IP地址提供公网可达性和上层协议的连接能力。&amp;emsp;&amp;emsp;NAT的主要目的是解决IPV4缺少带来的问题，有了NAT技术，就可以在少量的公网IP和内网地址（10.0.0.0-10.255.255.255；172.16.0.0-17">
+<meta name="keywords" content="P2P">
+<meta property="og:type" content="article">
+<meta property="og:title" content="p2p之NAT详解">
+<meta property="og:url" content="http://mufool.com/2017/08/21/p2p-nat/index.html">
 <meta property="og:site_name" content="Mufool">
+<meta property="og:description" content="NAT简介&amp;emsp;&amp;emsp;NAT，网络地址转换，就是替换IP报文头部的地址信息。NAT通常部署在一个组织的网络出口位置，通过将内部网络IP地址替换为出口的IP地址提供公网可达性和上层协议的连接能力。&amp;emsp;&amp;emsp;NAT的主要目的是解决IPV4缺少带来的问题，有了NAT技术，就可以在少量的公网IP和内网地址（10.0.0.0-10.255.255.255；172.16.0.0-17">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-09-08T03:45:38.062Z">
+<meta property="og:image" content="http://mufool.qiniudn.com/p2pnat/fc.jpg">
+<meta property="og:image" content="http://mufool.qiniudn.com/p2pnat/rc.jpg">
+<meta property="og:image" content="http://mufool.qiniudn.com/p2pnat/pc.jpg">
+<meta property="og:image" content="http://mufool.qiniudn.com/p2pnat/sn.jpg">
+<meta property="og:updated_time" content="2017-09-08T03:45:38.064Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Mufool">
+<meta name="twitter:title" content="p2p之NAT详解">
+<meta name="twitter:description" content="NAT简介&amp;emsp;&amp;emsp;NAT，网络地址转换，就是替换IP报文头部的地址信息。NAT通常部署在一个组织的网络出口位置，通过将内部网络IP地址替换为出口的IP地址提供公网可达性和上层协议的连接能力。&amp;emsp;&amp;emsp;NAT的主要目的是解决IPV4缺少带来的问题，有了NAT技术，就可以在少量的公网IP和内网地址（10.0.0.0-10.255.255.255；172.16.0.0-17">
+<meta name="twitter:image" content="http://mufool.qiniudn.com/p2pnat/fc.jpg">
 
 
 
@@ -128,13 +137,13 @@
 
 
 
-  <link rel="canonical" href="http://mufool.com/404.html"/>
+  <link rel="canonical" href="http://mufool.com/2017/08/21/p2p-nat/"/>
 
 
 
 
 
-  <title> | Mufool</title>
+  <title>p2p之NAT详解 | Mufool</title>
   
 
 
@@ -298,32 +307,280 @@
             
 
   <div id="posts" class="posts-expand">
-  <header class="post-header">
+    
 
-	<h1 class="post-title" itemprop="name headline"></h1>
+  
 
+  
+  
+  
 
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://mufool.com/2017/08/21/p2p-nat/">
 
-</header>
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Mufool">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/default_avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mufool">
+    </span>
 
     
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">p2p之NAT详解</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-21T11:39:53+08:00">
+                2017-08-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/08/21/p2p-nat/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/08/21/p2p-nat/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
     
-      <!DOCTYPE HTML>
-<html>
-<head>
-	<meta http-equiv="content-type" content="text/html;charset=utf-8;">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-	<meta name="robots" content="all">
-	<meta name="robots" content="index,follow">
-</head>
-<body>
 
-<script type="text/javascript" src="http://www.qq.com/404/search_children.js" charset="utf-8" homepageurl="your site url " homepagename="回到我的主页"></script>
+    <div class="post-body" itemprop="articleBody">
 
-</body>
-</html>
+      
+      
 
-    
+      
+        <h2 id="NAT简介"><a href="#NAT简介" class="headerlink" title="NAT简介"></a>NAT简介</h2><p>&emsp;&emsp;NAT，网络地址转换，就是替换IP报文头部的地址信息。NAT通常部署在一个组织的网络出口位置，通过将内部网络IP地址替换为出口的IP地址提供公网可达性和上层协议的连接能力。<br>&emsp;&emsp;NAT的主要目的是解决IPV4缺少带来的问题，有了NAT技术，就可以在少量的公网IP和内网地址（10.0.0.0-10.255.255.255；172.16.0.0-172.31.255.255；192.168.0.0-192.168.255.255）之间建立映射关系。</p>
+<a id="more"></a>
+<h2 id="NAT分类"><a href="#NAT分类" class="headerlink" title="NAT分类"></a>NAT分类</h2><p>&emsp;&emsp;NAT共分为两大类：Cone NAT和Symmetric NAT。Cone NAT指的是只要源IP端口不变，无论发往的目的IP是否相同，在NAT上都映射为同一个端口，形象的看来就像锥子一样，而SymmetricNAT对于发往不同目的IP的会话在NAT上将映射为不同的端口，也就是不同的会话。 其中Cone NAT又可细分为3类，分别是Full Cone型（全锥形）、Restricted Cone型（受限锥形）和Restricted Port Cone（端口受限锥形）。限制的严格程度和对局域网内主机的保护由松到紧依次为：Full Cone、RestrictedCone、Restricted Port Cone、Symmetric NAT。“限制”指的是NAT对由外到内的数据包进行审查、过滤，看看数据包的源地址和他发送到的“洞”是否有关系，如果没有那么就将其丢弃。由内向外的限制有防火墙管理。</p>
+<h3 id="全锥形NAT"><a href="#全锥形NAT" class="headerlink" title="全锥形NAT"></a>全锥形NAT</h3><p><img src="http://mufool.qiniudn.com/p2pnat/fc.jpg" alt="fc"><br>IP、端口都不受限。NAT设备会将客户端的{X, y}转换成公网地址的{A, b}并绑定对应关系，任何数据包通过地址{A,b}都将送到客户机的{X,y}上。</p>
+<h3 id="受限锥形NAT"><a href="#受限锥形NAT" class="headerlink" title="受限锥形NAT"></a>受限锥形NAT</h3><p> <img src="http://mufool.qiniudn.com/p2pnat/rc.jpg" alt="rc"></p>
+<p> IP受限，端口不受限。NAT设备会将客户端的{X, y}转换成公网地址的{A, b}并绑定对应关系，只有来自于{P}这个ip地址的包才能和主机{X, y}通信。</p>
+<h3 id="端口受限锥型NAT"><a href="#端口受限锥型NAT" class="headerlink" title="端口受限锥型NAT"></a>端口受限锥型NAT</h3><p><img src="http://mufool.qiniudn.com/p2pnat/pc.jpg" alt="pc"><br>IP、端口都受限。NAT设备会将客户端的{X, y}转换成公网地址的{A, b}并绑定{X, y}，{A,b}和{P,q}的对应关系，NAT只会接受来自{P,q}的数据包，并将其转发到{X,y}。如果{X，y}改为向{M,n}发送数据，则{P,q}再向{A,b}发送的数据不会被接受。</p>
+<h3 id="对称型NAT"><a href="#对称型NAT" class="headerlink" title="对称型NAT"></a>对称型NAT</h3><p> <img src="http://mufool.qiniudn.com/p2pnat/sn.jpg" alt="sn"><br>对称型NAT具有端口受限锥型的受限特性。但更重要的是，他对每个外部主机或端口的会话都会映射为不同的端口（洞）。NAT设备会将客户端的{X, y}转换成公网地址的{A, b}并绑定{X, y}，{A,b}和{P,q}的对应关系，NAT只会接受来自{P,q}的数据包，并将其转发到{X,y}，当请求一个新的地址{M,n}时，NAT设备会重新分配一个新的ip，端口{C,d}。</p>
+<h2 id="NAT弊端"><a href="#NAT弊端" class="headerlink" title="NAT弊端"></a>NAT弊端</h2><p>在理论上，具有IP地址的每个站点在协议层面有相当的获取服务和提供服务的能力，不同的IP地址之间没有差异。NAT技术的出现破坏了IP端到端通信的能力。<br>首先，NAT使IP会话的保持时效变短。因为一个会话建立后会在NAT设备上建立一个关联表，在会话静默的这段时间，NAT网关会进行超时回收资源的操作。所以应用协议必须有报活的协议才能保持会话。<br>其次，NAT在实现上将多个内部主机发出的连接复用到一个IP上，这就使依赖IP进行主机跟踪的机制都失效了。如网络管理中需要的基于网络流量分析的应用无法跟踪到终端用户与流量的具体行为的关系。基于用户行为的日志分析也变得困难，因为一个IP被很多用户共享，如果存在恶意的用户行为，很难定位到发起连接的那个主机。<br>此外，NAT工作机制依赖于修改IP包头的信息，这会妨碍一些安全协议的工作。因为NAT篡改了IP地址、传输层端口号和校验和，这会导致认证协议彻底不能工作，因为认证目的就是要保证这些信息在传输过程中没有变化。<br>总之，因为NAT隐蔽了通信的一端，把简单的事情复杂化了。</p>
+<h2 id="NAT穿透技术"><a href="#NAT穿透技术" class="headerlink" title="NAT穿透技术"></a>NAT穿透技术</h2><p>&emsp;&emsp;为了解决IP端到端应用在NAT环境下遇到的问题，网络协议的设计者们创造了很多工具来应对，其中主要有应用层网关，探针技术STUN和TURN，中间件技术，中继代理技术，特定协议的自穿越技术。这里主要介绍探针技术STUN和TURN。</p>
+<p>&emsp;&emsp;所谓探针技术STUN，是通过在所有参与通信的实体上安装探测插件，以检测网络中是否存在NAT网关，并对不同NAT模型实施不同穿越方法的一种技术。所谓中继服务TURN，是通过转发请求实现两台具有NAT设备的内网IP建立链接。</p>
+<h3 id="NAT类型识别"><a href="#NAT类型识别" class="headerlink" title="NAT类型识别"></a>NAT类型识别</h3><p>&emsp;&emsp;STUN服务器上两个公网IP分别A1,A2，同时绑定两个端口P1,P2。在主机上使用两个IP主要是测试客户机是否是对称型NAT和时候是IP受限制型NAT。主要测试流程如下：</p>
+<ol>
+<li>使用端口1发送消息给A1:P1，测试能否响应，能响应则UDP协议可以通过</li>
+<li>使用端口1发送消息给A2:P2，比较响应中的地址和上一步返回的地址是否一致，验证NAT是否对不通的目的地址进行相同的映射</li>
+<li>使用端口1发送消息给第一部中返回的NAT上映射的外网IP和端口，测试是否有回应，验证NAT是否回环</li>
+<li>使用端口2发送消息给A1:P1，服务器端使用A2:P1回复，验证是否为IP受限NAT</li>
+<li>使用端口2发送消息给A1:P1，服务器端使用A1:P2回复，验证是否为端口受限NAT</li>
+<li>同时，通过以上服务器返回的客户端IP，可以有很多方法确定是否是公网IP，如绑定这个地址或者与本地网卡中IP地址比较</li>
+</ol>
+<h3 id="NAT穿透"><a href="#NAT穿透" class="headerlink" title="NAT穿透"></a>NAT穿透</h3><p>其中一个是公网（5种）<br>客户端A是公网，A通知服务器S希望与B建立通信；S将消息转给B；B主动连接A，NAT上留下与A通信用的映射关系；A就可以与B进行正常通信，打洞成功。这种情况下，无论B是什么类型，都能成功建立连接。</p>
+<p>其中一个是FC（4种）<br>客户端A是FC类型，A通知S与B建立通信；S通知B想A已经存在的洞建立连接；A收到B的连接包，打洞成功。这种情况下，因为A主要在NAT上有对应关系，则任何其他地址都可以通着这个对应关系与A建立连接</p>
+<p>其中一个是RC（3种）</p>
+<ul>
+<li>RC和RC，A连接S希望连B，NAT上映射关系Na只能与S通信；B和S也有保存会话的NAT映射关系Nb，此时B去连接A上的Na，失败，但是Nb属性更改为与A的连接，此时A连接B可以成功，同时Na的属性也更改为与B的连接，打洞成功。（注：真正使用可能不会复用与服务器的报端连接，而是A和B同时连接对方，后连接的以方可以打洞成功）</li>
+<li>RC和PC，与RC和RC类似</li>
+<li>RC和SN，B向A不通；然后A向B发包，不通，但A上留下一个可以给B使用的洞；B在使用新的映射连接A，A可以收到，并拿到B上留给A的洞的信息；A回复B，连接建立。</li>
+</ul>
+<p>其中一个是PC（2种）</p>
+<ul>
+<li>PC和PC，同RC和RC。B连A，丢弃； A连B，通过；B回复A，连接建立</li>
+<li>PC和SN，与RC和SN的过程类似，但是在第三步，B使用新的映射连接A，A无法收到B的消息，因为A是端口受限，所以PC和SN无法打洞成功。</li>
+</ul>
+<p>其中一个是SN（1种）</p>
+<ul>
+<li>SN和SN，无法成功</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>公网</th>
+<th>FC</th>
+<th>RC</th>
+<th>PC</th>
+<th>SN </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>公网</td>
+<td>Y</td>
+<td>Y</td>
+<td>Y</td>
+<td>Y</td>
+<td>Y</td>
+</tr>
+<tr>
+<td>FC</td>
+<td>Y</td>
+<td>Y</td>
+<td>Y</td>
+<td>Y</td>
+<td>Y</td>
+</tr>
+<tr>
+<td>RC</td>
+<td>Y</td>
+<td>Y</td>
+<td>Y</td>
+<td>Y</td>
+<td>Y</td>
+</tr>
+<tr>
+<td>PC</td>
+<td>Y</td>
+<td>Y</td>
+<td>Y</td>
+<td>Y</td>
+<td>N</td>
+</tr>
+<tr>
+<td>SN</td>
+<td>Y</td>
+<td>Y</td>
+<td>Y</td>
+<td>N</td>
+<td>N</td>
+</tr>
+</tbody>
+</table>
+<p>参考：<br><a href="https://www.slideshare.net/foxhengxing/p2pnat" target="_blank" rel="external">P2P之NAT穿透</a><br><a href="http://www.52im.net/thread-50-1-1.html" target="_blank" rel="external">NAT详解——详细原理、P2P简介</a></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+<div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/images/weixin.jpg" alt="Mufool wechat" style="width: 200px; max-width: 100%;"/>
+    <div>微信打赏</div>
+</div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/P2P/" rel="tag"># P2P</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/07/06/spark-no-stop/" rel="next" title="Spark或Hadoop集群无法停止">
+                <i class="fa fa-chevron-left"></i> Spark或Hadoop集群无法停止
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/08/21/centos-grunt/" rel="prev" title="Centos下安装Grunt">
+                Centos下安装Grunt <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_cqq"></a>
+  <a class="jiathis_button_douban"></a>
+  <a class="jiathis_button_renren"></a>
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a class="jiathis_button_copy"></a>
+  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+  var jiathis_config={
+    hideMore:false
+  }
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+      
+    </div>
   </div>
 
 
@@ -362,8 +619,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/default_avatar.jpg"
@@ -460,6 +726,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#NAT简介"><span class="nav-number">1.</span> <span class="nav-text">NAT简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#NAT分类"><span class="nav-number">2.</span> <span class="nav-text">NAT分类</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#全锥形NAT"><span class="nav-number">2.1.</span> <span class="nav-text">全锥形NAT</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#受限锥形NAT"><span class="nav-number">2.2.</span> <span class="nav-text">受限锥形NAT</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#端口受限锥型NAT"><span class="nav-number">2.3.</span> <span class="nav-text">端口受限锥型NAT</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#对称型NAT"><span class="nav-number">2.4.</span> <span class="nav-text">对称型NAT</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#NAT弊端"><span class="nav-number">3.</span> <span class="nav-text">NAT弊端</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#NAT穿透技术"><span class="nav-number">4.</span> <span class="nav-text">NAT穿透技术</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#NAT类型识别"><span class="nav-number">4.1.</span> <span class="nav-text">NAT类型识别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#NAT穿透"><span class="nav-number">4.2.</span> <span class="nav-text">NAT穿透</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -578,10 +860,10 @@
   
 
   
-    <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
 <script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
 
-  
+
 
   
 
@@ -602,9 +884,9 @@
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'http://mufool.com/404.html';
-          this.page.identifier = '404.html';
-          this.page.title = '';
+          this.page.url = 'http://mufool.com/2017/08/21/p2p-nat/';
+          this.page.identifier = '2017/08/21/p2p-nat/';
+          this.page.title = 'p2p之NAT详解';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://www-mufool-com.disqus.com/embed.js';

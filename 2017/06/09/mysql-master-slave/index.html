@@ -77,7 +77,7 @@
 <link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="MYSQL," />
 
 
 
@@ -93,14 +93,18 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="Mufool">
-<meta property="og:url" content="http://mufool.com/404.html">
+<meta name="description" content="yum安装mysql 安装mysql5.6的yum源">
+<meta name="keywords" content="MYSQL">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MYSQL安装及主从配置">
+<meta property="og:url" content="http://mufool.com/2017/06/09/mysql-master-slave/index.html">
 <meta property="og:site_name" content="Mufool">
+<meta property="og:description" content="yum安装mysql 安装mysql5.6的yum源">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-09-08T03:45:38.062Z">
+<meta property="og:updated_time" content="2017-09-08T03:45:38.064Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Mufool">
+<meta name="twitter:title" content="MYSQL安装及主从配置">
+<meta name="twitter:description" content="yum安装mysql 安装mysql5.6的yum源">
 
 
 
@@ -128,13 +132,13 @@
 
 
 
-  <link rel="canonical" href="http://mufool.com/404.html"/>
+  <link rel="canonical" href="http://mufool.com/2017/06/09/mysql-master-slave/"/>
 
 
 
 
 
-  <title> | Mufool</title>
+  <title>MYSQL安装及主从配置 | Mufool</title>
   
 
 
@@ -298,32 +302,234 @@
             
 
   <div id="posts" class="posts-expand">
-  <header class="post-header">
+    
 
-	<h1 class="post-title" itemprop="name headline"></h1>
+  
 
+  
+  
+  
 
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://mufool.com/2017/06/09/mysql-master-slave/">
 
-</header>
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Mufool">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/default_avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mufool">
+    </span>
 
     
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">MYSQL安装及主从配置</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-06-09T14:35:18+08:00">
+                2017-06-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/06/09/mysql-master-slave/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/06/09/mysql-master-slave/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
     
-      <!DOCTYPE HTML>
-<html>
-<head>
-	<meta http-equiv="content-type" content="text/html;charset=utf-8;">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-	<meta name="robots" content="all">
-	<meta name="robots" content="index,follow">
-</head>
-<body>
 
-<script type="text/javascript" src="http://www.qq.com/404/search_children.js" charset="utf-8" homepageurl="your site url " homepagename="回到我的主页"></script>
+    <div class="post-body" itemprop="articleBody">
 
-</body>
-</html>
+      
+      
 
-    
+      
+        <h2 id="yum安装mysql"><a href="#yum安装mysql" class="headerlink" title="yum安装mysql"></a>yum安装mysql</h2><ul>
+<li>安装mysql5.6的yum源</li>
+</ul>
+<a id="more"></a>
+<p>a. 直接从网上安装mysql的yum源</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">[user]$ sudo rpm -ivh</div><div class="line">http://repo.mysql.com/mysql-community-release-el6-5.noarch.rpm</div></pre></td></tr></table></figure>
+<p>b. 从本地安装mysql的yum源<br>将mysql-community-release-el6-5.noarch.rpm上传至目标机器</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">[user]$ scp mysql-community-release-el6-5.noarch.rpm user@target:~</div><div class="line">[user]$ cd</div><div class="line">[user]$ sudo yum localinstall mysql-community-release-el6-5.noarch.rpm</div></pre></td></tr></table></figure>
+<ul>
+<li>更新源信息</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[user]$ sudo yum makecache</div></pre></td></tr></table></figure>
+<ul>
+<li>列出当前yum的可用源列表</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">[user]$ sudo yum repolist</div><div class="line">mysql-connectors-community      MySQL Connectors Community      9</div><div class="line">mysql-tools-community           MySQL Tools Community           12</div><div class="line">mysql56-community               MySQL 5.6 Community Server      78</div></pre></td></tr></table></figure>
+<ul>
+<li>查看mysql5.6可用安装包</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">[user]$ sudo yum search mysql-community</div><div class="line"></div><div class="line">================================= N/S Matched: mysql-community =================================</div><div class="line">mysql-community-bench.x86_64 : MySQL benchmark suite</div><div class="line">mysql-community-client.x86_64 : MySQL database client applications and tools</div><div class="line">mysql-community-client.i686 : MySQL database client applications and tools</div><div class="line">mysql-community-common.i686 : MySQL database common files for server and client libs</div><div class="line">mysql-community-common.x86_64 : MySQL database common files for server and client libs</div><div class="line">mysql-community-devel.i686 : Development header files and libraries for MySQL database client applications</div><div class="line">mysql-community-devel.x86_64 : Development header files and libraries for MySQL database client applications</div><div class="line">mysql-community-embedded.i686 : MySQL embedded library</div><div class="line">mysql-community-embedded.x86_64 : MySQL embedded library</div><div class="line">mysql-community-embedded-devel.i686 : Development header files and libraries for MySQL as an embeddable library</div><div class="line">mysql-community-embedded-devel.x86_64 : Development header files and libraries for MySQL as an embeddable library</div><div class="line">mysql-community-libs.i686 : Shared libraries for MySQL database client applications</div><div class="line">mysql-community-libs.x86_64 : Shared libraries for MySQL database client applications</div><div class="line">mysql-community-libs-compat.i686 : Shared compat libraries for MySQL 5.1 database client applications</div><div class="line">mysql-community-libs-compat.x86_64 : Shared compat libraries for MySQL 5.1 database client applications</div><div class="line">mysql-community-release.noarch : MySQL repository configuration for yum</div><div class="line">mysql-community-server.x86_64 : A very fast and reliable SQL database server</div><div class="line">mysql-community-test.x86_64 : Test suite for the MySQL database server</div></pre></td></tr></table></figure>
+<ul>
+<li>安装mysql5.6</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[user]$ sudo yum install -y mysql-community-client mysql-community-common mysql-community-devel mysql-community-libs mysql-community-libs-compat mysql-community-release mysql-community-server mysql-community-test</div></pre></td></tr></table></figure>
+<ul>
+<li>启动mysqld</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[user]$ sudo /sbin/service mysqld start</div></pre></td></tr></table></figure>
+<ul>
+<li>查看mysql版本</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">[user]$ mysql -u root</div><div class="line">mysql&gt; select version();</div><div class="line">+-----------+</div><div class="line">| version() |</div><div class="line">+-----------+</div><div class="line">| 5.6.20    |</div><div class="line">+-----------+</div><div class="line">1 row in set (0.00 sec)</div></pre></td></tr></table></figure>
+<h2 id="配置MySQL主"><a href="#配置MySQL主" class="headerlink" title="配置MySQL主"></a>配置MySQL主</h2><p>添加一个权限，并创建测试数据库testdb</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">grant all on *.*  to bfsportsdt@&apos;192.168.193.226&apos; identified by &apos;85iwx|qttHsrlxPeyldb&apos;;</div><div class="line">create database testdb;</div></pre></td></tr></table></figure>
+<p>配置主的my.cnf配置文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">log_bin=mysql-bin  #启动MySQ二进制日志系统</div><div class="line">binlog-do-db=testdb   #需要同步的数据库名，如果有多个数据库，可重复此参数，每个数据库一行  </div><div class="line">binlog-ignore-db=mysql    #不同步mysql系统数据库  </div><div class="line">server_id = 1   #设置服务器id，为1表示主服务器</div></pre></td></tr></table></figure>
+<p>重启并查看状态</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">/sbin/service mysqld restart</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">mysql&gt; show master status;</div><div class="line">+------------------+----------+--------------+------------------+</div><div class="line">| File             | Position | Binlog_Do_DB | Binlog_Ignore_DB |</div><div class="line">+------------------+----------+--------------+------------------+</div><div class="line">| mysql-bin.000002 |     1394 | sports,nlp   |                  |</div><div class="line">+------------------+----------+--------------+------------------+</div><div class="line">1 row in set (0.00 sec)</div></pre></td></tr></table></figure>
+<h2 id="配置MySQL从"><a href="#配置MySQL从" class="headerlink" title="配置MySQL从"></a>配置MySQL从</h2><p>导入主上的数据库testdb</p>
+<p>配置my.cnf</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">log_bin=mysql-bin   #启动MySQ二进制日志系统，注意：如果原来的配置文件中已经有这一行，就不用再添加了。  </div><div class="line">replicate-do-db=testdb  </div><div class="line">replicate-ignore-db=mysql  </div><div class="line">read_only=1  </div><div class="line">server_id = 2    #配置文件中已经有一行server-id=1，修改其值为2，表示为从数据库</div></pre></td></tr></table></figure>
+<p>重启MySQL,并执行以下操作</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">stop slave;</div><div class="line">change master to  master_host=&apos;192.168.193.226&apos;,master_user=&apos;bfsportsdt&apos;,master_password=&apos;85iwx|qttHsrlxPeyldb&apos;,master_log_file=&apos;mysql-bin.000002&apos;,master_log_pos=871;</div><div class="line">start slave;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div></pre></td><td class="code"><pre><div class="line">mysql&gt; SHOW SLAVE STATUS\G </div><div class="line">*************************** 1. row ***************************</div><div class="line">               Slave_IO_State: Waiting for master to send event</div><div class="line">                  Master_Host: 192.168.193.226</div><div class="line">                  Master_User: bfsportsdt</div><div class="line">                  Master_Port: 3306</div><div class="line">                Connect_Retry: 60</div><div class="line">              Master_Log_File: mysql-bin.000002</div><div class="line">          Read_Master_Log_Pos: 6383</div><div class="line">               Relay_Log_File: mysqld-relay-bin.000002</div><div class="line">                Relay_Log_Pos: 4892</div><div class="line">        Relay_Master_Log_File: mysql-bin.000002</div><div class="line">             Slave_IO_Running: Yes</div><div class="line">            Slave_SQL_Running: Yes</div><div class="line">              Replicate_Do_DB:testdb</div><div class="line">          Replicate_Ignore_DB: </div><div class="line">           Replicate_Do_Table: </div><div class="line">       Replicate_Ignore_Table: </div><div class="line">      Replicate_Wild_Do_Table: </div><div class="line">  Replicate_Wild_Ignore_Table: </div><div class="line">                   Last_Errno: 0</div><div class="line">                   Last_Error: </div><div class="line">                 Skip_Counter: 0</div><div class="line">          Exec_Master_Log_Pos: 5512</div><div class="line">              Relay_Log_Space: 5919</div><div class="line">              Until_Condition: None</div><div class="line">               Until_Log_File: </div><div class="line">                Until_Log_Pos: 0</div><div class="line">           Master_SSL_Allowed: No</div><div class="line">           Master_SSL_CA_File: </div><div class="line">           Master_SSL_CA_Path: </div><div class="line">              Master_SSL_Cert: </div><div class="line">            Master_SSL_Cipher: </div><div class="line">               Master_SSL_Key: </div><div class="line">        Seconds_Behind_Master: 1</div><div class="line">Master_SSL_Verify_Server_Cert: No</div><div class="line">                Last_IO_Errno: 0</div><div class="line">                Last_IO_Error: </div><div class="line">               Last_SQL_Errno: 0</div><div class="line">               Last_SQL_Error: </div><div class="line">1 row in set (0.00 sec)</div></pre></td></tr></table></figure>
+<p>注意查看：<br>Slave_IO_Running: Yes<br>Slave_SQL_Running: Yes<br>以上这两个参数的值为Yes，即说明配置成功！</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+<div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/images/weixin.jpg" alt="Mufool wechat" style="width: 200px; max-width: 100%;"/>
+    <div>微信打赏</div>
+</div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/MYSQL/" rel="tag"># MYSQL</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/05/15/linux-character/" rel="next" title="Linux字符集更改">
+                <i class="fa fa-chevron-left"></i> Linux字符集更改
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/06/09/linux-su/" rel="prev" title="Linux下su与su -命令的区别">
+                Linux下su与su -命令的区别 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_cqq"></a>
+  <a class="jiathis_button_douban"></a>
+  <a class="jiathis_button_renren"></a>
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a class="jiathis_button_copy"></a>
+  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+  var jiathis_config={
+    hideMore:false
+  }
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+      
+    </div>
   </div>
 
 
@@ -362,8 +568,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/default_avatar.jpg"
@@ -460,6 +675,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#yum安装mysql"><span class="nav-number">1.</span> <span class="nav-text">yum安装mysql</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置MySQL主"><span class="nav-number">2.</span> <span class="nav-text">配置MySQL主</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置MySQL从"><span class="nav-number">3.</span> <span class="nav-text">配置MySQL从</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -578,10 +809,10 @@
   
 
   
-    <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
 <script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
 
-  
+
 
   
 
@@ -602,9 +833,9 @@
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'http://mufool.com/404.html';
-          this.page.identifier = '404.html';
-          this.page.title = '';
+          this.page.url = 'http://mufool.com/2017/06/09/mysql-master-slave/';
+          this.page.identifier = '2017/06/09/mysql-master-slave/';
+          this.page.title = 'MYSQL安装及主从配置';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://www-mufool-com.disqus.com/embed.js';

@@ -77,7 +77,7 @@
 <link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="REDIS," />
 
 
 
@@ -93,14 +93,18 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="Mufool">
-<meta property="og:url" content="http://mufool.com/404.html">
+<meta name="description" content="编译1234tar -zxvf redis-2.8.12.tar.gzcd redis-2.8.19 makemake PREFIX=/opt/modules/redis">
+<meta name="keywords" content="REDIS">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Redis安装配置">
+<meta property="og:url" content="http://mufool.com/2017/06/16/redis-install/index.html">
 <meta property="og:site_name" content="Mufool">
+<meta property="og:description" content="编译1234tar -zxvf redis-2.8.12.tar.gzcd redis-2.8.19 makemake PREFIX=/opt/modules/redis">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-09-08T03:45:38.062Z">
+<meta property="og:updated_time" content="2017-09-08T03:45:38.064Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Mufool">
+<meta name="twitter:title" content="Redis安装配置">
+<meta name="twitter:description" content="编译1234tar -zxvf redis-2.8.12.tar.gzcd redis-2.8.19 makemake PREFIX=/opt/modules/redis">
 
 
 
@@ -128,13 +132,13 @@
 
 
 
-  <link rel="canonical" href="http://mufool.com/404.html"/>
+  <link rel="canonical" href="http://mufool.com/2017/06/16/redis-install/"/>
 
 
 
 
 
-  <title> | Mufool</title>
+  <title>Redis安装配置 | Mufool</title>
   
 
 
@@ -298,32 +302,198 @@
             
 
   <div id="posts" class="posts-expand">
-  <header class="post-header">
+    
 
-	<h1 class="post-title" itemprop="name headline"></h1>
+  
 
+  
+  
+  
 
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://mufool.com/2017/06/16/redis-install/">
 
-</header>
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Mufool">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/default_avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mufool">
+    </span>
 
     
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Redis安装配置</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-06-16T19:48:38+08:00">
+                2017-06-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/06/16/redis-install/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/06/16/redis-install/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
     
-      <!DOCTYPE HTML>
-<html>
-<head>
-	<meta http-equiv="content-type" content="text/html;charset=utf-8;">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-	<meta name="robots" content="all">
-	<meta name="robots" content="index,follow">
-</head>
-<body>
 
-<script type="text/javascript" src="http://www.qq.com/404/search_children.js" charset="utf-8" homepageurl="your site url " homepagename="回到我的主页"></script>
+    <div class="post-body" itemprop="articleBody">
 
-</body>
-</html>
+      
+      
 
-    
+      
+        <h2 id="编译"><a href="#编译" class="headerlink" title="编译"></a>编译</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">tar -zxvf redis-2.8.12.tar.gz</div><div class="line"><span class="built_in">cd</span> redis-2.8.19 </div><div class="line">make</div><div class="line">make PREFIX=/opt/modules/redis</div></pre></td></tr></table></figure>
+<a id="more"></a>
+<h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">mkdir /opt/modules/redis/etc/</div><div class="line">cp redis.conf /opt/modules/redis/etc/ </div><div class="line"><span class="built_in">cd</span> /opt/modules/redis/bin/</div><div class="line">cp redis-benchmark redis-cli redis-server /usr/bin/</div></pre></td></tr></table></figure>
+<p>内存调整</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#此参数可用的值为0,1,2 </span></div><div class="line"><span class="comment">#0表示当用户空间请求更多的内存时，内核尝试估算出可用的内存 </span></div><div class="line"><span class="comment">#1表示内核允许超量使用内存直到内存用完为止 </span></div><div class="line"><span class="comment">#2表示整个内存地址空间不能超过swap+(vm.overcommit_ratio)%的RAM值 </span></div><div class="line"><span class="built_in">echo</span> <span class="string">"vm.overcommit_memory=1"</span>&gt;&gt;/etc/sysctl.conf</div><div class="line">sysctl -p</div></pre></td></tr></table></figure>
+<p>修改redis配置</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line">vim /opt/modules/redis/etc/redis.conf</div><div class="line"></div><div class="line"><span class="comment">#配置监听地址</span></div><div class="line"><span class="built_in">bind</span> 127.0.0.1 192.168.193.228 119.18.193.228</div><div class="line"></div><div class="line"><span class="comment">#配置监听端口</span></div><div class="line">port 6379</div><div class="line"></div><div class="line"><span class="comment"># 配置log文件位置</span></div><div class="line">logfile <span class="string">"/opt/redis/log.txt"</span></div><div class="line"></div><div class="line"><span class="comment"># 写文件条件</span></div><div class="line">save 900 1</div><div class="line">save 300 10</div><div class="line">save 60 10000</div><div class="line"></div><div class="line"><span class="comment"># 写文件名</span></div><div class="line">dbfilename dump.rdb</div><div class="line"></div><div class="line"><span class="comment">#密码设置</span></div><div class="line">requirepass bfsportsdt</div><div class="line"></div><div class="line"><span class="comment">##修改命名及禁止</span></div><div class="line">rename-command CONFIG b840fc02d524045429941cc15f59e41cb7be6c28</div><div class="line">rename-command FLUSHALL <span class="string">""</span></div><div class="line">rename-command FLUSHDB <span class="string">""</span></div></pre></td></tr></table></figure>
+<h2 id="启动脚本"><a href="#启动脚本" class="headerlink" title="启动脚本"></a>启动脚本</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#!/bin/bash</span></div><div class="line"><span class="comment">#chkconfig: 2345 80 90</span></div><div class="line"><span class="comment"># Simple Redis init.d script conceived to work on Linux systems</span></div><div class="line"><span class="comment"># as it does use of the /proc filesystem.</span></div><div class="line"></div><div class="line">PATH=/usr/<span class="built_in">local</span>/bin:/sbin:/usr/bin:/bin</div><div class="line">REDISPORT=6379</div><div class="line">EXEC=/opt/modules/redis/bin/redis-server</div><div class="line">REDIS_CLI=/opt/modules/redis/bin/redis-cli</div><div class="line">   </div><div class="line">PIDFILE=/var/run/redis.pid</div><div class="line">CONF=<span class="string">"/opt/modules/redis/etc/redis.conf"</span></div><div class="line">   </div><div class="line"><span class="keyword">case</span> <span class="string">"<span class="variable">$1</span>"</span> <span class="keyword">in</span></div><div class="line">    start)</div><div class="line">        <span class="keyword">if</span> [ -f <span class="variable">$PIDFILE</span> ]</div><div class="line">        <span class="keyword">then</span></div><div class="line">                <span class="built_in">echo</span> <span class="string">"<span class="variable">$PIDFILE</span> exists, process is already running or crashed"</span></div><div class="line">        <span class="keyword">else</span></div><div class="line">                <span class="built_in">echo</span> <span class="string">"Starting Redis server..."</span></div><div class="line">                <span class="variable">$EXEC</span> <span class="variable">$CONF</span></div><div class="line">        <span class="keyword">fi</span></div><div class="line">        <span class="keyword">if</span> [ <span class="string">"$?"</span>=<span class="string">"0"</span> ] </div><div class="line">        <span class="keyword">then</span></div><div class="line">              <span class="built_in">echo</span> <span class="string">"Redis is running..."</span></div><div class="line">        <span class="keyword">fi</span></div><div class="line">        ;;</div><div class="line">    stop)</div><div class="line">        <span class="keyword">if</span> [ ! -f <span class="variable">$PIDFILE</span> ]</div><div class="line">        <span class="keyword">then</span></div><div class="line">                <span class="built_in">echo</span> <span class="string">"<span class="variable">$PIDFILE</span> does not exist, process is not running"</span></div><div class="line">        <span class="keyword">else</span></div><div class="line">                PID=$(cat <span class="variable">$PIDFILE</span>)</div><div class="line">                <span class="built_in">echo</span> <span class="string">"Stopping ..."</span></div><div class="line">                <span class="variable">$REDIS_CLI</span> -p <span class="variable">$REDISPORT</span> SHUTDOWN</div><div class="line">                <span class="keyword">while</span> [ -x <span class="variable">$&#123;PIDFILE&#125;</span> ]</div><div class="line">               <span class="keyword">do</span></div><div class="line">                    <span class="built_in">echo</span> <span class="string">"Waiting for Redis to shutdown ..."</span></div><div class="line">                    sleep 1</div><div class="line">                <span class="keyword">done</span></div><div class="line">                <span class="built_in">echo</span> <span class="string">"Redis stopped"</span></div><div class="line">        <span class="keyword">fi</span></div><div class="line">        ;;</div><div class="line">   restart|force-reload)</div><div class="line">        <span class="variable">$&#123;0&#125;</span> stop</div><div class="line">        <span class="variable">$&#123;0&#125;</span> start</div><div class="line">        ;;</div><div class="line">  *)</div><div class="line">    <span class="built_in">echo</span> <span class="string">"Usage: /etc/init.d/redis &#123;start|stop|restart|force-reload&#125;"</span> &gt;&amp;2</div><div class="line">        <span class="built_in">exit</span> 1</div><div class="line"><span class="keyword">esac</span></div></pre></td></tr></table></figure>
+<h2 id="redis开机自启动"><a href="#redis开机自启动" class="headerlink" title="redis开机自启动"></a>redis开机自启动</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 复制脚本文件到init.d目录下</span></div><div class="line">cp redis /etc/init.d/</div><div class="line"></div><div class="line"><span class="comment"># 给脚本增加运行权限</span></div><div class="line">chmod +x /etc/init.d/redis</div><div class="line"></div><div class="line"><span class="comment"># 查看服务列表</span></div><div class="line">chkconfig --list</div><div class="line"></div><div class="line"><span class="comment"># 添加服务</span></div><div class="line">chkconfig --add redis</div><div class="line"></div><div class="line"><span class="comment"># 配置启动级别</span></div><div class="line">chkconfig --level 2345 redis on</div><div class="line"></div><div class="line"><span class="comment">#启动停止</span></div><div class="line">service redis start   <span class="comment">#或者 /etc/init.d/redis start  </span></div><div class="line">service redis stop   <span class="comment">#或者 /etc/init.d/redis stop</span></div></pre></td></tr></table></figure>
+<p>参考：<br><a href="http://www.cnblogs.com/zhoujinyi/archive/2013/05/26/3098508.html" target="_blank" rel="external">NoSQL之【Redis】学习（三）：Redis持久化 Snapshot和AOF说明</a></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+<div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/images/weixin.jpg" alt="Mufool wechat" style="width: 200px; max-width: 100%;"/>
+    <div>微信打赏</div>
+</div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/REDIS/" rel="tag"># REDIS</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/06/16/nginx-install/" rel="next" title="nginx编译安装">
+                <i class="fa fa-chevron-left"></i> nginx编译安装
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/06/19/hexo-disqus/" rel="prev" title="hexo添加disqus评论">
+                hexo添加disqus评论 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_cqq"></a>
+  <a class="jiathis_button_douban"></a>
+  <a class="jiathis_button_renren"></a>
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a class="jiathis_button_copy"></a>
+  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+  var jiathis_config={
+    hideMore:false
+  }
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+      
+    </div>
   </div>
 
 
@@ -362,8 +532,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/default_avatar.jpg"
@@ -460,6 +639,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#编译"><span class="nav-number">1.</span> <span class="nav-text">编译</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置"><span class="nav-number">2.</span> <span class="nav-text">配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#启动脚本"><span class="nav-number">3.</span> <span class="nav-text">启动脚本</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#redis开机自启动"><span class="nav-number">4.</span> <span class="nav-text">redis开机自启动</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -578,10 +773,10 @@
   
 
   
-    <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
 <script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
 
-  
+
 
   
 
@@ -602,9 +797,9 @@
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'http://mufool.com/404.html';
-          this.page.identifier = '404.html';
-          this.page.title = '';
+          this.page.url = 'http://mufool.com/2017/06/16/redis-install/';
+          this.page.identifier = '2017/06/16/redis-install/';
+          this.page.title = 'Redis安装配置';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://www-mufool-com.disqus.com/embed.js';

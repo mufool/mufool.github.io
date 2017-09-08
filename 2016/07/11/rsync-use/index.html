@@ -77,7 +77,7 @@
 <link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="RSYNC," />
 
 
 
@@ -93,14 +93,18 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="Mufool">
-<meta property="og:url" content="http://mufool.com/404.html">
+<meta name="description" content="介绍Rsync（remote synchronize）是一个远程数据同步工具。 Rsync使用“Rsync算法”来使本地和远程两个主机之间的文件达到同步，这个算法只传送两个文件的不同部分，而不是每次都整份传送，因此速度相当快。 Rsync可以通过rsh或ssh使用，也能以daemon模式去运行，在以daemon方式运行时Rsync server会打开一个873端口，等待客户端去连接。">
+<meta name="keywords" content="RSYNC">
+<meta property="og:type" content="article">
+<meta property="og:title" content="rsync简单介绍和使用">
+<meta property="og:url" content="http://mufool.com/2016/07/11/rsync-use/index.html">
 <meta property="og:site_name" content="Mufool">
+<meta property="og:description" content="介绍Rsync（remote synchronize）是一个远程数据同步工具。 Rsync使用“Rsync算法”来使本地和远程两个主机之间的文件达到同步，这个算法只传送两个文件的不同部分，而不是每次都整份传送，因此速度相当快。 Rsync可以通过rsh或ssh使用，也能以daemon模式去运行，在以daemon方式运行时Rsync server会打开一个873端口，等待客户端去连接。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-09-08T03:45:38.062Z">
+<meta property="og:updated_time" content="2017-09-08T03:45:38.065Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Mufool">
+<meta name="twitter:title" content="rsync简单介绍和使用">
+<meta name="twitter:description" content="介绍Rsync（remote synchronize）是一个远程数据同步工具。 Rsync使用“Rsync算法”来使本地和远程两个主机之间的文件达到同步，这个算法只传送两个文件的不同部分，而不是每次都整份传送，因此速度相当快。 Rsync可以通过rsh或ssh使用，也能以daemon模式去运行，在以daemon方式运行时Rsync server会打开一个873端口，等待客户端去连接。">
 
 
 
@@ -128,13 +132,13 @@
 
 
 
-  <link rel="canonical" href="http://mufool.com/404.html"/>
+  <link rel="canonical" href="http://mufool.com/2016/07/11/rsync-use/"/>
 
 
 
 
 
-  <title> | Mufool</title>
+  <title>rsync简单介绍和使用 | Mufool</title>
   
 
 
@@ -298,32 +302,220 @@
             
 
   <div id="posts" class="posts-expand">
-  <header class="post-header">
+    
 
-	<h1 class="post-title" itemprop="name headline"></h1>
+  
 
+  
+  
+  
 
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://mufool.com/2016/07/11/rsync-use/">
 
-</header>
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Mufool">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/default_avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mufool">
+    </span>
 
     
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">rsync简单介绍和使用</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-07-11T17:19:31+08:00">
+                2016-07-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2016/07/11/rsync-use/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2016/07/11/rsync-use/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
     
-      <!DOCTYPE HTML>
-<html>
-<head>
-	<meta http-equiv="content-type" content="text/html;charset=utf-8;">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-	<meta name="robots" content="all">
-	<meta name="robots" content="index,follow">
-</head>
-<body>
 
-<script type="text/javascript" src="http://www.qq.com/404/search_children.js" charset="utf-8" homepageurl="your site url " homepagename="回到我的主页"></script>
+    <div class="post-body" itemprop="articleBody">
 
-</body>
-</html>
+      
+      
 
-    
+      
+        <h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>Rsync（remote synchronize）是一个远程数据同步工具。</p>
+<p>Rsync使用“Rsync算法”来使本地和远程两个主机之间的文件达到同步，这个算法只传送两个文件的不同部分，而不是每次都整份传送，因此速度相当快。</p>
+<p>Rsync可以通过rsh或ssh使用，也能以daemon模式去运行，在以daemon方式运行时Rsync server会打开一个873端口，等待客户端去连接。</p>
+<a id="more"></a>
+<p>主要特点：</p>
+<ul>
+<li>可以镜像保存整个目录树和文件系统。</li>
+<li>可以很容易做到保持原来文件的权限、时间、软硬链接等等。</li>
+<li>无须特殊权限即可安装。</li>
+<li>优化的流程，文件传输效率高。</li>
+<li>可以使用rcp、ssh等方式来传输文件，当然也可以通过直接的socket连接。</li>
+<li>支持匿名传输。</li>
+</ul>
+<h2 id="核心算法"><a href="#核心算法" class="headerlink" title="核心算法"></a>核心算法</h2><p><a href="http://coolshell.cn/articles/7425.html" target="_blank" rel="external">rsync 的核心算法</a></p>
+<h2 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div></pre></td><td class="code"><pre><div class="line"># Minimal configuration file for rsync daemon</div><div class="line"># See rsync(1) and rsyncd.conf(5) man pages for help</div><div class="line"></div><div class="line"># This line is required by the /etc/init.d/rsyncd script</div><div class="line">pid file = /var/run/rsyncd.pid	进程写到 /var/run/rsyncd.pid 文件中</div><div class="line">port = 873</div><div class="line">address = 192.168.202.152</div><div class="line">uid = nobody</div><div class="line">gid = nobody	指定哪个用户和用户组来执行，默认是nobody，可能遇到权限问题，可以在定义要同步的目录时指定用户来解决权限的问题</div><div class="line"></div><div class="line">use chroot = no	</div><div class="line">read only = yes	只读选择，不让客户端上传文件到服务器上，还有一个write only选项</div><div class="line"></div><div class="line">#limit access to private LANs</div><div class="line">hosts allow=182.18.58.73 192.168.1.0/255.255.255.0 10.0.1.0/255.255.255.0</div><div class="line">hosts deny=*</div><div class="line"></div><div class="line">max connections = 5	客户端最多连接数</div><div class="line">motd file = /etc/rsyncd/rsyncd.motd	定义服务器信息的，要自己写 rsyncd.motd 文件内容，当用户登录时会看到这个信息</div><div class="line"></div><div class="line">#This will give you a separate log file</div><div class="line">log file = /var/log/rsync.log	rsync 服务器的日志</div><div class="line"></div><div class="line">#This will log every file transferred - up to 85,000+ per user, per sync</div><div class="line">transfer logging = yes	传输文件的日志</div><div class="line"></div><div class="line">log format = %t %a %m %f %b</div><div class="line">syslog facility = local3</div><div class="line">timeout = 300</div><div class="line"></div><div class="line">[dbback]</div><div class="line">path = /opt/mysql</div><div class="line">#auth users = root</div><div class="line">list=yes</div><div class="line">ignore errors</div><div class="line">secrets file = /etc/rsyncd/rsyncd.secrets</div><div class="line">comment = root data</div><div class="line">exclude =   beinan/  samba/</div></pre></td></tr></table></figure>
+<h2 id="模块定义"><a href="#模块定义" class="headerlink" title="模块定义"></a>模块定义</h2><p>主要是定义服务器哪个目录要被同步，我们可以根据自己的需要，来指定多个模块。每个模块要指定认证用户，密码文件。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">[dbback]</div><div class="line">path = /opt/mysql	指定文件目录所在位置，这是必须指定的 </div><div class="line">auth users = root	认证用户是root  ，是必须在服务器上存在的用户</div><div class="line">list=yes	list 意思是把rsync 服务器上提供同步数据的目录在服务器上模块是否显示列出来。默认是yes 。如果你不想列出来，就no ；如果是no是比较安全的</div><div class="line">ignore errors	忽略IO错误</div><div class="line">secrets file = /etc/rsyncd/rsyncd.secrets	密码存在哪个文件,</div><div class="line">comment = root data	注释可以自己定义</div><div class="line">exclude = beinan/  samba/	需要排除的子目录</div></pre></td></tr></table></figure>
+<p>rsyncd.secrets的内容格式为：用户名:密码，文件属性设为root拥有，且权限要设为600，出于安全目的，文件的属性必需是只有属主可读。</p>
+<h2 id="启动rsync服务器"><a href="#启动rsync服务器" class="headerlink" title="启动rsync服务器"></a>启动rsync服务器</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">/usr/bin/rsync --daemon  --config=/etc/rsyncd/rsyncd.conf</div></pre></td></tr></table></figure>
+<p>启动前，先service iptables stop将防火墙关掉</p>
+<h2 id="rsync参数及实例"><a href="#rsync参数及实例" class="headerlink" title="rsync参数及实例"></a>rsync参数及实例</h2><p>rsync中的参数：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div></pre></td><td class="code"><pre><div class="line">-v, --verbose 详细模式输出</div><div class="line">-q, --quiet 精简输出模式</div><div class="line">-c, --checksum 打开校验开关，强制对文件传输进行校验</div><div class="line">-a, --archive 归档模式，表示以递归方式传输文件，并保持所有文件属性，等于-rlptgoD</div><div class="line">-r, --recursive 对子目录以递归模式处理</div><div class="line">-R, --relative 使用相对路径信息</div><div class="line">-b, --backup 创建备份，也就是对于目的已经存在有同样的文件名时，将老的文件重新命名为~filename。可以使用--suffix选项来指定不同的备份文件前缀。</div><div class="line">--backup-dir 将备份文件(如~filename)存放在在目录下。</div><div class="line">-suffix=SUFFIX 定义备份文件前缀</div><div class="line">-u, --update 仅仅进行更新，也就是跳过所有已经存在于DST，并且文件时间晚于要备份的文件。(不覆盖更新的文件)</div><div class="line">-l, --links 保留软链结</div><div class="line">-L, --copy-links 想对待常规文件一样处理软链结</div><div class="line">--copy-unsafe-links 仅仅拷贝指向SRC路径目录树以外的链结</div><div class="line">--safe-links 忽略指向SRC路径目录树以外的链结</div><div class="line">-k, --copy-dirlinks 复制目录中符号链接</div><div class="line">-K, --keep-dirlinks 保持目录下符号链接</div><div class="line">-H, --hard-links 保留硬链结</div><div class="line">-p, --perms 保持文件权限</div><div class="line">-o, --owner 保持文件属主信息</div><div class="line">-g, --group 保持文件属组信息</div><div class="line">-D, --devices 保持设备文件信息</div><div class="line">-t, --times 保持文件时间信息</div><div class="line">-S, --sparse 对稀疏文件进行特殊处理以节省DST的空间</div><div class="line">-n, --dry-run现实哪些文件将被传输</div><div class="line">-W, --whole-file 拷贝文件，不进行增量检测</div><div class="line">-x, --one-file-system 不要跨越文件系统边界</div><div class="line">-B, --block-size=SIZE 检验算法使用的块尺寸，默认是700字节</div><div class="line">-e, --rsh=COMMAND 指定使用rsh、ssh方式进行数据同步</div><div class="line">--rsync-path=PATH 指定远程服务器上的rsync命令所在路径信息</div><div class="line">-C, --cvs-exclude 使用和CVS一样的方法自动忽略文件，用来排除那些不希望传输的文件</div><div class="line">--existing 仅仅更新那些已经存在于DST的文件，而不备份那些新创建的文件</div><div class="line">--delete 删除那些DST中SRC没有的文件，delete是指如果服务器端删除了这一文件，那么客户端也相应把文件删除，保持真正的一致</div><div class="line">--delete-excluded 同样删除接收端那些被该选项指定排除的文件</div><div class="line">--delete-after 传输结束以后再删除</div><div class="line">--ignore-errors 及时出现IO错误也进行删除</div><div class="line">--max-delete=NUM 最多删除NUM个文件</div><div class="line">--partial 保留那些因故没有完全传输的文件，以是加快随后的再次传输</div><div class="line">--force 强制删除目录，即使不为空</div><div class="line">--numeric-ids 不将数字的用户和组ID匹配为用户名和组名</div><div class="line">--timeout=TIME IP超时时间，单位为秒</div><div class="line">-I, --ignore-times 不跳过那些有同样的时间和长度的文件</div><div class="line">--size-only 当决定是否要备份文件时，仅仅察看文件大小而不考虑文件时间</div><div class="line">--modify-window=NUM 决定文件是否时间相同时使用的时间戳窗口，默认为0</div><div class="line">-T --temp-dir=DIR 在DIR中创建临时文件</div><div class="line">--compare-dest=DIR 同样比较DIR中的文件来决定是否需要备份</div><div class="line">-P 等同于 --partial</div><div class="line">--progress 显示备份过程</div><div class="line">-z, --compress 对备份的文件在传输时进行压缩处理</div><div class="line">--exclude=PATTERN 指定排除不需要传输的文件模式</div><div class="line">--include=PATTERN 指定不排除而需要传输的文件模式</div><div class="line">--exclude-from=FILE 排除FILE中指定模式的文件</div><div class="line">--include-from=FILE 不排除FILE指定模式匹配的文件</div><div class="line">--version 打印版本信息</div><div class="line">--address 绑定到特定的地址</div><div class="line">--config=FILE 指定其他的配置文件，不使用默认的rsyncd.conf文件</div><div class="line">--port=PORT 指定其他的rsync服务端口</div><div class="line">--blocking-io 对远程shell使用阻塞IO</div><div class="line">-stats 给出某些文件的传输状态</div><div class="line">--progress 在传输时现实传输过程</div><div class="line">--log-format=formAT 指定日志文件格式</div><div class="line">--password-file=FILE 从FILE中得到密码；--password-file=/password/path/file来指定密码文件，这样就可以在脚本中使用而无需交互式地输入验证密码了，这里需要注意的是这份密码文件权限属性要设得只有属主可读。</div><div class="line">--bwlimit=KBPS 限制I/O带宽，KBytes per second</div><div class="line">-h, --help 显示帮助信息</div></pre></td></tr></table></figure>
+<p>查看服务端可用的模块列表以及注释信息</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">rsync root@192.168.202.152::</div></pre></td></tr></table></figure>
+<p>查看服务端dbback模块中的目录及文件列表</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">rsync root@192.168.202.152::dbback</div></pre></td></tr></table></figure>
+<p>推送符号链接目录</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">rsync -avk --bwlimit=2000 /root/meizipic rsync@192.168.202.153:/data/tmp_images</div></pre></td></tr></table></figure>
+<p>拉取含符号链接目录</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">rsync -rptgoDKLvP root@192.168.202.153:/opt/data/download ./</div></pre></td></tr></table></figure>
+<p>以服务的方法同步</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">rsync -rptgoDKLvP root@192.168.202.153::dbback /opt/backcenter/</div></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    <div>
+      
+        
+<div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/images/weixin.jpg" alt="Mufool wechat" style="width: 200px; max-width: 100%;"/>
+    <div>微信打赏</div>
+</div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/RSYNC/" rel="tag"># RSYNC</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/07/11/mysql-tips/" rel="next" title="MYSQL部分问题及解决方法">
+                <i class="fa fa-chevron-left"></i> MYSQL部分问题及解决方法
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/07/12/video-test/" rel="prev" title="video嵌入测试">
+                video嵌入测试 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_cqq"></a>
+  <a class="jiathis_button_douban"></a>
+  <a class="jiathis_button_renren"></a>
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a class="jiathis_button_copy"></a>
+  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+  var jiathis_config={
+    hideMore:false
+  }
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+      
+    </div>
   </div>
 
 
@@ -362,8 +554,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/default_avatar.jpg"
@@ -460,6 +661,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#介绍"><span class="nav-number">1.</span> <span class="nav-text">介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#核心算法"><span class="nav-number">2.</span> <span class="nav-text">核心算法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置文件"><span class="nav-number">3.</span> <span class="nav-text">配置文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#模块定义"><span class="nav-number">4.</span> <span class="nav-text">模块定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#启动rsync服务器"><span class="nav-number">5.</span> <span class="nav-text">启动rsync服务器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#rsync参数及实例"><span class="nav-number">6.</span> <span class="nav-text">rsync参数及实例</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -578,10 +795,10 @@
   
 
   
-    <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
 <script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
 
-  
+
 
   
 
@@ -602,9 +819,9 @@
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'http://mufool.com/404.html';
-          this.page.identifier = '404.html';
-          this.page.title = '';
+          this.page.url = 'http://mufool.com/2016/07/11/rsync-use/';
+          this.page.identifier = '2016/07/11/rsync-use/';
+          this.page.title = 'rsync简单介绍和使用';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://www-mufool-com.disqus.com/embed.js';
