@@ -220,9 +220,9 @@
     </summary>
     
     
-      <category term="REDIS" scheme="http://mufool.com/tags/REDIS/"/>
-    
       <category term="SPARK" scheme="http://mufool.com/tags/SPARK/"/>
+    
+      <category term="REDIS" scheme="http://mufool.com/tags/REDIS/"/>
     
   </entry>
   
@@ -378,14 +378,20 @@
     <link href="http://mufool.com/2017/06/09/hadoop-spark-yarn/"/>
     <id>http://mufool.com/2017/06/09/hadoop-spark-yarn/</id>
     <published>2017-06-09T06:42:16.000Z</published>
-    <updated>2017-09-08T03:45:38.063Z</updated>
+    <updated>2017-09-11T02:35:03.551Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="现象"><a href="#现象" class="headerlink" title="现象"></a>现象</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">17/04/18 11:21:08 WARN Client: Neither spark.yarn.jars nor spark.yarn.archive is <span class="built_in">set</span>, falling back to uploading libraries under SPARK_HOME.</div></pre></td></tr></table></figure><a id="more"></a><p>spark on yarn提交慢，且提交时有warning提示，大意是：如果想要在yarn端（yarn的节点）访问spark的runtime jars，需要指定spark.yarn.archive 或者 spark.yarn.jars。如果都这两个参数都没有指定，spark就会把$SPARK_HOME/jars/所有的jar上传到分布式缓存中。这也是之前任务提交特别慢的原因。</p><h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><p>将$SPARK_HOME/jars/* 下spark运行依赖的jar上传到hdfs上。</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">hadoop fs -mkdir -p /tmp/spark/jars/</div><div class="line">hadoop fs -put  /opt/hadoop/spark-2.1.0/jars/* /tmp/spark/jars/</div></pre></td></tr></table></figure><p>vi $SPARK_HOME/conf/spark-defaults.conf</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">spark.yarn.jars  hdfs://master:9000/tmp/spark/jars/*.jar</div></pre></td></tr></table></figure><p>再次提交，变快。</p>]]></content>
     
     <summary type="html">
+    
+      &lt;h2 id=&quot;现象&quot;&gt;&lt;a href=&quot;#现象&quot; class=&quot;headerlink&quot; title=&quot;现象&quot;&gt;&lt;/a&gt;现象&lt;/h2&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;17/04/18 11:21:08 WARN Client: Neither spark.yarn.jars nor spark.yarn.archive is &lt;span class=&quot;built_in&quot;&gt;set&lt;/span&gt;, falling back to uploading libraries under SPARK_HOME.&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
     
     </summary>
     
     
       <category term="HADOOP" scheme="http://mufool.com/tags/HADOOP/"/>
+    
+      <category term="SPARK" scheme="http://mufool.com/tags/SPARK/"/>
     
   </entry>
   

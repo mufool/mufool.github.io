@@ -77,7 +77,7 @@
 <link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="HADOOP," />
+  <meta name="keywords" content="HADOOP,SPARK," />
 
 
 
@@ -95,15 +95,18 @@
 
 
 
-<meta name="keywords" content="HADOOP">
+<meta name="description" content="现象117/04/18 11:21:08 WARN Client: Neither spark.yarn.jars nor spark.yarn.archive is set, falling back to uploading libraries under SPARK_HOME.">
+<meta name="keywords" content="HADOOP,SPARK">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Spark on yarn提交慢解决方法">
 <meta property="og:url" content="http://mufool.com/2017/06/09/hadoop-spark-yarn/index.html">
 <meta property="og:site_name" content="Mufool">
+<meta property="og:description" content="现象117/04/18 11:21:08 WARN Client: Neither spark.yarn.jars nor spark.yarn.archive is set, falling back to uploading libraries under SPARK_HOME.">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-09-08T03:45:38.063Z">
+<meta property="og:updated_time" content="2017-09-11T02:35:03.551Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Spark on yarn提交慢解决方法">
+<meta name="twitter:description" content="现象117/04/18 11:21:08 WARN Client: Neither spark.yarn.jars nor spark.yarn.archive is set, falling back to uploading libraries under SPARK_HOME.">
 
 
 
@@ -385,7 +388,15 @@
       
 
       
-        
+        <h2 id="现象"><a href="#现象" class="headerlink" title="现象"></a>现象</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">17/04/18 11:21:08 WARN Client: Neither spark.yarn.jars nor spark.yarn.archive is <span class="built_in">set</span>, falling back to uploading libraries under SPARK_HOME.</div></pre></td></tr></table></figure>
+<a id="more"></a>
+<p>spark on yarn提交慢，且提交时有warning提示，大意是：如果想要在yarn端（yarn的节点）访问spark的runtime jars，需要指定spark.yarn.archive 或者 spark.yarn.jars。如果都这两个参数都没有指定，spark就会把$SPARK_HOME/jars/所有的jar上传到分布式缓存中。这也是之前任务提交特别慢的原因。</p>
+<h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><p>将$SPARK_HOME/jars/* 下spark运行依赖的jar上传到hdfs上。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">hadoop fs -mkdir -p /tmp/spark/jars/</div><div class="line">hadoop fs -put  /opt/hadoop/spark-2.1.0/jars/* /tmp/spark/jars/</div></pre></td></tr></table></figure>
+<p>vi $SPARK_HOME/conf/spark-defaults.conf</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">spark.yarn.jars  hdfs://master:9000/tmp/spark/jars/*.jar</div></pre></td></tr></table></figure>
+<p>再次提交，变快。</p>
+
       
     </div>
 
@@ -420,6 +431,8 @@
         <div class="post-tags">
           
             <a href="/tags/HADOOP/" rel="tag"># HADOOP</a>
+          
+            <a href="/tags/SPARK/" rel="tag"># SPARK</a>
           
         </div>
       
@@ -521,8 +534,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/default_avatar.jpg"
@@ -559,7 +581,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">25</span>
+                <span class="site-state-item-count">26</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -626,6 +648,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#现象"><span class="nav-number">1.</span> <span class="nav-text">现象</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解决方案"><span class="nav-number">2.</span> <span class="nav-text">解决方案</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
