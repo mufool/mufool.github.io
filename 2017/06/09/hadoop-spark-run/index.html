@@ -103,13 +103,13 @@
 <meta property="og:site_name" content="Mufool">
 <meta property="og:description" content="Spark运行模式Spark的运行模式多种多样，在单机上可以以Local和伪分布式模式运行；部署在集群上时有Spark内建的Standalone模式及对于外部框架的支持，有Mesos模式和Spark On YARN模式，这两者主要区别是资源管理交由谁负责。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://mufool.com/image/tech/spark-client.jpg">
-<meta property="og:image" content="http://mufool.com/image/tech/spark-cluster.jpg">
-<meta property="og:updated_time" content="2017-09-12T03:35:21.729Z">
+<meta property="og:image" content="http://mufool.com/images/tech/spark-client.jpg">
+<meta property="og:image" content="http://mufool.com/images/tech/spark-cluster.jpg">
+<meta property="og:updated_time" content="2017-09-12T03:37:55.134Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Spark几种运行方式">
 <meta name="twitter:description" content="Spark运行模式Spark的运行模式多种多样，在单机上可以以Local和伪分布式模式运行；部署在集群上时有Spark内建的Standalone模式及对于外部框架的支持，有Mesos模式和Spark On YARN模式，这两者主要区别是资源管理交由谁负责。">
-<meta name="twitter:image" content="http://mufool.com/image/tech/spark-client.jpg">
+<meta name="twitter:image" content="http://mufool.com/images/tech/spark-client.jpg">
 
 
 
@@ -410,9 +410,9 @@
 <h3 id="Yarn-client模式"><a href="#Yarn-client模式" class="headerlink" title="Yarn-client模式"></a>Yarn-client模式</h3><p>这是YARN客户端模式。上面三种代表的是集群模式；这种代表的是客户端模式；</p>
 <h2 id="Yarn-Cluster和Yarn-client模式区别"><a href="#Yarn-Cluster和Yarn-client模式区别" class="headerlink" title="Yarn-Cluster和Yarn-client模式区别"></a>Yarn-Cluster和Yarn-client模式区别</h2><p>yarn-client主要用于与用户交互模式，yarn-cluster主要用于集群生产模式，主要区别是driver在运行位置，cluser模式下，driver运行在AM(app master)中，cluser模式下，driver在任务提交机上执行。</p>
 <h3 id="client模式"><a href="#client模式" class="headerlink" title="client模式"></a>client模式</h3><p>Driver在任务提交机上执行，适用于交互和调试，也就是希望快速看到app的输出结果。ApplicationMaster只负责向ResourceManager申请executor需要的资源。client会和请求的container通信来调度他们工作，也就是client不能关闭。基于yarn时，spark-shell和pyspark必须要使用yarn-client模式。</p>
-<p><a href="https://www.slideshare.net/Hadoop_Summit/sparkonyarn-empower-spark-applications-on-hadoop-cluster" target="_blank" rel="external">图片来自网络</a><br><img src="/image/tech/spark-client.jpg" alt="spark-client"></p>
+<p><a href="https://www.slideshare.net/Hadoop_Summit/sparkonyarn-empower-spark-applications-on-hadoop-cluster" target="_blank" rel="external">图片来自网络</a><br><img src="/images/tech/spark-client.jpg" alt="spark-client"></p>
 <h3 id="cluster模式"><a href="#cluster模式" class="headerlink" title="cluster模式"></a>cluster模式</h3><p>Driver运行在ApplicationMaster中，应用在生产过程中。Driver以及资源申请都在AppMaster执行，负责向YARN申请资源，并监督作业的运行状况。当用户提交完作业之后，就关闭client，作业会继续在YARN上。</p>
-<p><img src="/image/tech/spark-cluster.jpg" alt="spark-cluster"></p>
+<p><img src="/images/tech/spark-cluster.jpg" alt="spark-cluster"></p>
 <p>参考：<br><a href="https://www.zybuluo.com/sasaki/note/252413" target="_blank" rel="external">谈谈Spark运行模式</a><br><a href="http://dongxicheng.org/framework-on-yarn/apache-spark-comparing-three-deploying-ways/" target="_blank" rel="external">Apache Spark探秘：三种分布式部署方式比较</a></p>
 
       
