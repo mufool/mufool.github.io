@@ -34,7 +34,7 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[p2p之NAT详解]]></title>
+    <title><![CDATA[P2P之NAT详解]]></title>
     <url>%2F2017%2F08%2F21%2Fp2p-nat%2F</url>
     <content type="text"><![CDATA[NAT简介&emsp;&emsp;NAT，网络地址转换，就是替换IP报文头部的地址信息。NAT通常部署在一个组织的网络出口位置，通过将内部网络IP地址替换为出口的IP地址提供公网可达性和上层协议的连接能力。&emsp;&emsp;NAT的主要目的是解决IPV4缺少带来的问题，有了NAT技术，就可以在少量的公网IP和内网地址（10.0.0.0-10.255.255.255；172.16.0.0-172.31.255.255；192.168.0.0-192.168.255.255）之间建立映射关系。 NAT分类&emsp;&emsp;NAT共分为两大类：Cone NAT和Symmetric NAT。Cone NAT指的是只要源IP端口不变，无论发往的目的IP是否相同，在NAT上都映射为同一个端口，形象的看来就像锥子一样，而SymmetricNAT对于发往不同目的IP的会话在NAT上将映射为不同的端口，也就是不同的会话。 其中Cone NAT又可细分为3类，分别是Full Cone型（全锥形）、Restricted Cone型（受限锥形）和Restricted Port Cone（端口受限锥形）。限制的严格程度和对局域网内主机的保护由松到紧依次为：Full Cone、RestrictedCone、Restricted Port Cone、Symmetric NAT。“限制”指的是NAT对由外到内的数据包进行审查、过滤，看看数据包的源地址和他发送到的“洞”是否有关系，如果没有那么就将其丢弃。由内向外的限制有防火墙管理。 全锥形NATIP、端口都不受限。NAT设备会将客户端的{X, y}转换成公网地址的{A, b}并绑定对应关系，任何数据包通过地址{A,b}都将送到客户机的{X,y}上。 受限锥形NAT IP受限，端口不受限。NAT设备会将客户端的{X, y}转换成公网地址的{A, b}并绑定对应关系，只有来自于{P}这个ip地址的包才能和主机{X, y}通信。 端口受限锥型NATIP、端口都受限。NAT设备会将客户端的{X, y}转换成公网地址的{A, b}并绑定{X, y}，{A,b}和{P,q}的对应关系，NAT只会接受来自{P,q}的数据包，并将其转发到{X,y}。如果{X，y}改为向{M,n}发送数据，则{P,q}再向{A,b}发送的数据不会被接受。 对称型NAT 对称型NAT具有端口受限锥型的受限特性。但更重要的是，他对每个外部主机或端口的会话都会映射为不同的端口（洞）。NAT设备会将客户端的{X, y}转换成公网地址的{A, b}并绑定{X, y}，{A,b}和{P,q}的对应关系，NAT只会接受来自{P,q}的数据包，并将其转发到{X,y}，当请求一个新的地址{M,n}时，NAT设备会重新分配一个新的ip，端口{C,d}。 NAT弊端在理论上，具有IP地址的每个站点在协议层面有相当的获取服务和提供服务的能力，不同的IP地址之间没有差异。NAT技术的出现破坏了IP端到端通信的能力。首先，NAT使IP会话的保持时效变短。因为一个会话建立后会在NAT设备上建立一个关联表，在会话静默的这段时间，NAT网关会进行超时回收资源的操作。所以应用协议必须有报活的协议才能保持会话。其次，NAT在实现上将多个内部主机发出的连接复用到一个IP上，这就使依赖IP进行主机跟踪的机制都失效了。如网络管理中需要的基于网络流量分析的应用无法跟踪到终端用户与流量的具体行为的关系。基于用户行为的日志分析也变得困难，因为一个IP被很多用户共享，如果存在恶意的用户行为，很难定位到发起连接的那个主机。此外，NAT工作机制依赖于修改IP包头的信息，这会妨碍一些安全协议的工作。因为NAT篡改了IP地址、传输层端口号和校验和，这会导致认证协议彻底不能工作，因为认证目的就是要保证这些信息在传输过程中没有变化。总之，因为NAT隐蔽了通信的一端，把简单的事情复杂化了。 NAT穿透技术&emsp;&emsp;为了解决IP端到端应用在NAT环境下遇到的问题，网络协议的设计者们创造了很多工具来应对，其中主要有应用层网关，探针技术STUN和TURN，中间件技术，中继代理技术，特定协议的自穿越技术。这里主要介绍探针技术STUN和TURN。 &emsp;&emsp;所谓探针技术STUN，是通过在所有参与通信的实体上安装探测插件，以检测网络中是否存在NAT网关，并对不同NAT模型实施不同穿越方法的一种技术。所谓中继服务TURN，是通过转发请求实现两台具有NAT设备的内网IP建立链接。 NAT类型识别&emsp;&emsp;STUN服务器上两个公网IP分别A1,A2，同时绑定两个端口P1,P2。在主机上使用两个IP主要是测试客户机是否是对称型NAT和时候是IP受限制型NAT。主要测试流程如下： 使用端口1发送消息给A1:P1，测试能否响应，能响应则UDP协议可以通过 使用端口1发送消息给A2:P2，比较响应中的地址和上一步返回的地址是否一致，验证NAT是否对不通的目的地址进行相同的映射 使用端口1发送消息给第一部中返回的NAT上映射的外网IP和端口，测试是否有回应，验证NAT是否回环 使用端口2发送消息给A1:P1，服务器端使用A2:P1回复，验证是否为IP受限NAT 使用端口2发送消息给A1:P1，服务器端使用A1:P2回复，验证是否为端口受限NAT 同时，通过以上服务器返回的客户端IP，可以有很多方法确定是否是公网IP，如绑定这个地址或者与本地网卡中IP地址比较 NAT穿透其中一个是公网（5种）客户端A是公网，A通知服务器S希望与B建立通信；S将消息转给B；B主动连接A，NAT上留下与A通信用的映射关系；A就可以与B进行正常通信，打洞成功。这种情况下，无论B是什么类型，都能成功建立连接。 其中一个是FC（4种）客户端A是FC类型，A通知S与B建立通信；S通知B想A已经存在的洞建立连接；A收到B的连接包，打洞成功。这种情况下，因为A主要在NAT上有对应关系，则任何其他地址都可以通着这个对应关系与A建立连接 其中一个是RC（3种） RC和RC，A连接S希望连B，NAT上映射关系Na只能与S通信；B和S也有保存会话的NAT映射关系Nb，此时B去连接A上的Na，失败，但是Nb属性更改为与A的连接，此时A连接B可以成功，同时Na的属性也更改为与B的连接，打洞成功。（注：真正使用可能不会复用与服务器的报端连接，而是A和B同时连接对方，后连接的以方可以打洞成功） RC和PC，与RC和RC类似 RC和SN，B向A不通；然后A向B发包，不通，但A上留下一个可以给B使用的洞；B在使用新的映射连接A，A可以收到，并拿到B上留给A的洞的信息；A回复B，连接建立。 其中一个是PC（2种） PC和PC，同RC和RC。B连A，丢弃； A连B，通过；B回复A，连接建立 PC和SN，与RC和SN的过程类似，但是在第三步，B使用新的映射连接A，A无法收到B的消息，因为A是端口受限，所以PC和SN无法打洞成功。 其中一个是SN（1种） SN和SN，无法成功 类型 公网 FC RC PC SN 公网 Y Y Y Y Y FC Y Y Y Y Y RC Y Y Y Y Y PC Y Y Y Y N SN Y Y Y N N 参考：P2P之NAT穿透NAT详解——详细原理、P2P简介]]></content>
       <tags>
@@ -91,7 +91,7 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[hexo添加disqus评论]]></title>
+    <title><![CDATA[Hexo添加disqus评论]]></title>
     <url>%2F2017%2F06%2F19%2Fhexo-disqus%2F</url>
     <content type="text"><![CDATA[注册disqusdisqus官网，按要求注册一个账户，添加你的博客地址 获取shortname在Settings-&gt;General下可以看到你的Shortname。 添加到blog打开根目录下的config.yml, 在最后面添加，disqus_shortname: your_disqus_short_name，去掉其他评论配置。 刷新页面即可看到评论系统。]]></content>
       <tags>
@@ -107,7 +107,7 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[nginx编译安装]]></title>
+    <title><![CDATA[Nginx编译安装]]></title>
     <url>%2F2017%2F06%2F16%2Fnginx-install%2F</url>
     <content type="text"><![CDATA[编译 1234567891011121314151617181920tar xzvf nginx-1.10.1.tar.gzcd nginx-1.10.1./configure \--prefix=/opt/modules/nginx \--sbin-path=/opt/modules/nginx/sbin/nginx \--conf-path=/opt/modules/nginx/conf/nginx.conf \--error-log-path=/var/log/nginx/error.log \--http-log-path=/var/log/nginx/access.log \--pid-path=/var/run/nginx/nginx.pid \--lock-path=/var/lock/nginx.lock \--user=nginx --group=nginx \--with-http_ssl_module \--with-http_stub_status_module \--with-http_gzip_static_module \--http-client-body-temp-path=/opt/modules/nginx/client_body_temp/ \--http-proxy-temp-path=/opt/modules/nginx/nginx_proxy/ \--http-fastcgi-temp-path=/opt/modules/nginx/fastcgi_temp/ \--add-module=../redis2-nginx-module-0.13 \--add-module=../nginx-http-concat-1.2.2make 安装123456make installcp objs/nginx /usr/local/bin/groupadd nginxuseradd -g nginx nginxcp init.d/nginx /etc/init.d/chmod 755 /etc/init.d/nginx 添加开机启动123/sbin/chkconfig --add nginx/sbin/chkconfig --level 35 nginx on/sbin/service nginx start]]></content>
       <tags>
@@ -133,9 +133,9 @@
   <entry>
     <title><![CDATA[Kafka安装使用]]></title>
     <url>%2F2017%2F06%2F09%2Fhadoop-kafka%2F</url>
-    <content type="text"></content>
+    <content type="text"><![CDATA[关于kafkaKafka是一种高吞吐量的分布式发布订阅消息系统，它可以处理消费者规模的网站中的所有动作流数据。 这种动作（网页浏览，搜索和其他用户的行动）是在现代网络上的许多社会功能的一个关键因素。 这些数据通常是由于吞吐量的要求而通过处理日志和日志聚合来解决。 对于像Hadoop的一样的日志数据和离线分析系统，但又要求实时处理的限制，这是一个可行的解决方案。Kafka的目的是通过Hadoop的并行加载机制来统一线上和离线的消息处理，也是为了通过集群机来提供实时的消费。 kafka架构安装配置下载kafka安装包，访问Kafka官网下载对应版本即可。(备用地址)这里使用的版本为2.9.2-0.8.1.1。 1tar -zxvf kafka_2.12-0.10.2.0.tgz 修改配置文件，简单配置只需要修改/config/server.properties文件即可。 1vim config/server.properties 需要修改的内容： broker.id：当前kafka服务的id listeners、post：监听的客户端连接端口 log.dirs：kafka数据、索引存储位置 zookeeper.connect：kafka依赖的zookeeper服务地址把配置好的kafka上传到其他节点上 启动Kafka1bin/kafka-server-start.sh config/server.properties &amp; kafka服务启动完成后，执行jps，可以看到： 128208 Kafka 测试kafka创建topic 1bin/kafka-topics.sh -zookeeper 192.168.205.173:2181,192.168.204.237:2181 -topic test -replication-factor 2 -partitions 1 -create create：创建topic zookeeper：连接的zookeeper节点地址 replication-factor：数据副本数量 partitions：对创建的topic进行分片 topic：要创建的topic名称 查看topic 1bin/kafka-topics.sh -zookeeper 192.168.205.173:2181,192.168.204.237:2181 -list 创建producer： 1bin/kafka-console-producer.sh --broker-list nutch1:9092 --topic test broker-list：此处不是zookeeper的地址，而是kafka客户端的地址 topic：向哪个topic发送消息 创建consumer 1bin/kafka-console-consumer.sh --bootstrap-server 192.168.205.173:9092 --topic test --from-beginning bootstrap-server：这里为topic地址，替换–zookeeper选项 from-beginning：kafka消息存储在文件内，能够重复消费，这里代表偏移量(offsets) topic：从哪个topic消费消息 停止1bin/kafka-server-stop.sh]]></content>
       <tags>
-        <tag>HADOOP</tag>
+        <tag>KAFKA</tag>
       </tags>
   </entry>
   <entry>
@@ -257,17 +257,17 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[Linux字符集更改]]></title>
-    <url>%2F2017%2F05%2F15%2Flinux-character%2F</url>
-    <content type="text"><![CDATA[查看当前字符集设置： 1echo $LANG 查看当前支持的字符集： 1locale -a 修改当前字符集设置： 12vi /etc/locale.confsource /etc/locale.conf]]></content>
+    <title><![CDATA[Linux多线程下载工具axel安装使用]]></title>
+    <url>%2F2017%2F05%2F15%2Flinux-axel%2F</url>
+    <content type="text"><![CDATA[安装123456wget http://www.ha97.com/code/axel-2.4.tar.gztar zxvf axel-2.4.tar.gzcd axel-2.4./configuremakemake install 语法1axel [options] url1 [url2] [url...] 选项123456789101112--max-speed=x , -s x 最高速度x --num-connections=x , -n x 连接数x --output=f , -o f 下载为本地文件f --search[=x] , -S [x] 搜索镜像 --header=x , -H x 添加头文件字符串x（指定 HTTP header） --user-agent=x , -U x 设置用户代理（指定 HTTP user agent） --no-proxy ， -N 不使用代理服务器 --quiet ， -q 静默模式 --verbose ，-v 更多状态信息 --alternate ， -a Alternate progress indicator --help ，-h 帮助 --version ，-V 版本信息 实例如下载lnmp安装包指定10个线程，存到/tmp/： 1axel -n 10 -o /tmp/ http://www.linuxde.net/lnmp.tar.gz 如果下载过程中下载中断可以再执行下载命令即可恢复上次的下载进度。]]></content>
       <tags>
         <tag>LINUX</tag>
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[Linux多线程下载工具axel安装使用]]></title>
-    <url>%2F2017%2F05%2F15%2Flinux-axel%2F</url>
-    <content type="text"><![CDATA[安装123456wget http://www.ha97.com/code/axel-2.4.tar.gztar zxvf axel-2.4.tar.gzcd axel-2.4./configuremakemake install 语法1axel [options] url1 [url2] [url...] 选项123456789101112--max-speed=x , -s x 最高速度x --num-connections=x , -n x 连接数x --output=f , -o f 下载为本地文件f --search[=x] , -S [x] 搜索镜像 --header=x , -H x 添加头文件字符串x（指定 HTTP header） --user-agent=x , -U x 设置用户代理（指定 HTTP user agent） --no-proxy ， -N 不使用代理服务器 --quiet ， -q 静默模式 --verbose ，-v 更多状态信息 --alternate ， -a Alternate progress indicator --help ，-h 帮助 --version ，-V 版本信息 实例如下载lnmp安装包指定10个线程，存到/tmp/： 1axel -n 10 -o /tmp/ http://www.linuxde.net/lnmp.tar.gz 如果下载过程中下载中断可以再执行下载命令即可恢复上次的下载进度。]]></content>
+    <title><![CDATA[Linux字符集更改]]></title>
+    <url>%2F2017%2F05%2F15%2Flinux-character%2F</url>
+    <content type="text"><![CDATA[查看当前字符集设置： 1echo $LANG 查看当前支持的字符集： 1locale -a 修改当前字符集设置： 12vi /etc/locale.confsource /etc/locale.conf]]></content>
       <tags>
         <tag>LINUX</tag>
       </tags>
@@ -321,7 +321,7 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[hexo博客颜色设置]]></title>
+    <title><![CDATA[Hexo博客颜色设置]]></title>
     <url>%2F2016%2F07%2F18%2Fhexo-tips%2F</url>
     <content type="text"><![CDATA[hexo博客的颜色由css控制，具体文件是由位于目录hexoblog/public/css下的main.css来定义，通过这篇博客Hexo博客小知识：更改背景颜色介绍的方法修改以下两处可以将博客背景色更换成自己喜欢的颜色 12345678910111213/*头部的背景颜色设置*、2134 .header &#123;2135 background: #d1fab8;2136 &#125;/*主体部分颜色设置*/ 187 position: relative; 188 font-family: 'Lato', "PingFang SC", "Microsoft YaHei", sans-serif; 189 font-size: 14px; 190 line-height: 2; 191 color: #555; 192 background: #e0fccf; 193 &#125; 但是以上修改在重新生成blog时会失效，原因是main.css也是在博客发布时生成的，每次发布都会被重新生成的文件替换掉，所以只有修改源文件中的定义才能生效，源文件目录themes/next/source/css 修改文件themes/next/source/css/_variables/base.styl以下两处，增加header-bgex 和body-bgex两个颜色定义，一个是头部和脚部的颜色值定义，一个是主题部分颜色值定义。同时主题颜色的更改在48行修改body-bg-colo的值即可。 12345678910111211 $header-bgex = #d1fab812 $body-bgex = #e0fccf13 $whitesmoke = #f5f5f514 $gainsboro = #eee15 $gray-lighter = #ddd16 $grey-light = #ccc17 $grey = #bbb18 $grey-dark = #999...47 // Background color for &lt;body&gt;48 //$body-bg-color = white49 $body-bg-color = $body-bgex 修改themes/next/source/css/_schemes/Mist/sidebar/_header.styl文件中头部的背景色为base.styl定义的背景色 13 .header &#123; background: $header-bgex; &#125; 修改themes/next/source/css/_schemes/Mist/index.styl中footer相关定义，可以修改footer颜色值 1234567872 // Footer73 // --------------------------------------------------74 .footer &#123;75 margin-top: 80px;76 padding: 10px 0;77 background: $header-bgex;78 color: $grey-dim;79 &#125; 其他部分的颜色样式修改同理。]]></content>
       <tags>
@@ -337,7 +337,7 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[crtmpserver编译部署]]></title>
+    <title><![CDATA[Crtmpserver编译部署]]></title>
     <url>%2F2016%2F07%2F13%2Frtmpd-deploy%2F</url>
     <content type="text"><![CDATA[动态编译并安装到指定目录动态编译1234cd crtmpserver/builders/cmakecmake . -DCMAKE_BUILD_TYPE=Release -DCRTMPSERVER_INSTALL_PREFIX=&lt;install-dir&gt; (例如 /opt/crtmpserver)makemake install 在 /opt/crtmpserver中可以看到整理好的文件,crtmpserver在sbin文件夹中,crtmpserver.lua在etc文件夹中 复制配置表1cp ./crtmpserver/crtmpserver.lua /opt/crtmpserver/etc 复制动态库查看当前连接的动态库 1ldd sbin/crtmpserver 进入安装目录并复制额外的库 1234cd /opt/crtmpservercp /lib64/libssl.so.0.9.8e ./libcp /lib64/libcrypto.so.0.9.8e ./libcp /lib64/libdl-2.5.so ./lib 打包12cd /opttar -czvf crtmpserver.tar.gz ./crtmpserver 安装到新的机器上解压 123cd /opttar -zxvf crtmpserver.tar.gzcd crtmpserver 复制动态库到系统目录 1cp ./lib/crtmpserver/lib*.so /lib64 复制运行程序到库目录 1cp ./sbin/crtmpserver lib/crtmpserver/ 启动程序 12cd lib/crtmpserver./crtmpserver --use-implicit-console-appender ../../etc/crtmpserver.lua 静态编译DEBUG版在CMakeList.txt开始位置加入下面一句即可 1SET(ENV&#123;COMPILE_STATIC&#125; &quot;1&quot;) 编译的时调整参数为Debug 1cmake . -DCMAKE_BUILD_TYPE=Debug -DCRTMPSERVER_INSTALL_PREFIX=&lt;install-dir&gt; (例如 /opt/crtmpserver) 参考：http://blog.csdn.net/fireroll/article/details/20546299]]></content>
       <tags>
@@ -377,19 +377,19 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[MYSQL部分问题及解决方法]]></title>
-    <url>%2F2016%2F07%2F11%2Fmysql-tips%2F</url>
-    <content type="text"><![CDATA[MYSQL出现”the table is full”的问题出现此问题的原因一般是内存表的大小超过了规定的范围，也可能是因为磁盘满导致。 针对内存表超过规定范围的解决方法一种是修改tmp_table_size参数，另外一种是修改max_heap_table_size参数。 修改Mysql的配置文件/etc/my.cnf，在[mysqld]下添加/修改： 12max_heap_table_size = 4096Mkey_buffer_size = 1000M 或者 1tmp_table_size = 256M 系统默认是16M，修改完后重启mysql MYSQL链接慢或链接不上当客户端连接数据库服务器时，服务器会进行主机名解析，并且当DNS很慢时，建立连接会很慢。因此建议在启动服务器时关闭skip_name_resolve选项。 skip-name-resolve：禁止MySQL对外部连接进行DNS解析，禁止MySQL对外部连接进行DNS解析。跳过域名解析步骤，增加远程登录的速度，原理如下： 所谓反向解析是这样的： mysql接收到连接请求后，获得的是客户端的ip，为了更好的匹配mysql.user里的权限记录（某些是用hostname定义的）。 如果mysql服务器设置了dns服务器，并且客户端ip在dns上并没有相应的hostname，那么这个过程很慢，导致连接等待。 关闭选项后唯一的局限是之后GRANT语句中只能使用IP地址了，因此在添加这项设置到一个已有系统中必须格外小心。 Too many connections如果你经常看到’Too many connections’错误，是因为max_connections的值太低了。这非常常见因为应用程序没有正确的关闭数据库连接，你需要比默认的151连接数更大的值。max_connection值被设高了(例如1000或更高)之后一个主要缺陷是当服务器运行1000个或更高的活动事务时会变的没有响应。在应用程序里使用连接池或者在MySQL里使用进程池有助于解决这一问题。]]></content>
-      <tags>
-        <tag>MYSQL</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[var目录爆满问题]]></title>
     <url>%2F2016%2F07%2F11%2Flinux-clientmqueue%2F</url>
     <content type="text"><![CDATA[原因系统中有用户开启了cron，而cron中执行的程序有输出内容，输出内容会以邮件形式发给cron的用户，出现/var/spool/clientmqueue/非常大的情况通常因为没有合适的MTA发送邮件，就都积累在这里了。 解决方法在crontab里面的命令后面加上 1&gt; /dev/null 2&gt;&amp;1 将错误和输出同时抛弃掉。 清除/var/spool/clientmqueue/当/var/spool/clientmqueue/目录下文件比较多时，直接rm -f 会报错argument too long 12cd /var/spool/clientmqueuels | xargs rm -f 或者find命令去删除]]></content>
       <tags>
         <tag>LINUX</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[MYSQL部分问题及解决方法]]></title>
+    <url>%2F2016%2F07%2F11%2Fmysql-tips%2F</url>
+    <content type="text"><![CDATA[MYSQL出现”the table is full”的问题出现此问题的原因一般是内存表的大小超过了规定的范围，也可能是因为磁盘满导致。 针对内存表超过规定范围的解决方法一种是修改tmp_table_size参数，另外一种是修改max_heap_table_size参数。 修改Mysql的配置文件/etc/my.cnf，在[mysqld]下添加/修改： 12max_heap_table_size = 4096Mkey_buffer_size = 1000M 或者 1tmp_table_size = 256M 系统默认是16M，修改完后重启mysql MYSQL链接慢或链接不上当客户端连接数据库服务器时，服务器会进行主机名解析，并且当DNS很慢时，建立连接会很慢。因此建议在启动服务器时关闭skip_name_resolve选项。 skip-name-resolve：禁止MySQL对外部连接进行DNS解析，禁止MySQL对外部连接进行DNS解析。跳过域名解析步骤，增加远程登录的速度，原理如下： 所谓反向解析是这样的： mysql接收到连接请求后，获得的是客户端的ip，为了更好的匹配mysql.user里的权限记录（某些是用hostname定义的）。 如果mysql服务器设置了dns服务器，并且客户端ip在dns上并没有相应的hostname，那么这个过程很慢，导致连接等待。 关闭选项后唯一的局限是之后GRANT语句中只能使用IP地址了，因此在添加这项设置到一个已有系统中必须格外小心。 Too many connections如果你经常看到’Too many connections’错误，是因为max_connections的值太低了。这非常常见因为应用程序没有正确的关闭数据库连接，你需要比默认的151连接数更大的值。max_connection值被设高了(例如1000或更高)之后一个主要缺陷是当服务器运行1000个或更高的活动事务时会变的没有响应。在应用程序里使用连接池或者在MySQL里使用进程池有助于解决这一问题。]]></content>
+      <tags>
+        <tag>MYSQL</tag>
       </tags>
   </entry>
   <entry>
