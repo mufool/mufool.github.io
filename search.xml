@@ -182,7 +182,7 @@
   <entry>
     <title><![CDATA[Spark几种运行方式]]></title>
     <url>%2F2017%2F06%2F09%2Fhadoop-spark-run%2F</url>
-    <content type="text"></content>
+    <content type="text"><![CDATA[Spark运行模式Spark的运行模式多种多样，在单机上可以以Local和伪分布式模式运行；部署在集群上时有Spark内建的Standalone模式及对于外部框架的支持，有Mesos模式和Spark On YARN模式，这两者主要区别是资源管理交由谁负责。 Local模式本地模式，这种方式是在本地运行作业，其中local模式又分一下几种 local：所有计算都运行在一个线程当中，没有任何并行计算，通常我们在本机执行一些测试代码，或者练手，就用这种模式。 local[N]：指定使用几个线程来运行计算，比如local[4]就是运行4个worker线程。通常我们的cpu有几个core，就指定几个线程，最大化利用cpu的计算能力 local[*]：这种模式直接帮你按照cpu最多cores来设置线程数了。 local[N,M]：这里有两个参数，第一个代表的是用到的核个数；第二个参数代表的是容许该作业失败M次。上面的几种模式没有指定M参数，其默认值都是1； 1234/bin/spark-submit \ --cluster cluster_name \ --master local[*] \ ... Standalone模式Standalone模式中Spark集群中Master和Worker节点构成。用户程序通过与Master节点交互，申请所需资源，Worker节点负责具体Executor的启动运行。部署Standalone模式的集群仅需把编译好的Spark发布版本分发到各节点，部署路径尽量一致，且配置文件相同。 1234/bin/spark-submit \ --cluster cluster_name \ --master spark://host:port \ ... Local Cluster模式即伪分布式模式，是基于Standalone模式实现的，启动Master（主进程）和Worker（工作进程）的位置全部在本地。 Yarn-standalone/Yarn-cluster模式，Mesos模式通过Hadoop YARN框架或者mesos来调度Spark应用所需资源。适合生产模式。 1234/bin/spark-submit \ --cluster cluster_name \ --master mesos://host:port \ ... 1234/bin/spark-submit \ --cluster cluster_name \ --master yarn-cluster \ ... Yarn-client模式这是YARN客户端模式。上面三种代表的是集群模式；这种代表的是客户端模式； Yarn-Cluster和Yarn-client模式区别yarn-client主要用于与用户交互模式，yarn-cluster主要用于集群生产模式，主要区别是driver在运行位置，cluser模式下，driver运行在AM(app master)中，cluser模式下，driver在任务提交机上执行。 client模式Driver在任务提交机上执行，适用于交互和调试，也就是希望快速看到app的输出结果。ApplicationMaster只负责向ResourceManager申请executor需要的资源。client会和请求的container通信来调度他们工作，也就是client不能关闭。基于yarn时，spark-shell和pyspark必须要使用yarn-client模式。 图片来自网络 cluster模式Driver运行在ApplicationMaster中，应用在生产过程中。Driver以及资源申请都在AppMaster执行，负责向YARN申请资源，并监督作业的运行状况。当用户提交完作业之后，就关闭client，作业会继续在YARN上。 参考：谈谈Spark运行模式Apache Spark探秘：三种分布式部署方式比较]]></content>
       <tags>
         <tag>HADOOP</tag>
       </tags>
@@ -257,17 +257,17 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[Linux多线程下载工具axel安装使用]]></title>
-    <url>%2F2017%2F05%2F15%2Flinux-axel%2F</url>
-    <content type="text"><![CDATA[安装123456wget http://www.ha97.com/code/axel-2.4.tar.gztar zxvf axel-2.4.tar.gzcd axel-2.4./configuremakemake install 语法1axel [options] url1 [url2] [url...] 选项123456789101112--max-speed=x , -s x 最高速度x --num-connections=x , -n x 连接数x --output=f , -o f 下载为本地文件f --search[=x] , -S [x] 搜索镜像 --header=x , -H x 添加头文件字符串x（指定 HTTP header） --user-agent=x , -U x 设置用户代理（指定 HTTP user agent） --no-proxy ， -N 不使用代理服务器 --quiet ， -q 静默模式 --verbose ，-v 更多状态信息 --alternate ， -a Alternate progress indicator --help ，-h 帮助 --version ，-V 版本信息 实例如下载lnmp安装包指定10个线程，存到/tmp/： 1axel -n 10 -o /tmp/ http://www.linuxde.net/lnmp.tar.gz 如果下载过程中下载中断可以再执行下载命令即可恢复上次的下载进度。]]></content>
+    <title><![CDATA[Linux字符集更改]]></title>
+    <url>%2F2017%2F05%2F15%2Flinux-character%2F</url>
+    <content type="text"><![CDATA[查看当前字符集设置： 1echo $LANG 查看当前支持的字符集： 1locale -a 修改当前字符集设置： 12vi /etc/locale.confsource /etc/locale.conf]]></content>
       <tags>
         <tag>LINUX</tag>
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[Linux字符集更改]]></title>
-    <url>%2F2017%2F05%2F15%2Flinux-character%2F</url>
-    <content type="text"><![CDATA[查看当前字符集设置： 1echo $LANG 查看当前支持的字符集： 1locale -a 修改当前字符集设置： 12vi /etc/locale.confsource /etc/locale.conf]]></content>
+    <title><![CDATA[Linux多线程下载工具axel安装使用]]></title>
+    <url>%2F2017%2F05%2F15%2Flinux-axel%2F</url>
+    <content type="text"><![CDATA[安装123456wget http://www.ha97.com/code/axel-2.4.tar.gztar zxvf axel-2.4.tar.gzcd axel-2.4./configuremakemake install 语法1axel [options] url1 [url2] [url...] 选项123456789101112--max-speed=x , -s x 最高速度x --num-connections=x , -n x 连接数x --output=f , -o f 下载为本地文件f --search[=x] , -S [x] 搜索镜像 --header=x , -H x 添加头文件字符串x（指定 HTTP header） --user-agent=x , -U x 设置用户代理（指定 HTTP user agent） --no-proxy ， -N 不使用代理服务器 --quiet ， -q 静默模式 --verbose ，-v 更多状态信息 --alternate ， -a Alternate progress indicator --help ，-h 帮助 --version ，-V 版本信息 实例如下载lnmp安装包指定10个线程，存到/tmp/： 1axel -n 10 -o /tmp/ http://www.linuxde.net/lnmp.tar.gz 如果下载过程中下载中断可以再执行下载命令即可恢复上次的下载进度。]]></content>
       <tags>
         <tag>LINUX</tag>
       </tags>
@@ -377,19 +377,19 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[var目录爆满问题]]></title>
-    <url>%2F2016%2F07%2F11%2Flinux-clientmqueue%2F</url>
-    <content type="text"><![CDATA[原因系统中有用户开启了cron，而cron中执行的程序有输出内容，输出内容会以邮件形式发给cron的用户，出现/var/spool/clientmqueue/非常大的情况通常因为没有合适的MTA发送邮件，就都积累在这里了。 解决方法在crontab里面的命令后面加上 1&gt; /dev/null 2&gt;&amp;1 将错误和输出同时抛弃掉。 清除/var/spool/clientmqueue/当/var/spool/clientmqueue/目录下文件比较多时，直接rm -f 会报错argument too long 12cd /var/spool/clientmqueuels | xargs rm -f 或者find命令去删除]]></content>
-      <tags>
-        <tag>LINUX</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[MYSQL部分问题及解决方法]]></title>
     <url>%2F2016%2F07%2F11%2Fmysql-tips%2F</url>
     <content type="text"><![CDATA[MYSQL出现”the table is full”的问题出现此问题的原因一般是内存表的大小超过了规定的范围，也可能是因为磁盘满导致。 针对内存表超过规定范围的解决方法一种是修改tmp_table_size参数，另外一种是修改max_heap_table_size参数。 修改Mysql的配置文件/etc/my.cnf，在[mysqld]下添加/修改： 12max_heap_table_size = 4096Mkey_buffer_size = 1000M 或者 1tmp_table_size = 256M 系统默认是16M，修改完后重启mysql MYSQL链接慢或链接不上当客户端连接数据库服务器时，服务器会进行主机名解析，并且当DNS很慢时，建立连接会很慢。因此建议在启动服务器时关闭skip_name_resolve选项。 skip-name-resolve：禁止MySQL对外部连接进行DNS解析，禁止MySQL对外部连接进行DNS解析。跳过域名解析步骤，增加远程登录的速度，原理如下： 所谓反向解析是这样的： mysql接收到连接请求后，获得的是客户端的ip，为了更好的匹配mysql.user里的权限记录（某些是用hostname定义的）。 如果mysql服务器设置了dns服务器，并且客户端ip在dns上并没有相应的hostname，那么这个过程很慢，导致连接等待。 关闭选项后唯一的局限是之后GRANT语句中只能使用IP地址了，因此在添加这项设置到一个已有系统中必须格外小心。 Too many connections如果你经常看到’Too many connections’错误，是因为max_connections的值太低了。这非常常见因为应用程序没有正确的关闭数据库连接，你需要比默认的151连接数更大的值。max_connection值被设高了(例如1000或更高)之后一个主要缺陷是当服务器运行1000个或更高的活动事务时会变的没有响应。在应用程序里使用连接池或者在MySQL里使用进程池有助于解决这一问题。]]></content>
       <tags>
         <tag>MYSQL</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[var目录爆满问题]]></title>
+    <url>%2F2016%2F07%2F11%2Flinux-clientmqueue%2F</url>
+    <content type="text"><![CDATA[原因系统中有用户开启了cron，而cron中执行的程序有输出内容，输出内容会以邮件形式发给cron的用户，出现/var/spool/clientmqueue/非常大的情况通常因为没有合适的MTA发送邮件，就都积累在这里了。 解决方法在crontab里面的命令后面加上 1&gt; /dev/null 2&gt;&amp;1 将错误和输出同时抛弃掉。 清除/var/spool/clientmqueue/当/var/spool/clientmqueue/目录下文件比较多时，直接rm -f 会报错argument too long 12cd /var/spool/clientmqueuels | xargs rm -f 或者find命令去删除]]></content>
+      <tags>
+        <tag>LINUX</tag>
       </tags>
   </entry>
   <entry>
