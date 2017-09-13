@@ -95,15 +95,18 @@
 
 
 
+<meta name="description" content="shell分类login shell和non-login shell login shell代表用户登入, 比如使用 “su -“ 命令, 或者用 ssh 连接到某一个服务器上, 都会使用该用户默认 shell 启动 login shell 模式。该模式下的 shell 会去自动执行 /etc/profile 和 ~/.profile 文件, 但不会执行任何的 bashrc 文件, 所以一般再 /">
 <meta name="keywords" content="LINUX">
 <meta property="og:type" content="article">
 <meta property="og:title" content="login shell与non-login shell的区别">
 <meta property="og:url" content="http://mufool.com/2017/06/09/linux-shell/index.html">
 <meta property="og:site_name" content="Mufool">
+<meta property="og:description" content="shell分类login shell和non-login shell login shell代表用户登入, 比如使用 “su -“ 命令, 或者用 ssh 连接到某一个服务器上, 都会使用该用户默认 shell 启动 login shell 模式。该模式下的 shell 会去自动执行 /etc/profile 和 ~/.profile 文件, 但不会执行任何的 bashrc 文件, 所以一般再 /">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-09-08T03:45:38.064Z">
+<meta property="og:updated_time" content="2017-09-13T07:48:26.529Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="login shell与non-login shell的区别">
+<meta name="twitter:description" content="shell分类login shell和non-login shell login shell代表用户登入, 比如使用 “su -“ 命令, 或者用 ssh 连接到某一个服务器上, 都会使用该用户默认 shell 启动 login shell 模式。该模式下的 shell 会去自动执行 /etc/profile 和 ~/.profile 文件, 但不会执行任何的 bashrc 文件, 所以一般再 /">
 
 
 
@@ -385,7 +388,30 @@
       
 
       
-        
+        <h2 id="shell分类"><a href="#shell分类" class="headerlink" title="shell分类"></a>shell分类</h2><h3 id="login-shell和non-login-shell"><a href="#login-shell和non-login-shell" class="headerlink" title="login shell和non-login shell"></a>login shell和non-login shell</h3><ul>
+<li><p>login shell代表用户登入, 比如使用 “su -“ 命令, 或者用 ssh 连接到某一个服务器上, 都会使用该用户默认 shell 启动 login shell 模式。该模式下的 shell 会去自动执行 /etc/profile 和 ~/.profile 文件, 但不会执行任何的 bashrc 文件, 所以一般再 /etc/profile 或者 ~/.profile 里我们会手动去 source bashrc 文件。</p>
+</li>
+<li><p>no-login shell 的情况是我们在终端下直接输入 bash 或者 bash -c “CMD” 来启动的 shell。该模式下是不会自动去运行任何的 profile 文件。</p>
+</li>
+</ul>
+<h3 id="interactive-shell-和-non-interactive-shell"><a href="#interactive-shell-和-non-interactive-shell" class="headerlink" title="interactive shell 和 non-interactive shell"></a>interactive shell 和 non-interactive shell</h3><ul>
+<li><p>interactive shell 是交互式shell, 顾名思义就是用来和用户交互的, 提供了命令提示符可以输入命令。该模式下会存在一个叫 PS1 的环境变量, 如果还不是 login shell 的则会去 source /etc/bashrc 和 ~/.bashrc 文件。</p>
+</li>
+<li><p>non-interactive shell 则一般是通过 bash -c “CMD” 来执行的bash。该模式下不会执行任何的 rc 文件。</p>
+</li>
+</ul>
+<h3 id="组合shell"><a href="#组合shell" class="headerlink" title="组合shell"></a>组合shell</h3><p>在可能存在的模式组合中 RC 文件的执行<br>1、 SSH login, sudo su - [USER]<br>ssh 登入和 su - 是典型的 interactive login shell, 所以会有 PS1 变量, 并且会执行<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">/etc/profile</div><div class="line">~/.bash_profile</div></pre></td></tr></table></figure></p>
+<p>2、在命令提示符状态下输入 bash 或者 ubuntu 默认设置下打开终端<br>这样开启的是 interactive no-login shell, 所以会有 PS1 变量, 只会执行<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">/etc/bashrc</div><div class="line">~/.bashrc</div></pre></td></tr></table></figure></p>
+<p>3、通过 bash -c “CMD” 或者 bash BASHFILE 命令执行的 shell<br>这些命令什么都不会执行, 也就是设置 PS1 变量, 不执行任何 RC 文件</p>
+<p>4、通过 “ssh server CMD” 执行的命令 或 通过程序执行远程的命令<br>这是最特殊的一种模式, 理论上应该既是 非交互 也是 非登入的, 但是实际上他不会设置 PS1, 但是还会执行<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">/etc/bashrc</div><div class="line">~/.bashrc</div></pre></td></tr></table></figure></p>
+<h2 id="bashrc-和-profile-的区别"><a href="#bashrc-和-profile-的区别" class="headerlink" title="bashrc 和 profile 的区别"></a>bashrc 和 profile 的区别</h2><p>看了之前那么多种状态组合, 最关键的问题是, 究竟 bashrc 和 profile 有什么区别</p>
+<ul>
+<li><p>profile<br>/etc/profile中是全局配置，修改对所有用户生效；~/.bash_profile是个人的配置，修改只对用户自己生效；login shell先读取/etc/profile，再读取~/.bash_profile。一般~/.bash_profile中会同时读取~/.bashrc文件。</p>
+</li>
+<li><p>bashrc<br>bashrc 也是看名字就知道, 是专门用来给 bash 做初始化的比如用来初始化 bash 的设置, bash 的代码补全, bash 的别名, bash 的颜色。non-login shell会读取bashrc文件，bashrc同时会包含/etc/bashrc，其中主要会设置用户的UMASK，设置PS1。</p>
+</li>
+</ul>
+
       
     </div>
 
@@ -432,8 +458,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/06/09/linux-bashrc-profile/" rel="next" title="linux-bashrc-profile">
-                <i class="fa fa-chevron-left"></i> linux-bashrc-profile
+              <a href="/2017/06/09/linux-su/" rel="next" title="Linux下su与su -命令的区别">
+                <i class="fa fa-chevron-left"></i> Linux下su与su -命令的区别
               </a>
             
           </div>
@@ -521,8 +547,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/default_avatar.jpg"
@@ -537,7 +572,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">59</span>
+                <span class="site-state-item-count">58</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -626,6 +661,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#shell分类"><span class="nav-number">1.</span> <span class="nav-text">shell分类</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#login-shell和non-login-shell"><span class="nav-number">1.1.</span> <span class="nav-text">login shell和non-login shell</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#interactive-shell-和-non-interactive-shell"><span class="nav-number">1.2.</span> <span class="nav-text">interactive shell 和 non-interactive shell</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#组合shell"><span class="nav-number">1.3.</span> <span class="nav-text">组合shell</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#bashrc-和-profile-的区别"><span class="nav-number">2.</span> <span class="nav-text">bashrc 和 profile 的区别</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
