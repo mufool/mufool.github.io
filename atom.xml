@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://mufool.com/"/>
-  <updated>2017-09-08T03:45:38.064Z</updated>
+  <updated>2017-09-13T09:21:46.605Z</updated>
   <id>http://mufool.com/</id>
   
   <author>
@@ -15,6 +15,26 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Hexo博客环境搭建</title>
+    <link href="http://mufool.com/2017/09/13/hexo-blog/"/>
+    <id>http://mufool.com/2017/09/13/hexo-blog/</id>
+    <published>2017-09-13T09:20:19.000Z</published>
+    <updated>2017-09-13T09:21:46.605Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="git安装"><a href="#git安装" class="headerlink" title="git安装"></a>git安装</h2><a id="more"></a><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">yum install git -y</div></pre></td></tr></table></figure><h2 id="安装Node"><a href="#安装Node" class="headerlink" title="安装Node"></a>安装Node</h2><p>到 Node.js 官网下载相应平台的 最新版本 ，一路安装即可。<a href="https://www.ibm.com/developerworks/cn/opensource/os-nodejs/index.html" target="_blank" rel="external">Node.js 究竟是什么？</a></p><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">wget https:<span class="comment">//nodejs.org/dist/v6.11.3/node-v6.11.3.tar.gz  --no-check-certificate</span></div><div class="line">tar -xzvf node-v6.11.3.tar.gz</div><div class="line">cd node-v6.11.3</div><div class="line">./configure</div><div class="line">make</div><div class="line">make install</div></pre></td></tr></table></figure><h2 id="安装hexo"><a href="#安装hexo" class="headerlink" title="安装hexo"></a>安装hexo</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install -g hexo</div></pre></td></tr></table></figure><p>在blog所在目录下安装插件</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">npm install hexo --save</div><div class="line">npm install hexo-deployer-git --save</div></pre></td></tr></table></figure><p>同时，执行以下命令查看缺少的插件逐个安装，否则无法生成所需要的index.html等文件</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm ls --depth 0</div></pre></td></tr></table></figure><h2 id="配置ssh"><a href="#配置ssh" class="headerlink" title="配置ssh"></a>配置ssh</h2><h3 id="生产key并添加"><a href="#生产key并添加" class="headerlink" title="生产key并添加"></a>生产key并添加</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ssh-keygen -t rsa -C &quot;邮件地址@gmail.com&quot;</div></pre></td></tr></table></figure><p>一路回车，将生产的id_rsa.pub文件内容添加到github的SSH keys的配置项中。</p><h3 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ssh -T git@github.com</div></pre></td></tr></table></figure><p>提示</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Hi cnfeat! You&apos;ve successfully authenticated, but GitHub does not provide shell access.</div></pre></td></tr></table></figure><h3 id="设置用户信息"><a href="#设置用户信息" class="headerlink" title="设置用户信息"></a>设置用户信息</h3><p>现在你已经可以通过 SSH 链接到 GitHub 了，还有一些个人信息需要完善的。<br>Git 会根据用户的名字和邮箱来记录提交。GitHub 也是用这些信息来做权限的处理，输入下面的代码进行个人信息的设置，把名称和邮箱替换成你自己的，名字必须是你的真名，而不是GitHub的昵称。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ git config --global user.name &quot;mufool&quot;//用户名</div><div class="line">$ git config --global user.email  &quot;email@gmail.com&quot;//填写自己的邮箱</div></pre></td></tr></table></figure><h2 id="生产部署"><a href="#生产部署" class="headerlink" title="生产部署"></a>生产部署</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">hexo g</div><div class="line">hexo d</div></pre></td></tr></table></figure><p>提交成功</p><p>注：其他问题，自行google</p><p>参考：<br><a href="http://www.jianshu.com/p/05289a4bc8b2" target="_blank" rel="external">如何搭建一个独立博客</a></p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;git安装&quot;&gt;&lt;a href=&quot;#git安装&quot; class=&quot;headerlink&quot; title=&quot;git安装&quot;&gt;&lt;/a&gt;git安装&lt;/h2&gt;
+    
+    </summary>
+    
+    
+      <category term="HEXO" scheme="http://mufool.com/tags/HEXO/"/>
+    
+  </entry>
   
   <entry>
     <title>Java操作redis</title>
@@ -251,16 +271,13 @@
     <link href="http://mufool.com/2017/06/19/hexo-disqus/"/>
     <id>http://mufool.com/2017/06/19/hexo-disqus/</id>
     <published>2017-06-19T04:42:28.000Z</published>
-    <updated>2017-09-12T01:54:47.800Z</updated>
+    <updated>2017-09-13T09:21:13.210Z</updated>
     
-    <content type="html"><![CDATA[<h2 id="注册disqus"><a href="#注册disqus" class="headerlink" title="注册disqus"></a>注册disqus</h2><p>disqus<a href="https://disqus.com" target="_blank" rel="external">官网</a>，按要求注册一个账户，添加你的博客地址</p><h2 id="获取shortname"><a href="#获取shortname" class="headerlink" title="获取shortname"></a>获取shortname</h2><p>在Settings-&gt;General下可以看到你的Shortname。</p><h2 id="添加到blog"><a href="#添加到blog" class="headerlink" title="添加到blog"></a>添加到blog</h2><p>打开根目录下的config.yml, 在最后面添加，disqus_shortname: your_disqus_short_name，去掉其他评论配置。</p><p>刷新页面即可看到评论系统。</p>]]></content>
+    <content type="html"><![CDATA[<h2 id="注册disqus"><a href="#注册disqus" class="headerlink" title="注册disqus"></a>注册disqus</h2><p>disqus<a href="https://disqus.com" target="_blank" rel="external">官网</a>，按要求注册一个账户，添加你的博客地址</p><a id="more"></a><h2 id="获取shortname"><a href="#获取shortname" class="headerlink" title="获取shortname"></a>获取shortname</h2><p>在Settings-&gt;General下可以看到你的Shortname。</p><h2 id="添加到blog"><a href="#添加到blog" class="headerlink" title="添加到blog"></a>添加到blog</h2><p>打开根目录下的config.yml, 在最后面添加，disqus_shortname: your_disqus_short_name，去掉其他评论配置。</p><p>刷新页面即可看到评论系统。</p>]]></content>
     
     <summary type="html">
     
-      
-      
-        &lt;h2 id=&quot;注册disqus&quot;&gt;&lt;a href=&quot;#注册disqus&quot; class=&quot;headerlink&quot; title=&quot;注册disqus&quot;&gt;&lt;/a&gt;注册disqus&lt;/h2&gt;&lt;p&gt;disqus&lt;a href=&quot;https://disqus.com&quot; target=&quot;_bl
-      
+      &lt;h2 id=&quot;注册disqus&quot;&gt;&lt;a href=&quot;#注册disqus&quot; class=&quot;headerlink&quot; title=&quot;注册disqus&quot;&gt;&lt;/a&gt;注册disqus&lt;/h2&gt;&lt;p&gt;disqus&lt;a href=&quot;https://disqus.com&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;官网&lt;/a&gt;，按要求注册一个账户，添加你的博客地址&lt;/p&gt;
     
     </summary>
     
@@ -404,26 +421,6 @@
       <category term="HADOOP" scheme="http://mufool.com/tags/HADOOP/"/>
     
       <category term="SPARK" scheme="http://mufool.com/tags/SPARK/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Maven下载慢的解决方法</title>
-    <link href="http://mufool.com/2017/06/09/hadoop-mvn-slow/"/>
-    <id>http://mufool.com/2017/06/09/hadoop-mvn-slow/</id>
-    <published>2017-06-09T06:42:05.000Z</published>
-    <updated>2017-09-11T02:21:15.379Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p>Maven仓库默认下载速度很慢，非常影响项目的开发速度和构建速度。</p><a id="more"></a><h2 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h2><h3 id="使用Nexus搭建私服"><a href="#使用Nexus搭建私服" class="headerlink" title="使用Nexus搭建私服"></a>使用Nexus搭建私服</h3><p>使用Nexus搭建私服的问题在于，如果是第一次构建，仍然会比较慢，它适用于团队。</p><h3 id="更换镜像仓库"><a href="#更换镜像仓库" class="headerlink" title="更换镜像仓库"></a>更换镜像仓库</h3><p>镜像仓库则比较适用于个人，可以利用国内其他人搭建的maven库，加速下载。这里使用的是阿里云的镜像仓库。</p><p>在maven的setting.xml里配置mirrors的子节点，添加如下可用的镜像仓库的mirror：</p><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">mirrors</span>&gt;</span></div><div class="line">  <span class="comment">&lt;!-- mirror</span></div><div class="line"><span class="comment">   | Specifies a repository mirror site to use instead of a given repository. The repository that</span></div><div class="line"><span class="comment">   | this mirror serves has an ID that matches the mirrorOf element of this mirror. IDs are used</span></div><div class="line"><span class="comment">   | for inheritance and direct lookup purposes, and must be unique across the set of mirrors.</span></div><div class="line"><span class="comment">   |</span></div><div class="line"><span class="comment">  &lt;mirror&gt;</span></div><div class="line"><span class="comment">    &lt;id&gt;mirrorId&lt;/id&gt;</span></div><div class="line"><span class="comment">    &lt;mirrorOf&gt;repositoryId&lt;/mirrorOf&gt;</span></div><div class="line"><span class="comment">    &lt;name&gt;Human Readable Name for this Mirror.&lt;/name&gt;</span></div><div class="line"><span class="comment">    &lt;url&gt;http://my.repository.com/repo/path&lt;/url&gt;</span></div><div class="line"><span class="comment">  &lt;/mirror&gt;</span></div><div class="line"><span class="comment">   --&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">mirror</span>&gt;</span></div><div class="line">              <span class="tag">&lt;<span class="name">id</span>&gt;</span>nexus-aliyun<span class="tag">&lt;/<span class="name">id</span>&gt;</span></div><div class="line">              <span class="tag">&lt;<span class="name">mirrorOf</span>&gt;</span>central<span class="tag">&lt;/<span class="name">mirrorOf</span>&gt;</span></div><div class="line">              <span class="tag">&lt;<span class="name">name</span>&gt;</span>Nexus aliyun<span class="tag">&lt;/<span class="name">name</span>&gt;</span></div><div class="line">              <span class="tag">&lt;<span class="name">url</span>&gt;</span>http://maven.aliyun.com/nexus/content/groups/public<span class="tag">&lt;/<span class="name">url</span>&gt;</span></div><div class="line">      <span class="tag">&lt;/<span class="name">mirror</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">mirrors</span>&gt;</span></div></pre></td></tr></table></figure><h2 id="配置默认仓库地址"><a href="#配置默认仓库地址" class="headerlink" title="配置默认仓库地址"></a>配置默认仓库地址</h2><p>在pom.xml中也使用aliyu的仓库<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">repositories</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">repository</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">id</span>&gt;</span>central<span class="tag">&lt;/<span class="name">id</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">name</span>&gt;</span>Maven Repository Switchboard<span class="tag">&lt;/<span class="name">name</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">layout</span>&gt;</span>default<span class="tag">&lt;/<span class="name">layout</span>&gt;</span></div><div class="line">        <span class="comment">&lt;!-- &lt;url&gt;http://repo.akka.io/releases&lt;/url&gt;  --&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">url</span>&gt;</span>http://maven.aliyun.com/nexus/content/groups/public<span class="tag">&lt;/<span class="name">url</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">snapshots</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">enabled</span>&gt;</span>false<span class="tag">&lt;/<span class="name">enabled</span>&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">snapshots</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">repository</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">repositories</span>&gt;</span></div></pre></td></tr></table></figure></p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;问题描述&quot;&gt;&lt;a href=&quot;#问题描述&quot; class=&quot;headerlink&quot; title=&quot;问题描述&quot;&gt;&lt;/a&gt;问题描述&lt;/h2&gt;&lt;p&gt;Maven仓库默认下载速度很慢，非常影响项目的开发速度和构建速度。&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="HADOOP" scheme="http://mufool.com/tags/HADOOP/"/>
     
   </entry>
   
