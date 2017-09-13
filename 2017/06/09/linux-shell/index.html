@@ -95,18 +95,18 @@
 
 
 
-<meta name="description" content="shell分类login shell和non-login shell login shell代表用户登入, 比如使用 “su -“ 命令, 或者用 ssh 连接到某一个服务器上, 都会使用该用户默认 shell 启动 login shell 模式。该模式下的 shell 会去自动执行 /etc/profile 和 ~/.profile 文件, 但不会执行任何的 bashrc 文件, 所以一般再 /">
+<meta name="description" content="shell分类login shell和non-login shell">
 <meta name="keywords" content="LINUX">
 <meta property="og:type" content="article">
 <meta property="og:title" content="login shell与non-login shell的区别">
 <meta property="og:url" content="http://mufool.com/2017/06/09/linux-shell/index.html">
 <meta property="og:site_name" content="Mufool">
-<meta property="og:description" content="shell分类login shell和non-login shell login shell代表用户登入, 比如使用 “su -“ 命令, 或者用 ssh 连接到某一个服务器上, 都会使用该用户默认 shell 启动 login shell 模式。该模式下的 shell 会去自动执行 /etc/profile 和 ~/.profile 文件, 但不会执行任何的 bashrc 文件, 所以一般再 /">
+<meta property="og:description" content="shell分类login shell和non-login shell">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-09-13T07:48:26.529Z">
+<meta property="og:updated_time" content="2017-09-13T07:49:55.150Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="login shell与non-login shell的区别">
-<meta name="twitter:description" content="shell分类login shell和non-login shell login shell代表用户登入, 比如使用 “su -“ 命令, 或者用 ssh 连接到某一个服务器上, 都会使用该用户默认 shell 启动 login shell 模式。该模式下的 shell 会去自动执行 /etc/profile 和 ~/.profile 文件, 但不会执行任何的 bashrc 文件, 所以一般再 /">
+<meta name="twitter:description" content="shell分类login shell和non-login shell">
 
 
 
@@ -388,7 +388,8 @@
       
 
       
-        <h2 id="shell分类"><a href="#shell分类" class="headerlink" title="shell分类"></a>shell分类</h2><h3 id="login-shell和non-login-shell"><a href="#login-shell和non-login-shell" class="headerlink" title="login shell和non-login shell"></a>login shell和non-login shell</h3><ul>
+        <h2 id="shell分类"><a href="#shell分类" class="headerlink" title="shell分类"></a>shell分类</h2><h3 id="login-shell和non-login-shell"><a href="#login-shell和non-login-shell" class="headerlink" title="login shell和non-login shell"></a>login shell和non-login shell</h3><a id="more"></a>
+<ul>
 <li><p>login shell代表用户登入, 比如使用 “su -“ 命令, 或者用 ssh 连接到某一个服务器上, 都会使用该用户默认 shell 启动 login shell 模式。该模式下的 shell 会去自动执行 /etc/profile 和 ~/.profile 文件, 但不会执行任何的 bashrc 文件, 所以一般再 /etc/profile 或者 ~/.profile 里我们会手动去 source bashrc 文件。</p>
 </li>
 <li><p>no-login shell 的情况是我们在终端下直接输入 bash 或者 bash -c “CMD” 来启动的 shell。该模式下是不会自动去运行任何的 profile 文件。</p>
