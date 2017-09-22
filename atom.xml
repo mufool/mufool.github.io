@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://mufool.com/"/>
-  <updated>2017-09-13T09:21:46.605Z</updated>
+  <updated>2017-09-22T08:13:56.241Z</updated>
   <id>http://mufool.com/</id>
   
   <author>
@@ -15,6 +15,24 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>zsh安装使用</title>
+    <link href="http://mufool.com/2017/09/22/zsh/"/>
+    <id>http://mufool.com/2017/09/22/zsh/</id>
+    <published>2017-09-22T08:12:55.000Z</published>
+    <updated>2017-09-22T08:13:56.241Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="zsh介绍"><a href="#zsh介绍" class="headerlink" title="zsh介绍"></a>zsh介绍</h2><p>Zsh 也许是目前最好用的 shell，是 bash 替代品中较为优秀的一个，号称终极shell。</p><a id="more"></a><h2 id="zsh安装"><a href="#zsh安装" class="headerlink" title="zsh安装"></a>zsh安装</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">yum install zsh -y</div></pre></td></tr></table></figure><h2 id="zsh配置"><a href="#zsh配置" class="headerlink" title="zsh配置"></a>zsh配置</h2><h3 id="oh-my-zsh配置"><a href="#oh-my-zsh配置" class="headerlink" title="oh-my-zsh配置"></a>oh-my-zsh配置</h3><p>oh-my-zsh是为了简化zsh的配置而提供的一个配置模板，可以更好的管理zsh的各项配置</p><p>通过curl安装<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">curl -L https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh | sh</div></pre></td></tr></table></figure></p><p>通过wget安装<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">wget https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O - | sh</div></pre></td></tr></table></figure></p><p>手动安装</p><p>克隆仓库里面的代码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git clone git://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh</div></pre></td></tr></table></figure></p><p>创建一个新的zsh配置文件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cp ~/.oh-my-zsh/templates/zshrc.zsh-template ~/.zshrc</div></pre></td></tr></table></figure></p><p>改变默认的shell<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">chsh -s /bin/zsh</div></pre></td></tr></table></figure></p><p>如不生效，则在~/.bashrc最后添加<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">bash -c zsh</div></pre></td></tr></table></figure></p><h3 id="主题配色"><a href="#主题配色" class="headerlink" title="主题配色"></a>主题配色</h3><p>～/.oh-my-zsh/themes目录下面的任意文件都可以作为主题，如果都不喜欢可以选择自己定义，参照<a href="http://blog.csdn.net/lushujun2011/article/details/7351926" target="_blank" rel="external">linux环境变量设置 (PS1，PS2)</a>。</p><h2 id="插件介绍"><a href="#插件介绍" class="headerlink" title="插件介绍"></a>插件介绍</h2><p>安装好 zsh 和 oh-my-zsh 后，打开文件~/.zshrc，其中有如下行<code>plugins=(git)</code>，需要添加插件，直接空格分割当道后面即可。</p><h2 id="extract"><a href="#extract" class="headerlink" title="extract"></a>extract</h2><p>功能强大的解压插件，所有类型的文件解压一个命令x全搞定。</p><h2 id="z"><a href="#z" class="headerlink" title="z"></a>z</h2><p>强大的目录自动跳转命令，会记忆你曾经进入过的目录，用模糊匹配快速进入你想要的目录。类似的有autojump，fasd等<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">bogon :: ~ » cd /opt/video1 </div><div class="line">bogon :: /opt/video1 » cd ~</div><div class="line">bogon :: ~ » z video1</div><div class="line">bogon :: /opt/video1 »</div></pre></td></tr></table></figure></p><p>大量的插件会拖慢打开的速度，开启需谨慎。</p><h2 id="使用技巧"><a href="#使用技巧" class="headerlink" title="使用技巧"></a>使用技巧</h2><ul><li>zsh完全兼容bash</li><li>连按两次Tab会列出所有的补全列表并直接开始选择，补全项可以使用 ctrl+n/p/f/b上下左右切换</li><li>命令选项补全。在zsh中只需要键入 tar -<tab> 就会列出所有的选项和帮助说明</tab></li><li>命令参数补全。键入 kill <tab> 就会列出所有的进程名和对应的进程号</tab></li><li>命令历史记录，可以用 !!来执行上一条命令，使用 ctrl-r 来搜索命令历史记录</li><li>命令不全，命令和文件补全(按tab键)</li><li>命令别名，在 .zshrc 中添加 alias shortcut=’command’ 一行就相当于添加了别名</li><li>更智能的历史命令。在用或者方向上键查找历史命令时，zsh支持限制查找。比如，输入ls,然后再按方向上键，则只会查找用过的ls命令。而此时使用则会仍然按之前的方式查找，忽略 ls</li><li>多个终端会话共享历史记录</li><li>智能跳转，安装了 autojump 之后，zsh 会自动记录你访问过的目录，通过 j 目录名 可以直接进行目录跳转，而且目录名支持模糊匹配和自动补全，例如你访问过 hadoop-1.0.0 目录，输入j hado 即可正确跳转。j –stat 可以看你的历史路径库。</li><li>目录浏览和跳转：输入 d，即可列出你在这个会话里访问的目录列表，输入列表前的序号，即可直接跳转。</li><li>在当前目录下输入 .. 或 … ，或直接输入当前目录名都可以跳转，你甚至不再需要输入 cd 命令了。在你知道路径的情况下，比如 /usr/local/bin 你可以输入 cd /u/l/b 然后按进行补全快速输入</li><li>通配符搜索：ls -l <strong>/*.sh，可以递归显示当前目录下的 shell 文件，文件少时可以代替 find。使用 </strong>/ 来递归搜索<br>扩展环境变量，输入环境变量然后按 就可以转换成表达的值</li><li>在 .zshrc 中添加 setopt HIST_IGNORE_DUPS 可以消除重复记录，也可以利用 sort -t “;” -k 2 -u ~/.zsh_history | sort -o ~/.zsh_history 手动清除</li></ul><p>参考：<br><a href="https://github.com/robbyrussell/oh-my-zsh/wiki/themes" target="_blank" rel="external">zsh主题</a><br><a href="http://wdxtub.com/2016/02/18/oh-my-zsh/" target="_blank" rel="external">zsh 全程指南</a></p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;zsh介绍&quot;&gt;&lt;a href=&quot;#zsh介绍&quot; class=&quot;headerlink&quot; title=&quot;zsh介绍&quot;&gt;&lt;/a&gt;zsh介绍&lt;/h2&gt;&lt;p&gt;Zsh 也许是目前最好用的 shell，是 bash 替代品中较为优秀的一个，号称终极shell。&lt;/p&gt;
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>Hexo博客环境搭建</title>
@@ -399,28 +417,6 @@
     
     
       <category term="HADOOP" scheme="http://mufool.com/tags/HADOOP/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Spark on yarn提交慢解决方法</title>
-    <link href="http://mufool.com/2017/06/09/hadoop-spark-yarn/"/>
-    <id>http://mufool.com/2017/06/09/hadoop-spark-yarn/</id>
-    <published>2017-06-09T06:42:16.000Z</published>
-    <updated>2017-09-11T02:35:03.551Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="现象"><a href="#现象" class="headerlink" title="现象"></a>现象</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">17/04/18 11:21:08 WARN Client: Neither spark.yarn.jars nor spark.yarn.archive is <span class="built_in">set</span>, falling back to uploading libraries under SPARK_HOME.</div></pre></td></tr></table></figure><a id="more"></a><p>spark on yarn提交慢，且提交时有warning提示，大意是：如果想要在yarn端（yarn的节点）访问spark的runtime jars，需要指定spark.yarn.archive 或者 spark.yarn.jars。如果都这两个参数都没有指定，spark就会把$SPARK_HOME/jars/所有的jar上传到分布式缓存中。这也是之前任务提交特别慢的原因。</p><h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><p>将$SPARK_HOME/jars/* 下spark运行依赖的jar上传到hdfs上。</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">hadoop fs -mkdir -p /tmp/spark/jars/</div><div class="line">hadoop fs -put  /opt/hadoop/spark-2.1.0/jars/* /tmp/spark/jars/</div></pre></td></tr></table></figure><p>vi $SPARK_HOME/conf/spark-defaults.conf</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">spark.yarn.jars  hdfs://master:9000/tmp/spark/jars/*.jar</div></pre></td></tr></table></figure><p>再次提交，变快。</p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;现象&quot;&gt;&lt;a href=&quot;#现象&quot; class=&quot;headerlink&quot; title=&quot;现象&quot;&gt;&lt;/a&gt;现象&lt;/h2&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;17/04/18 11:21:08 WARN Client: Neither spark.yarn.jars nor spark.yarn.archive is &lt;span class=&quot;built_in&quot;&gt;set&lt;/span&gt;, falling back to uploading libraries under SPARK_HOME.&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-    
-    </summary>
-    
-    
-      <category term="HADOOP" scheme="http://mufool.com/tags/HADOOP/"/>
-    
-      <category term="SPARK" scheme="http://mufool.com/tags/SPARK/"/>
     
   </entry>
   
