@@ -108,7 +108,7 @@
 <meta property="og:image" content="http://mufool.com/images/tech/hadoop-zk-ha-3.jpg">
 <meta property="og:image" content="http://mufool.com/images/tech/hadoop-zk-ha-4.jpg">
 <meta property="og:image" content="http://mufool.com/images/tech/hadoop-zk-ha-5.jpg">
-<meta property="og:updated_time" content="2017-09-22T09:09:23.220Z">
+<meta property="og:updated_time" content="2017-09-26T04:52:36.891Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Hadoop使用zk配置HA">
 <meta name="twitter:description" content="简介&amp;emsp;&amp;emsp;在hadoop1时代，只有一个NameNode。如果该NameNode数据丢失或者不能工作，那么整个集群就不能恢复了。hadoop2.2.0中HDFS的高可靠指的是可以同时启动2个NameNode。其中一个处于工作状态(active)，另一个处于随时待命状态(standby)。这样，当一个NameNode所在的服务器宕机时，可以在数据不丢失的情况下，手工或者自动切换到另">
@@ -488,9 +488,7 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">bin/hdfs namenode –bootstrapStandby</div><div class="line">sbin/hadoop-daemon.sh start namenode</div></pre></td></tr></table></figure>
 <p>启动启动datanode，在master上执行：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sbin/hadoop-daemons.sh start datanode</div></pre></td></tr></table></figure>
-<p>启动ZKFC，在master上执行如下命令，完成ZKFC的启动</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sbin/hadoop-daemons.sh start zkfc</div></pre></td></tr></table></figure>
-<p>也可以单独没台上分别执行：</p>
+<p>启动ZKFC，在master上分别执行如下命令，完成主备切换进程ZKFC的启动</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sbin/hadoop-daemon.sh start zkfc</div></pre></td></tr></table></figure>
 <p>全部启动后，分别jps查看进程：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">[root@master hadoop-2.6.5]<span class="comment"># jps</span></div><div class="line">5984 DFSZKFailoverController</div><div class="line">6562 Jps</div><div class="line">6137 NameNode</div><div class="line">5513 ResourceManager</div><div class="line">5071 QuorumPeerMain</div><div class="line"></div><div class="line">[root@slave1 hadoop-2.6.5]<span class="comment"># jps</span></div><div class="line">27605 NodeManager</div><div class="line">27126 QuorumPeerMain</div><div class="line">28025 Jps</div><div class="line">27390 JournalNode</div><div class="line"></div><div class="line">[root@slave2 hadoop-2.6.5]<span class="comment"># jps</span></div><div class="line">9924 JournalNode</div><div class="line">10677 DFSZKFailoverController</div><div class="line">10246 NodeManager</div><div class="line">9718 QuorumPeerMain</div><div class="line">10794 NameNode</div><div class="line">11053 Jps</div></pre></td></tr></table></figure>
@@ -504,7 +502,7 @@
 <p><img src="/images/tech/hadoop-zk-ha-5.jpg" alt="image"></p>
 <h2 id="故障切换"><a href="#故障切换" class="headerlink" title="故障切换"></a>故障切换</h2><p>将namenode1设为active，使用命令行工具进行状态切换<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">bin/hdfs  haadmin -failover --forcefence --forceactive  nn2  nn1</div></pre></td></tr></table></figure></p>
 <p>查看状态<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">bin/hdfs  haadmin -getServiceState  nn1</div></pre></td></tr></table></figure></p>
-<p>参考：<br><a href="http://www.lishiyu.cn/post/68.html" target="_blank" rel="external">HadoopHA简述</a><br><a href="http://eksliang.iteye.com/blog/2226986" target="_blank" rel="external">Hadoop2.5.2 HA高可靠性集群搭建(Hadoop+Zookeeper)</a><br><a href="http://blog.csdn.net/u011414200/article/details/50336735" target="_blank" rel="external">HDFS 和 YARN 的 HA 故障切换</a></p>
+<p>参考：<br><a href="http://www.lishiyu.cn/post/68.html" target="_blank" rel="external">HadoopHA简述</a><br><a href="http://eksliang.iteye.com/blog/2226986" target="_blank" rel="external">Hadoop2.5.2 HA高可靠性集群搭建(Hadoop+Zookeeper)</a><br><a href="http://blog.csdn.net/u011414200/article/details/50336735" target="_blank" rel="external">HDFS 和 YARN 的 HA 故障切换</a><br><a href="http://www.voidcn.com/article/p-ercyscwq-oe.html" target="_blank" rel="external">Hadoop-2.8.0分布式安装手册</a></p>
 
       
     </div>

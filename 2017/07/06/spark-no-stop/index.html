@@ -103,7 +103,7 @@
 <meta property="og:site_name" content="Mufool">
 <meta property="og:description" content="现象执行sbin/stop-all.sh，提示： 12345Stopping namenodes on [master]master: no namenode to stopslave1: no datanode to stopStopping secondary namenodes [master]master: no secondarynamenode to stop">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-09-08T03:45:38.065Z">
+<meta property="og:updated_time" content="2017-09-26T04:50:49.434Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Spark或Hadoop集群无法停止">
 <meta name="twitter:description" content="现象执行sbin/stop-all.sh，提示： 12345Stopping namenodes on [master]master: no namenode to stopslave1: no datanode to stopStopping secondary namenodes [master]master: no secondarynamenode to stop">
@@ -408,7 +408,7 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">export</span> SPARK_PID_DIR=/opt/hadoop/appid/</div></pre></td></tr></table></figure>
 <p>重启对应服务：</p>
 <figure class="highlight powershell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">-rw-rw-r-- <span class="number">1</span> hdfs hdfs <span class="number">6</span> Jul  <span class="number">6</span> <span class="number">15</span>:<span class="number">54</span> hadoop-hdfs-datanode.pid</div><div class="line">-rw-rw-r-- <span class="number">1</span> hdfs hdfs <span class="number">6</span> Jul  <span class="number">6</span> <span class="number">15</span>:<span class="number">54</span> hadoop-hdfs-journalnode.pid</div><div class="line">-rw-rw-r-- <span class="number">1</span> hdfs hdfs <span class="number">6</span> Jul  <span class="number">6</span> <span class="number">15</span>:<span class="number">44</span> spark-hdfs-org.apache.spark.deploy.worker.Worker-<span class="number">1</span>.pid</div><div class="line">-rw-rw-r-- <span class="number">1</span> hdfs hdfs <span class="number">6</span> Jul  <span class="number">6</span> <span class="number">15</span>:<span class="number">54</span> yarn-hdfs-nodemanager.pid</div></pre></td></tr></table></figure>
-<p>通过这个问题我们可以知道，很对linux下对应的服务都有类似的控制脚本，或者可以添加类似的控制脚本，但是在存放pid文件是我们也应该主要到这个问题。防止因为系统原因，导致服务无法正常重启等问题。</p>
+<p>通过这个问题我们可以知道，很多linux下对应的服务都有类似的控制脚本，或者可以添加类似的控制脚本，在存放pid文件时我们也要注意这个问题，防止因为系统原因，导致服务无法正常重启等问题。</p>
 
       
     </div>
