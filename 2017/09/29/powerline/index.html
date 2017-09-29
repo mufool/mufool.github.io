@@ -77,7 +77,7 @@
 <link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="MYSQL," />
+  <meta name="keywords" content="POWERLINE," />
 
 
 
@@ -95,18 +95,22 @@
 
 
 
-<meta name="description" content="MYSQL出现”the table is full”的问题出现此问题的原因一般是内存表的大小超过了规定的范围，也可能是因为磁盘满导致。 针对内存表超过规定范围的解决方法一种是修改tmp_table_size参数，另外一种是修改max_heap_table_size参数。">
-<meta name="keywords" content="MYSQL">
+<meta name="description" content="介绍Powerline是vim编辑器的插件，它是Python开发的，为多个应用（bash，zsh，tmux等）提供statusline。">
+<meta name="keywords" content="POWERLINE">
 <meta property="og:type" content="article">
-<meta property="og:title" content="MYSQL部分问题及解决方法">
-<meta property="og:url" content="http://mufool.com/2016/07/11/mysql-tips/index.html">
+<meta property="og:title" content="Centos安装配置powerline">
+<meta property="og:url" content="http://mufool.com/2017/09/29/powerline/index.html">
 <meta property="og:site_name" content="Mufool">
-<meta property="og:description" content="MYSQL出现”the table is full”的问题出现此问题的原因一般是内存表的大小超过了规定的范围，也可能是因为磁盘满导致。 针对内存表超过规定范围的解决方法一种是修改tmp_table_size参数，另外一种是修改max_heap_table_size参数。">
+<meta property="og:description" content="介绍Powerline是vim编辑器的插件，它是Python开发的，为多个应用（bash，zsh，tmux等）提供statusline。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-09-08T03:45:38.064Z">
+<meta property="og:image" content="http://mufool.qiniudn.com/powerline/powerline1.jpg">
+<meta property="og:image" content="http://mufool.qiniudn.com/powerline/powerlinel4.jpg">
+<meta property="og:image" content="http://mufool.qiniudn.com/powerline/powerline2.jpg">
+<meta property="og:updated_time" content="2017-09-29T08:24:36.346Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="MYSQL部分问题及解决方法">
-<meta name="twitter:description" content="MYSQL出现”the table is full”的问题出现此问题的原因一般是内存表的大小超过了规定的范围，也可能是因为磁盘满导致。 针对内存表超过规定范围的解决方法一种是修改tmp_table_size参数，另外一种是修改max_heap_table_size参数。">
+<meta name="twitter:title" content="Centos安装配置powerline">
+<meta name="twitter:description" content="介绍Powerline是vim编辑器的插件，它是Python开发的，为多个应用（bash，zsh，tmux等）提供statusline。">
+<meta name="twitter:image" content="http://mufool.qiniudn.com/powerline/powerline1.jpg">
 
 
 
@@ -134,13 +138,13 @@
 
 
 
-  <link rel="canonical" href="http://mufool.com/2016/07/11/mysql-tips/"/>
+  <link rel="canonical" href="http://mufool.com/2017/09/29/powerline/"/>
 
 
 
 
 
-  <title>MYSQL部分问题及解决方法 | Mufool</title>
+  <title>Centos安装配置powerline | Mufool</title>
   
 
 
@@ -313,7 +317,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://mufool.com/2016/07/11/mysql-tips/">
+    <link itemprop="mainEntityOfPage" href="http://mufool.com/2017/09/29/powerline/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Mufool">
@@ -330,7 +334,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">MYSQL部分问题及解决方法</h1>
+          <h1 class="post-title" itemprop="name headline">Centos安装配置powerline</h1>
         
 
         <div class="post-meta">
@@ -342,8 +346,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-07-11T17:08:37+08:00">
-                2016-07-11
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-29T16:23:47+08:00">
+                2017-09-29
               </time>
             
 
@@ -361,9 +365,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2016/07/11/mysql-tips/#comments" itemprop="discussionUrl">
+                <a href="/2017/09/29/powerline/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2016/07/11/mysql-tips/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2017/09/29/powerline/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -388,21 +392,24 @@
       
 
       
-        <h2 id="MYSQL出现”the-table-is-full”的问题"><a href="#MYSQL出现”the-table-is-full”的问题" class="headerlink" title="MYSQL出现”the table is full”的问题"></a>MYSQL出现”the table is full”的问题</h2><p>出现此问题的原因一般是内存表的大小超过了规定的范围，也可能是因为磁盘满导致。</p>
-<p>针对内存表超过规定范围的解决方法一种是修改tmp_table_size参数，另外一种是修改max_heap_table_size参数。</p>
+        <h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>Powerline是vim编辑器的插件，它是Python开发的，为多个应用（bash，zsh，tmux等）提供statusline。</p>
 <a id="more"></a>
-<p>修改Mysql的配置文件/etc/my.cnf，在[mysqld]下添加/修改：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">max_heap_table_size = 4096M</div><div class="line">key_buffer_size = 1000M</div></pre></td></tr></table></figure>
-<p>或者</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">tmp_table_size = 256M</div></pre></td></tr></table></figure>
-<p>系统默认是16M，修改完后重启mysql</p>
-<h2 id="MYSQL链接慢或链接不上"><a href="#MYSQL链接慢或链接不上" class="headerlink" title="MYSQL链接慢或链接不上"></a>MYSQL链接慢或链接不上</h2><p>当客户端连接数据库服务器时，服务器会进行主机名解析，并且当DNS很慢时，建立连接会很慢。因此建议在启动服务器时关闭skip_name_resolve选项。</p>
-<p>skip-name-resolve：禁止MySQL对外部连接进行DNS解析，禁止MySQL对外部连接进行DNS解析。跳过域名解析步骤，增加远程登录的速度，原理如下：</p>
-<p>所谓反向解析是这样的：</p>
-<p>mysql接收到连接请求后，获得的是客户端的ip，为了更好的匹配mysql.user里的权限记录（某些是用hostname定义的）。</p>
-<p>如果mysql服务器设置了dns服务器，并且客户端ip在dns上并没有相应的hostname，那么这个过程很慢，导致连接等待。</p>
-<p>关闭选项后唯一的局限是之后GRANT语句中只能使用IP地址了，因此在添加这项设置到一个已有系统中必须格外小心。</p>
-<h2 id="Too-many-connections"><a href="#Too-many-connections" class="headerlink" title="Too many connections"></a>Too many connections</h2><p>如果你经常看到’Too many connections’错误，是因为max_connections的值太低了。这非常常见因为应用程序没有正确的关闭数据库连接，你需要比默认的151连接数更大的值。<br>max_connection值被设高了(例如1000或更高)之后一个主要缺陷是当服务器运行1000个或更高的活动事务时会变的没有响应。在应用程序里使用连接池或者在MySQL里使用进程池有助于解决这一问题。</p>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>安装pip：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">yum install python-pip -y</div></pre></td></tr></table></figure></p>
+<p>安装powerline</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pip install git+git://github.com/powerline/powerline</div></pre></td></tr></table></figure>
+<p>安装Powerline字体：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">wget https://github.com/powerline/powerline/raw/develop/font/PowerlineSymbols.otf</div><div class="line">wget https://github.com/powerline/powerline/raw/develop/font/10-powerline-symbols.conf</div><div class="line">mv PowerlineSymbols.otf /usr/share/fonts/</div><div class="line">fc-cache -vf /usr/share/fonts/            //更新系统的字体缓存</div><div class="line">mv 10-powerline-symbols.conf /etc/fonts/conf.d/</div></pre></td></tr></table></figure>
+<h2 id="在Bash中启用Powerline"><a href="#在Bash中启用Powerline" class="headerlink" title="在Bash中启用Powerline"></a>在Bash中启用Powerline</h2><p>查看powerline安装位置<br><img src="http://mufool.qiniudn.com/powerline/powerline1.jpg" alt="image"></p>
+<p>可以看到安装位置在<code>/usr/lib/python2.6/site-packages</code>下</p>
+<p>在~/.bashrc中添加</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">powerline-daemon -q</div><div class="line">POWERLINE_BASH_CONTINUATION=1</div><div class="line">POWERLINE_BASH_SELECT=1</div><div class="line">. /usr/lib/python2.6/site-packages/powerline/bindings/bash/powerline.sh</div></pre></td></tr></table></figure>
+<p><code>source ~/.bashrc</code>生效</p>
+<p>重启终端即可看到效果。</p>
+<p><img src="http://mufool.qiniudn.com/powerline/powerlinel4.jpg" alt="image"></p>
+<h2 id="在vim中其中powerline"><a href="#在vim中其中powerline" class="headerlink" title="在vim中其中powerline"></a>在vim中其中powerline</h2><p>在.vimrc文件中添加即可</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">set rtp+=/usr/lib/python2.6/dist-packages/powerline/bindings/vim/</div><div class="line">set laststatus=2</div><div class="line">set t_Co=256</div></pre></td></tr></table></figure>
+<p><img src="http://mufool.qiniudn.com/powerline/powerline2.jpg" alt="image"></p>
+<p>参考：<br><a href="http://blog.topspeedsnail.com/archives/2652" target="_blank" rel="external">安装使用Powerline：Vim和Bash终端的状态栏</a></p>
 
       
     </div>
@@ -437,7 +444,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/MYSQL/" rel="tag"># MYSQL</a>
+            <a href="/tags/POWERLINE/" rel="tag"># POWERLINE</a>
           
         </div>
       
@@ -450,8 +457,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/07/11/linux-clientmqueue/" rel="next" title="var目录爆满问题">
-                <i class="fa fa-chevron-left"></i> var目录爆满问题
+              <a href="/2017/09/29/tmux/" rel="next" title="Tmux安装使用">
+                <i class="fa fa-chevron-left"></i> Tmux安装使用
               </a>
             
           </div>
@@ -459,10 +466,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/07/11/rsync-use/" rel="prev" title="rsync简单介绍和使用">
-                rsync简单介绍和使用 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -663,7 +666,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#MYSQL出现”the-table-is-full”的问题"><span class="nav-number">1.</span> <span class="nav-text">MYSQL出现”the table is full”的问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MYSQL链接慢或链接不上"><span class="nav-number">2.</span> <span class="nav-text">MYSQL链接慢或链接不上</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Too-many-connections"><span class="nav-number">3.</span> <span class="nav-text">Too many connections</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#介绍"><span class="nav-number">1.</span> <span class="nav-text">介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装"><span class="nav-number">2.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#在Bash中启用Powerline"><span class="nav-number">3.</span> <span class="nav-text">在Bash中启用Powerline</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#在vim中其中powerline"><span class="nav-number">4.</span> <span class="nav-text">在vim中其中powerline</span></a></li></ol></div>
             
 
           </div>
@@ -811,9 +814,9 @@
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'http://mufool.com/2016/07/11/mysql-tips/';
-          this.page.identifier = '2016/07/11/mysql-tips/';
-          this.page.title = 'MYSQL部分问题及解决方法';
+          this.page.url = 'http://mufool.com/2017/09/29/powerline/';
+          this.page.identifier = '2017/09/29/powerline/';
+          this.page.title = 'Centos安装配置powerline';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://www-mufool-com.disqus.com/embed.js';
