@@ -98,7 +98,7 @@
 <meta name="description" content="介绍Tmux是一个优秀的终端复用软件，支持多标签，也支持窗口内部面板的分割，更重要的是，Tmux提供了窗体随时保存和恢复的功能。想象一下假如你在公司的服务器上开了许多窗口调试程序，回到家时通过SSH连接公司电脑又要打开一堆繁琐的窗口，而且还忘记了当时调试到哪一步了，那Tmux可以帮你解决这个难题，当SSH连接断开重新连接后能够恢复到原来的工作环境。">
 <meta name="keywords" content="TMUX">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Tmux使用">
+<meta property="og:title" content="Tmux安装使用">
 <meta property="og:url" content="http://mufool.com/2017/09/29/tmux/index.html">
 <meta property="og:site_name" content="Mufool">
 <meta property="og:description" content="介绍Tmux是一个优秀的终端复用软件，支持多标签，也支持窗口内部面板的分割，更重要的是，Tmux提供了窗体随时保存和恢复的功能。想象一下假如你在公司的服务器上开了许多窗口调试程序，回到家时通过SSH连接公司电脑又要打开一堆繁琐的窗口，而且还忘记了当时调试到哪一步了，那Tmux可以帮你解决这个难题，当SSH连接断开重新连接后能够恢复到原来的工作环境。">
@@ -106,9 +106,9 @@
 <meta property="og:image" content="http://mufool.qiniudn.com/tmux/tmux1.jpg">
 <meta property="og:image" content="http://mufool.qiniudn.com/tmux/tmux2.jpg">
 <meta property="og:image" content="http://mufool.qiniudn.com/tmux/tmux2.jpg">
-<meta property="og:updated_time" content="2017-09-29T07:25:34.153Z">
+<meta property="og:updated_time" content="2017-09-29T07:31:03.339Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Tmux使用">
+<meta name="twitter:title" content="Tmux安装使用">
 <meta name="twitter:description" content="介绍Tmux是一个优秀的终端复用软件，支持多标签，也支持窗口内部面板的分割，更重要的是，Tmux提供了窗体随时保存和恢复的功能。想象一下假如你在公司的服务器上开了许多窗口调试程序，回到家时通过SSH连接公司电脑又要打开一堆繁琐的窗口，而且还忘记了当时调试到哪一步了，那Tmux可以帮你解决这个难题，当SSH连接断开重新连接后能够恢复到原来的工作环境。">
 <meta name="twitter:image" content="http://mufool.qiniudn.com/tmux/tmux1.jpg">
 
@@ -144,7 +144,7 @@
 
 
 
-  <title>Tmux使用 | Mufool</title>
+  <title>Tmux安装使用 | Mufool</title>
   
 
 
@@ -334,7 +334,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Tmux使用</h1>
+          <h1 class="post-title" itemprop="name headline">Tmux安装使用</h1>
         
 
         <div class="post-meta">
@@ -394,7 +394,8 @@
       
         <h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>Tmux是一个优秀的终端复用软件，支持多标签，也支持窗口内部面板的分割，更重要的是，Tmux提供了窗体随时保存和恢复的功能。想象一下假如你在公司的服务器上开了许多窗口调试程序，回到家时通过SSH连接公司电脑又要打开一堆繁琐的窗口，而且还忘记了当时调试到哪一步了，那Tmux可以帮你解决这个难题，当SSH连接断开重新连接后能够恢复到原来的工作环境。</p>
 <a id="more"></a>
-<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>参见<a href="https://github.com/tmux/tmux" target="_blank" rel="external">github</a>，安装完成后输入tmux进入软件，界面类似一个下方带有状态栏的终端。<br><img src="http://mufool.qiniudn.com/tmux/tmux1.jpg" alt="image"></p>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>参见<a href="https://github.com/tmux/tmux" target="_blank" rel="external">github</a>，安装完成后输入tmux进入软件，界面类似一个下方带有状态栏的终端。</p>
+<p><img src="http://mufool.qiniudn.com/tmux/tmux1.jpg" alt="image"></p>
 <h2 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h2><p>Tmux基于典型的c/s模型，主要分为会话、窗口和面板三个元素：</p>
 <ul>
 <li>服务器：输入tmux命令时就开启了一个服务器。</li>
@@ -413,9 +414,179 @@
 <li>-V: 查看版本号。<br>默认 tmux 会创建的匿名的 session ，可以通过如下命令创建一个命名的 session ， Ctrl-b 是命令前缀(Command prefix)，通过前缀告知 tmux 下面的命令是发给 tmux 的，而非终端。常见的操作如下。<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">$ tmux new-session -s basic    # 创建一个名为 basic 的 session</div><div class="line">$ tmux new -s basic -d        # 同上，但是不会连接到终端，在后台运行</div><div class="line">$ tmux new -s basic -n win    # 同上，并将第一个窗口命令为 win</div><div class="line"></div><div class="line">$ tmux ls                      # 列出现在的 sessions ，等同 tmux list-sessioin</div><div class="line">$ tmux attach                  # 如果只有一个 session</div><div class="line">$ tmux attach -t basic        # 指定名称，-t 表示 target</div><div class="line"></div><div class="line">$ tmux kill-session -t basic  # 关闭一个 session</div></pre></td></tr></table></figure>
 </li>
 </ul>
-<h2 id="操作"><a href="#操作" class="headerlink" title="操作"></a>操作</h2><p>基本操作<br>| 命令 | 操作 |<br>|–|–|<br>|?  |  列出所有快捷键；按q返回 |<br>|d  |  脱离当前会话,可暂时返回Shell界面，输入tmux attach能够重新进入之前会话 |<br>|s  |  选择并切换会话；在同时开启了多个会话时使用 |<br>|D  |  选择要脱离的会话；在同时开启了多个会话时使用 |<br>|:   | 进入命令行模式；此时可输入支持的命令，例如kill-server所有tmux会话 |<br>|[  |  复制模式，光标移动到复制内容位置，空格键开始，方向键选择复制，回车确认，q/Esc退出 |<br>|]  |  进入粘贴模式，粘贴之前复制的内容，按q/Esc退出 |<br>|~  |  列出提示信息缓存；其中包含了之前tmux返回的各种提示信息 |<br>|t   | 显示当前的时间 |<br>|Ctrl+z  |   挂起当前会话 |</p>
-<p>窗口操作<br>| 命令 | 操作 |<br>|–|–|<br>|c | 创建新窗口 |<br>|&amp; | 关闭当前窗口 |<br>|数字键 | 切换到指定窗口 |<br>|p | 切换至上一窗口 |<br>|n | 切换至下一窗口 |<br>|l | 前后窗口间互相切换 |<br>|w | 通过窗口列表切换窗口 |<br>|,  | 重命名当前窗口，便于识别 |<br>|.  | 修改当前窗口编号，相当于重新排序 |<br>|f  | 在所有窗口中查找关键词，便于窗口多了切换 |</p>
-<p>面板操作<br>| 命令 | 操作 |<br>|–|–|<br>|“  |  将当前面板上下分屏 |<br>|%  |  将当前面板左右分屏 |<br>|x  |  关闭当前分屏 |<br>|!  |  将当前面板置于新窗口,即新建一个窗口,其中仅包含当前面板 |<br>|Ctrl+方向键  |  以1个单元格为单位移动边缘以调整当前面板大小 |<br>|Alt+方向键 |   以5个单元格为单位移动边缘以调整当前面板大小 |<br>|空格键  |  可以在默认面板布局中切换，试试就知道了 |<br>|q  |  显示面板编号 |<br>|o  |  选择当前窗口中下一个面板 |<br>|方向键  |  移动光标选择对应面板 |<br>|{  |  向前置换当前面板 |<br>|}  |  向后置换当前面板 |<br>|Alt+o  |  逆时针旋转当前窗口的面板 |<br>|Ctrl+o  |  顺时针旋转当前窗口的面板 |<br>|z  |  tmux 1.8新特性，最大化当前所在面板 |</p>
+<h2 id="操作"><a href="#操作" class="headerlink" title="操作"></a>操作</h2><p>基本操作</p>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>操作</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>?</td>
+<td>列出所有快捷键；按q返回</td>
+</tr>
+<tr>
+<td>d</td>
+<td>脱离当前会话,可暂时返回Shell界面，输入tmux attach能够重新进入之前会话</td>
+</tr>
+<tr>
+<td>s</td>
+<td>选择并切换会话；在同时开启了多个会话时使用</td>
+</tr>
+<tr>
+<td>D</td>
+<td>选择要脱离的会话；在同时开启了多个会话时使用</td>
+</tr>
+<tr>
+<td>:</td>
+<td>进入命令行模式；此时可输入支持的命令，例如kill-server所有tmux会话</td>
+</tr>
+<tr>
+<td>[</td>
+<td>复制模式，光标移动到复制内容位置，空格键开始，方向键选择复制，回车确认，q/Esc退出</td>
+</tr>
+<tr>
+<td>]</td>
+<td>进入粘贴模式，粘贴之前复制的内容，按q/Esc退出</td>
+</tr>
+<tr>
+<td>~</td>
+<td>列出提示信息缓存；其中包含了之前tmux返回的各种提示信息</td>
+</tr>
+<tr>
+<td>t</td>
+<td>显示当前的时间</td>
+</tr>
+<tr>
+<td>Ctrl+z</td>
+<td>挂起当前会话</td>
+</tr>
+</tbody>
+</table>
+<p>窗口操作</p>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>操作</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>c</td>
+<td>创建新窗口</td>
+</tr>
+<tr>
+<td>&amp;</td>
+<td>关闭当前窗口</td>
+</tr>
+<tr>
+<td>数字键</td>
+<td>切换到指定窗口</td>
+</tr>
+<tr>
+<td>p</td>
+<td>切换至上一窗口</td>
+</tr>
+<tr>
+<td>n</td>
+<td>切换至下一窗口</td>
+</tr>
+<tr>
+<td>l</td>
+<td>前后窗口间互相切换</td>
+</tr>
+<tr>
+<td>w</td>
+<td>通过窗口列表切换窗口</td>
+</tr>
+<tr>
+<td>,</td>
+<td>重命名当前窗口，便于识别</td>
+</tr>
+<tr>
+<td>.</td>
+<td>修改当前窗口编号，相当于重新排序</td>
+</tr>
+<tr>
+<td>f</td>
+<td>在所有窗口中查找关键词，便于窗口多了切换</td>
+</tr>
+</tbody>
+</table>
+<p>面板操作</p>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>操作</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>“</td>
+<td>将当前面板上下分屏</td>
+</tr>
+<tr>
+<td>%</td>
+<td>将当前面板左右分屏</td>
+</tr>
+<tr>
+<td>x</td>
+<td>关闭当前分屏</td>
+</tr>
+<tr>
+<td>!</td>
+<td>将当前面板置于新窗口,即新建一个窗口,其中仅包含当前面板</td>
+</tr>
+<tr>
+<td>Ctrl+方向键</td>
+<td>以1个单元格为单位移动边缘以调整当前面板大小</td>
+</tr>
+<tr>
+<td>Alt+方向键</td>
+<td>以5个单元格为单位移动边缘以调整当前面板大小</td>
+</tr>
+<tr>
+<td>空格键</td>
+<td>可以在默认面板布局中切换，试试就知道了</td>
+</tr>
+<tr>
+<td>q</td>
+<td>显示面板编号</td>
+</tr>
+<tr>
+<td>o</td>
+<td>选择当前窗口中下一个面板</td>
+</tr>
+<tr>
+<td>方向键</td>
+<td>移动光标选择对应面板</td>
+</tr>
+<tr>
+<td>{</td>
+<td>向前置换当前面板</td>
+</tr>
+<tr>
+<td>}</td>
+<td>向后置换当前面板</td>
+</tr>
+<tr>
+<td>Alt+o</td>
+<td>逆时针旋转当前窗口的面板</td>
+</tr>
+<tr>
+<td>Ctrl+o</td>
+<td>顺时针旋转当前窗口的面板</td>
+</tr>
+<tr>
+<td>z</td>
+<td>tmux 1.8新特性，最大化当前所在面板</td>
+</tr>
+</tbody>
+</table>
 <h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><p>用户私人配置文件在~/.tmux.conf, 全局配置文件在 /etc/tmux.conf。修改这两处均可。</p>
 <h3 id="前缀修改"><a href="#前缀修改" class="headerlink" title="前缀修改"></a>前缀修改</h3><p>Tmux的所有操作必须使用一个前缀进入命令模式，默认前缀为ctrl+b，很多人会改为ctrl+a,你可以修改tmux.conf配置文件来修改默认前缀：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">#前缀设置为&lt;Ctrl-a&gt;</div><div class="line">set -g prefix C-a</div><div class="line">#解除&lt;Ctrl-b&gt;</div><div class="line">ubind C-b</div></pre></td></tr></table></figure>
@@ -855,7 +1026,7 @@
         var disqus_config = function () {
           this.page.url = 'http://mufool.com/2017/09/29/tmux/';
           this.page.identifier = '2017/09/29/tmux/';
-          this.page.title = 'Tmux使用';
+          this.page.title = 'Tmux安装使用';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://www-mufool-com.disqus.com/embed.js';
