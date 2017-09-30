@@ -1300,7 +1300,7 @@
 <p>早期的IO多路复用采用非阻塞的模式，当一个连接过来时，我们不阻塞住，这样一个进程可以同时处理多个连接了。但是进程需要一直轮训所有连接是否有事件需要处理，这样效率十分低下。<br>后来出现了select、poll，其原理是引入了一个代理，由代理去观察所有的连接，当有算时间触发时由代理通知进程处理，但是进程还是需要去找具体哪个连接有时间处理。select和poll减少了进程轮训所有连接的次数，节省了cpu时间。<br>select和poll的区别是select只能观察1024个连接，poll可以观察无限个连接。<br>后来又出现了epoll，epoll代理和select，poll类似，只是epoll不仅知道有事件发生，还知道具体是哪个连接，这样进程不用去轮训，大大节省了cpu时间。同时epoll 现在是线程安全的。</p>
 <p>epoll和select/poll区别<br>epoll内部使用了mmap共享了用户和内核的部分空间，避免了数据的来回拷贝<br>epoll基于事件驱动，epoll_ctl注册事件并注册callback回调函数，epoll_wait只返回发生的事件避免了像select和poll对事件的整个轮寻操作。</p>
 <p>Epoll是非阻塞的，但不是异步的。实现非阻塞很简单。实现异步却很复杂，在《UNIX网络编程》中给出的5中I/O模型，只有最后一种是异步模型，其他的都是非异步的。<br>Linux没有实现异步IO（效率并不高），Epoll是一种I/O多路复用技术，用户程序需要主动的去询问内核是否有事件发生，而不是事件发生时内核主动的去调用回调函数，所以不是异步的。</p>
-<p>参考：<br>IO - 同步，异步，阻塞，非阻塞 （亡羊补牢篇）：<a href="http://blog.csdn.net/historyasamirror/article/details/5778378" target="_blank" rel="external">http://blog.csdn.net/historyasamirror/article/details/5778378</a><br>socket阻塞与非阻塞，同步与异步、I/O模型：<a href="http://blog.csdn.net/hguisu/article/details/7453390" target="_blank" rel="external">http://blog.csdn.net/hguisu/article/details/7453390</a></p>
+<p>参考：<br><a href="http://blog.csdn.net/historyasamirror/article/details/5778378" target="_blank" rel="external">IO-同步，异步，阻塞，非阻塞</a><br><a href="http://blog.csdn.net/hguisu/article/details/7453390" target="_blank" rel="external">socket阻塞与非阻塞，同步与异步、I/O模型</a></p>
 
           
         
