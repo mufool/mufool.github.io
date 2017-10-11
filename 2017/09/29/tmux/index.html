@@ -106,7 +106,7 @@
 <meta property="og:image" content="http://mufool.qiniudn.com/tmux/tmux1.jpg">
 <meta property="og:image" content="http://mufool.qiniudn.com/tmux/tmux2.jpg">
 <meta property="og:image" content="http://mufool.qiniudn.com/tmux/tmux3.jpg">
-<meta property="og:updated_time" content="2017-09-29T12:12:29.710Z">
+<meta property="og:updated_time" content="2017-10-11T04:31:37.823Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Tmux安装使用">
 <meta name="twitter:description" content="介绍Tmux是一个优秀的终端复用软件，支持多标签，也支持窗口内部面板的分割，更重要的是，Tmux提供了窗体随时保存和恢复的功能。想象一下假如你在公司的服务器上开了许多窗口调试程序，回到家时通过SSH连接公司电脑又要打开一堆繁琐的窗口，而且还忘记了当时调试到哪一步了，那Tmux可以帮你解决这个难题，当SSH连接断开重新连接后能够恢复到原来的工作环境。">
@@ -628,7 +628,7 @@
 <p>安装、升级和反安装插件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">prefix shift-i      # install</div><div class="line">prefix shift-u      # update</div><div class="line">prefix alt-u        # uninstall plugins not on the plugin list</div></pre></td></tr></table></figure></p>
 <h2 id="常用插件"><a href="#常用插件" class="headerlink" title="常用插件"></a>常用插件</h2><h3 id="tmux-resurrect"><a href="#tmux-resurrect" class="headerlink" title="tmux-resurrect"></a><a href="https://github.com/tmux-plugins/tmux-resurrect" target="_blank" rel="external">tmux-resurrect</a></h3><p>保存和恢复 Tmux 会话，面板布局，甚至支持恢复vim会话，重启机器仍可恢复。参考<a href="https://liam0205.me/2016/09/10/tmux-plugin-resurrect/" target="_blank" rel="external">保存和恢复 Tmux 会话</a>。</p>
 <p>在tmux.conf中添加<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">set -g @plugin &apos;tmux-plugins/tmux-resurrect&apos;</div></pre></td></tr></table></figure></p>
-<p>即可开启</p>
+<p>添加插件后<code>prefix + I</code>即下载并开启</p>
 <p>参考：<br><a href="http://blog.csdn.net/u012335044/article/details/61923402" target="_blank" rel="external">tmux – Linux终端管理软件</a><br><a href="https://wiki.archlinux.org/index.php/Tmux_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87" target="_blank" rel="external">Tmux (简体中文)</a>)<br><a href="https://www.zybuluo.com/mwumli/note/149542" target="_blank" rel="external">CentOS 下安装 tmux</a><br><a href="https://qiaoanran.com/article/0d268826+Tmux_%E6%8F%92%E4%BB%B6%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7" target="_blank" rel="external">Tmux 插件管理工具</a><br><a href="https://github.com/jimeh/tmux-themepack" target="_blank" rel="external">tmux-themepack</a><br><a href="https://my.oschina.net/am313/blog/865915" target="_blank" rel="external">在 Linux/Mac 安装 Tmux 及其配置</a><br><a href="https://jin-yang.github.io/post/tmux-introduce.html" target="_blank" rel="external">TMUX 简介</a></p>
 
       
