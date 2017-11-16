@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[centos升级gcc版本]]></title>
+    <url>%2F2017%2F11%2F16%2Fgcc-update%2F</url>
+    <content type="text"><![CDATA[下载源码包 1wget http://ftp.gnu.org/gnu/gcc/gcc-4.8.0/gcc-4.8.0.tar.bz2 解压 1tar -jxvf gcc-4.8.0.tar.bz2 下载编译所需依赖库 123cd gcc-4.8.0 ./contrib/download_prerequisites cd .. 建立编译输出目录 1mkdir gcc-build-4.8.0 进入此目录，执行以下命令，生成makefile文件 12cd gcc-build-4.8.0../gcc-4.8.0/configure --enable-checking=release --enable-languages=c,c++ --disable-multilib 编译 1make -j4 如果编译成功，则时间是比较长的，半个小时左右，所以如果你看它一直在输出没有立刻停下来，应该很开心！ 安装 1sudo make install 切换GCC到新版 确定新安装的GCC的路径,一般默认在/usr/local/bin下。可以先updatedb,然后locate gcc-4.8|tail找一下 1ls /usr/local/bin | grep gcc 添加新GCC到可选项，倒数第三个是名字，倒数第二个参数为新GCC路径，最后一个参数40为优先级，设大一些之后就自动使用新版了 1update-alternatives --install /usr/bin/gcc gcc /usr/local/bin/i686-pc-linux-gnu-gcc 40 确认当前版本已经切换为新版 1gcc -v 我这里用ssh远程的，发现版本没变，断开重练下，重新生成会话后发现变成了4.8了！]]></content>
+      <tags>
+        <tag>GCC</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Centos升级python2.7]]></title>
     <url>%2F2017%2F11%2F16%2Fpython-update-2-7%2F</url>
     <content type="text"><![CDATA[CentOS 6.X 自带的Python版本是 2.6 , 目前python主流的编译环境是2.7，故整理一下python2.6到2.7的升级过程。 环境准备依赖工具包 1sudo yum install zlib-devel bzip2-devel openssl-devel ncurses-devel sqlite-devel readline-devel tk-devel 源码安装2.7 123wget http://www.python.org/ftp/python/2.7.8/Python-2.7.8.tar.xzxz -d Python-2.7.8.tar.xztar -xvf Python-2.7.8.tar 安装123456cd Python-2.7.8./configure --prefix=/usr/localmakemake altinstall[root@VM_centos ~]# python2.7 -VPython 2.7.8 更新python12mv /usr/bin/python /usr/bin/python.bakln -s /usr/local/bin/python2.7 /usr/bin/python 此时 12345[clouddev@TY-0064 ~]$ python -VPython 2.7.8[clouddev@TY-0064 ~]$ which python/usr/bin/python[clouddev@TY-0064 ~]$ 安装pip1curl https://bootstrap.pypa.io/get-pip.py | python2.7 - 启动pip报错1pkg_resources.DistributionNotFound: The &apos;pip==7.1.0&apos; distribution was not found and is required by the application 修改pip12mv /usr/bin/pip /usr/bin/pip0cp /usr/local/bin/pip2.7 /usr/bin/pip 修复yumyum依赖的python2.6，此时yum无法使用12[clouddev@TY-0064 ~]$ which yum/usr/bin/yum 将第一行#!/usr/bin/python改为#!/usr/bin/python2.6]]></content>
@@ -324,17 +332,17 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[Linux多线程下载工具axel安装使用]]></title>
-    <url>%2F2017%2F05%2F15%2Flinux-axel%2F</url>
-    <content type="text"><![CDATA[安装123456wget http://www.ha97.com/code/axel-2.4.tar.gztar zxvf axel-2.4.tar.gzcd axel-2.4./configuremakemake install 语法1axel [options] url1 [url2] [url...] 选项123456789101112--max-speed=x , -s x 最高速度x --num-connections=x , -n x 连接数x --output=f , -o f 下载为本地文件f --search[=x] , -S [x] 搜索镜像 --header=x , -H x 添加头文件字符串x（指定 HTTP header） --user-agent=x , -U x 设置用户代理（指定 HTTP user agent） --no-proxy ， -N 不使用代理服务器 --quiet ， -q 静默模式 --verbose ，-v 更多状态信息 --alternate ， -a Alternate progress indicator --help ，-h 帮助 --version ，-V 版本信息 实例如下载lnmp安装包指定10个线程，存到/tmp/： 1axel -n 10 -o /tmp/ http://www.linuxde.net/lnmp.tar.gz 如果下载过程中下载中断可以再执行下载命令即可恢复上次的下载进度。]]></content>
+    <title><![CDATA[Linux字符集更改]]></title>
+    <url>%2F2017%2F05%2F15%2Flinux-character%2F</url>
+    <content type="text"><![CDATA[查看当前字符集设置： 1echo $LANG 查看当前支持的字符集： 1locale -a 修改当前字符集设置： 12vi /etc/locale.confsource /etc/locale.conf]]></content>
       <tags>
         <tag>LINUX</tag>
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[Linux字符集更改]]></title>
-    <url>%2F2017%2F05%2F15%2Flinux-character%2F</url>
-    <content type="text"><![CDATA[查看当前字符集设置： 1echo $LANG 查看当前支持的字符集： 1locale -a 修改当前字符集设置： 12vi /etc/locale.confsource /etc/locale.conf]]></content>
+    <title><![CDATA[Linux多线程下载工具axel安装使用]]></title>
+    <url>%2F2017%2F05%2F15%2Flinux-axel%2F</url>
+    <content type="text"><![CDATA[安装123456wget http://www.ha97.com/code/axel-2.4.tar.gztar zxvf axel-2.4.tar.gzcd axel-2.4./configuremakemake install 语法1axel [options] url1 [url2] [url...] 选项123456789101112--max-speed=x , -s x 最高速度x --num-connections=x , -n x 连接数x --output=f , -o f 下载为本地文件f --search[=x] , -S [x] 搜索镜像 --header=x , -H x 添加头文件字符串x（指定 HTTP header） --user-agent=x , -U x 设置用户代理（指定 HTTP user agent） --no-proxy ， -N 不使用代理服务器 --quiet ， -q 静默模式 --verbose ，-v 更多状态信息 --alternate ， -a Alternate progress indicator --help ，-h 帮助 --version ，-V 版本信息 实例如下载lnmp安装包指定10个线程，存到/tmp/： 1axel -n 10 -o /tmp/ http://www.linuxde.net/lnmp.tar.gz 如果下载过程中下载中断可以再执行下载命令即可恢复上次的下载进度。]]></content>
       <tags>
         <tag>LINUX</tag>
       </tags>
