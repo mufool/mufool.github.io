@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://mufool.com/"/>
-  <updated>2017-10-17T12:05:18.185Z</updated>
+  <updated>2017-11-16T08:44:41.871Z</updated>
   <id>http://mufool.com/</id>
   
   <author>
@@ -15,6 +15,26 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Centos升级python2.7</title>
+    <link href="http://mufool.com/2017/11/16/python-update-2-7/"/>
+    <id>http://mufool.com/2017/11/16/python-update-2-7/</id>
+    <published>2017-11-16T08:43:26.000Z</published>
+    <updated>2017-11-16T08:44:41.871Z</updated>
+    
+    <content type="html"><![CDATA[<p>CentOS 6.X 自带的Python版本是 2.6 , 目前python主流的编译环境是2.7，故整理一下python2.6到2.7的升级过程。</p><a id="more"></a><h2 id="环境准备"><a href="#环境准备" class="headerlink" title="环境准备"></a>环境准备</h2><p>依赖工具包</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo yum install zlib-devel bzip2-devel openssl-devel ncurses-devel sqlite-devel readline-devel tk-devel</div></pre></td></tr></table></figure><p>源码安装2.7</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">wget http://www.python.org/ftp/python/2.7.8/Python-2.7.8.tar.xz</div><div class="line">xz -d Python-2.7.8.tar.xz</div><div class="line">tar -xvf Python-2.7.8.tar</div></pre></td></tr></table></figure><h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">cd Python-2.7.8</div><div class="line">./configure --prefix=/usr/local</div><div class="line">make</div><div class="line">make altinstall</div><div class="line">[root@VM_centos ~]# python2.7 -V</div><div class="line">Python 2.7.8</div></pre></td></tr></table></figure><h2 id="更新python"><a href="#更新python" class="headerlink" title="更新python"></a>更新python</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">mv /usr/bin/python /usr/bin/python.bak</div><div class="line">ln -s /usr/local/bin/python2.7  /usr/bin/python</div></pre></td></tr></table></figure><p>此时</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">[clouddev@TY-0064 ~]$ python -V</div><div class="line">Python 2.7.8</div><div class="line">[clouddev@TY-0064 ~]$ which python</div><div class="line">/usr/bin/python</div><div class="line">[clouddev@TY-0064 ~]$</div></pre></td></tr></table></figure><h2 id="安装pip"><a href="#安装pip" class="headerlink" title="安装pip"></a>安装pip</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">curl  https://bootstrap.pypa.io/get-pip.py | python2.7 -</div></pre></td></tr></table></figure><p>启动pip报错<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pkg_resources.DistributionNotFound: The &apos;pip==7.1.0&apos; distribution was not found and is required by the application</div></pre></td></tr></table></figure></p><p>修改pip<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">mv /usr/bin/pip /usr/bin/pip0</div><div class="line">cp /usr/local/bin/pip2.7 /usr/bin/pip</div></pre></td></tr></table></figure></p><h2 id="修复yum"><a href="#修复yum" class="headerlink" title="修复yum"></a>修复yum</h2><p>yum依赖的python2.6，此时yum无法使用<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">[clouddev@TY-0064 ~]$ which yum</div><div class="line">/usr/bin/yum</div></pre></td></tr></table></figure></p><p>将第一行<code>#!/usr/bin/python</code>改为<code>#!/usr/bin/python2.6</code></p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;CentOS 6.X 自带的Python版本是 2.6 , 目前python主流的编译环境是2.7，故整理一下python2.6到2.7的升级过程。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="PYTHON" scheme="http://mufool.com/tags/PYTHON/"/>
+    
+  </entry>
   
   <entry>
     <title>Centos安装redis集群</title>
@@ -403,26 +423,6 @@
       <category term="SPARK" scheme="http://mufool.com/tags/SPARK/"/>
     
       <category term="REDIS" scheme="http://mufool.com/tags/REDIS/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Spark序列化</title>
-    <link href="http://mufool.com/2017/07/03/spark-serialization/"/>
-    <id>http://mufool.com/2017/07/03/spark-serialization/</id>
-    <published>2017-07-03T02:20:52.000Z</published>
-    <updated>2017-09-08T03:45:38.065Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="什么是序列化"><a href="#什么是序列化" class="headerlink" title="什么是序列化"></a>什么是序列化</h2><p>&emsp;&emsp;对象的序列化（Serialization）用于将对象编码成一个字节流，以及从字节流中重新构建对象。将一个对象编码成一个字节流称为序列化该对象（Serializing）；相反的处理过程称为反序列化（Deserializing）。</p><a id="more"></a><p>序列化有三种主要的用途：</p><ul><li>作为一种持久化格式：一个对象被序列化以后，它的编码可以被存储到磁盘上，供以后反序列化用。</li><li>作为一种通信数据格式：序列化结果可以从一个正在运行的虚拟机，通过网络被传递到另一个虚拟机上。</li><li>作为一种拷贝、克隆（clone）机制：将对象序列化到内存的缓存区中，然后通过反序列化，可以得到一个对已存对象进行深拷贝的新对象。<br>在分布式数据处理中，主要使用上面提到的前两种功能：数据持久化和通信数据格式。</li></ul><h2 id="为什么要序列化"><a href="#为什么要序列化" class="headerlink" title="为什么要序列化"></a>为什么要序列化</h2><p>&emsp;&emsp;在写Spark的应用时，尝尝会碰到序列化的问题。例如，在Driver端的程序中创建了一个对象，而在各个Executor中会用到这个对象 ，由于Driver端代码与Executor端的代码运行在不同的JVM中，甚至在不同的节点上，因此必然要有相应的序列化机制来支撑数据实例在不同的JVM或者节点之间的传输。</p><h2 id="什么情况下需要序列化"><a href="#什么情况下需要序列化" class="headerlink" title="什么情况下需要序列化"></a>什么情况下需要序列化</h2><p>以下一段spark代码：</p><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TransKey</span>  <span class="keyword">implements</span> <span class="title">Serializable</span> </span>&#123;</div><div class="line"><span class="keyword">private</span> String prefix;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="title">TransKey</span><span class="params">()</span> </span>&#123;</div><div class="line">prefix = <span class="string">"news_"</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">public</span> String <span class="title">addPrefix</span><span class="params">(String s)</span> </span>&#123;</div><div class="line"><span class="keyword">return</span> prefix + s;</div><div class="line">&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">List&lt;String&gt; list = Arrays.asList(<span class="string">"a"</span>,<span class="string">"b"</span>,<span class="string">"c"</span>);</div><div class="line">JavaRDD&lt;String&gt; javaRDD = <span class="keyword">new</span> JavaSparkContext(spark.sparkContext()).parallelize(list);</div><div class="line"></div><div class="line">TransKey transKey = <span class="keyword">new</span> TransKey();</div><div class="line">JavaRDD&lt;String&gt; javaRDD1 = javaRDD.map(s -&gt; transKey.addPrefix(s));</div></pre></td></tr></table></figure><p>&emsp;&emsp;以上代码执行是会报错<code>org.apache.spark.SparkException: Task not serializable</code>，因为transkey在执行过程中需要从Driver传输到Executor。为Executor没有引用到Driver的实例。因此<code>TransKey</code>类需要实现序列化。</p><h2 id="实现序列化"><a href="#实现序列化" class="headerlink" title="实现序列化"></a>实现序列化</h2><p>Spark可以使用Java的序列化框架。只要一个class实现了java.io.Serializable接口，那么Spark就能使用Java的ObjectOutputStream来序列化该类。</p><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TransKey</span> <span class="keyword">implements</span> <span class="title">Serializable</span> </span>&#123;</div><div class="line">    ...</div><div class="line">&#125;</div></pre></td></tr></table></figure><p>对于用户自定义类，通过以上方法实现序列化即可正常使用。Spark还支持另一种序列化框架Kryo。Kryo是一个高效的序列化框架（可以比Java的序列化快10倍以上）。</p><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RedisUtilKryo</span> <span class="keyword">implements</span> <span class="title">KryoSerializable</span> </span>&#123;</div><div class="line"><span class="keyword">private</span> object pool = <span class="keyword">null</span>;</div><div class="line"><span class="keyword">private</span> Integer port;</div><div class="line"></div><div class="line"><span class="meta">@Override</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">write</span><span class="params">(Kryo kryo, Output output)</span> </span>&#123;</div><div class="line">kryo.writeClassAndObject(output, pool);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="meta">@Override</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">read</span><span class="params">(Kryo kryo, Input input)</span> </span>&#123;</div><div class="line">pool = kryo.readClassAndObject(input);</div><div class="line">&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure><p>参考：<br><a href="https://www.ibm.com/developerworks/cn/java/j-lo-serial/index.html" target="_blank" rel="external">Java 序列化的高级认识</a><br><a href="https://segmentfault.com/a/1190000006250481" target="_blank" rel="external">spark-stream 访问 Redis</a></p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;什么是序列化&quot;&gt;&lt;a href=&quot;#什么是序列化&quot; class=&quot;headerlink&quot; title=&quot;什么是序列化&quot;&gt;&lt;/a&gt;什么是序列化&lt;/h2&gt;&lt;p&gt;&amp;emsp;&amp;emsp;对象的序列化（Serialization）用于将对象编码成一个字节流，以及从字节流中重新构建对象。将一个对象编码成一个字节流称为序列化该对象（Serializing）；相反的处理过程称为反序列化（Deserializing）。&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="SPARK" scheme="http://mufool.com/tags/SPARK/"/>
     
   </entry>
   
