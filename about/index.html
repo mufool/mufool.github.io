@@ -102,7 +102,7 @@
 <meta property="og:site_name" content="Mufool">
 <meta property="og:description" content="工具命令行 grep使用详解 top命令详解 curl常用参数 vim命令收集 Zsh安装使用 Tmux安装使用 Putty免密登陆 Centos安装配置powerline  VIM VIM插件安装使用 VIM标记 vim注释 vim插件NERDTree快捷键 vim分屏操作 vim插件cscope安装使用 vim配置文件  NGINX Nginx代理缓存配置详解 Nginx location优先">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-10-17T12:15:58.513Z">
+<meta property="og:updated_time" content="2017-11-16T09:00:52.455Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="技术文档索引">
 <meta name="twitter:description" content="工具命令行 grep使用详解 top命令详解 curl常用参数 vim命令收集 Zsh安装使用 Tmux安装使用 Putty免密登陆 Centos安装配置powerline  VIM VIM插件安装使用 VIM标记 vim注释 vim插件NERDTree快捷键 vim分屏操作 vim插件cscope安装使用 vim配置文件  NGINX Nginx代理缓存配置详解 Nginx location优先">
@@ -443,10 +443,18 @@
 <li><a href="http://mufool.com/2017/07/03/spark-serialization/">Spark序列化</a></li>
 <li><a href="http://mufool.com/2017/07/04/spark-redis/">Spark中redis连接池的几种使用方法</a></li>
 <li><a href="http://mufool.com/2017/07/06/spark-no-stop/">Spark或Hadoop集群无法停止</a></li>
+<li><a href="http://mufool.com/2017/11/16/zeppelin/">Zeppelin中文文档</a></li>
+</ul>
+<h2 id="C-C"><a href="#C-C" class="headerlink" title="C/C++"></a>C/C++</h2><ul>
+<li><a href="http://mufool.com/2017/11/16/gcc-update/">Centos升级gcc版本</a></li>
 </ul>
 <h2 id="JAVA"><a href="#JAVA" class="headerlink" title="JAVA"></a>JAVA</h2><ul>
 <li><a href="http://mufool.com/2017/07/06/log4j2/">Log4j2使用</a></li>
 <li><a href="http://mufool.com/2017/08/25/java-redis/">Java操作redis</a></li>
+</ul>
+<h2 id="PYTHON"><a href="#PYTHON" class="headerlink" title="PYTHON"></a>PYTHON</h2><ul>
+<li><a href="http://mufool.com/2017/11/16/python-update-2-7/">Centos升级python2.7</a></li>
+<li><a href="http://mufool.com/2017/11/16/python-mirrors/">Python使用国内源下载</a></li>
 </ul>
 <h2 id="数据结构和算法"><a href="#数据结构和算法" class="headerlink" title="数据结构和算法"></a>数据结构和算法</h2><ul>
 <li><a href="http://mufool.com/2017/08/25/sort/">几种基本排序算法</a></li>
@@ -688,7 +696,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#工具"><span class="nav-number">1.</span> <span class="nav-text">工具</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#命令行"><span class="nav-number">1.1.</span> <span class="nav-text">命令行</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#VIM"><span class="nav-number">1.2.</span> <span class="nav-text">VIM</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#NGINX"><span class="nav-number">1.3.</span> <span class="nav-text">NGINX</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MYSQL"><span class="nav-number">1.4.</span> <span class="nav-text">MYSQL</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#REDIS"><span class="nav-number">1.5.</span> <span class="nav-text">REDIS</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#系统管理"><span class="nav-number">2.</span> <span class="nav-text">系统管理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#流媒体"><span class="nav-number">3.</span> <span class="nav-text">流媒体</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#大数据基础工具"><span class="nav-number">4.</span> <span class="nav-text">大数据基础工具</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SPARK"><span class="nav-number">5.</span> <span class="nav-text">SPARK</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JAVA"><span class="nav-number">6.</span> <span class="nav-text">JAVA</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据结构和算法"><span class="nav-number">7.</span> <span class="nav-text">数据结构和算法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#TCP-IP"><span class="nav-number">8.</span> <span class="nav-text">TCP/IP</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#P2P-CDN"><span class="nav-number">9.</span> <span class="nav-text">P2P/CDN</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#WEB前端"><span class="nav-number">10.</span> <span class="nav-text">WEB前端</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#工具"><span class="nav-number">1.</span> <span class="nav-text">工具</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#命令行"><span class="nav-number">1.1.</span> <span class="nav-text">命令行</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#VIM"><span class="nav-number">1.2.</span> <span class="nav-text">VIM</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#NGINX"><span class="nav-number">1.3.</span> <span class="nav-text">NGINX</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MYSQL"><span class="nav-number">1.4.</span> <span class="nav-text">MYSQL</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#REDIS"><span class="nav-number">1.5.</span> <span class="nav-text">REDIS</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#系统管理"><span class="nav-number">2.</span> <span class="nav-text">系统管理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#流媒体"><span class="nav-number">3.</span> <span class="nav-text">流媒体</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#大数据基础工具"><span class="nav-number">4.</span> <span class="nav-text">大数据基础工具</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SPARK"><span class="nav-number">5.</span> <span class="nav-text">SPARK</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#C-C"><span class="nav-number">6.</span> <span class="nav-text">C/C++</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JAVA"><span class="nav-number">7.</span> <span class="nav-text">JAVA</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PYTHON"><span class="nav-number">8.</span> <span class="nav-text">PYTHON</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据结构和算法"><span class="nav-number">9.</span> <span class="nav-text">数据结构和算法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#TCP-IP"><span class="nav-number">10.</span> <span class="nav-text">TCP/IP</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#P2P-CDN"><span class="nav-number">11.</span> <span class="nav-text">P2P/CDN</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#WEB前端"><span class="nav-number">12.</span> <span class="nav-text">WEB前端</span></a></li></ol></div>
             
 
           </div>
