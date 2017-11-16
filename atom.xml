@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://mufool.com/"/>
-  <updated>2017-11-16T08:53:02.917Z</updated>
+  <updated>2017-11-16T08:55:12.004Z</updated>
   <id>http://mufool.com/</id>
   
   <author>
@@ -17,11 +17,31 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>zeppelin</title>
+    <title>Python使用国内源下载</title>
+    <link href="http://mufool.com/2017/11/16/python-mirrors/"/>
+    <id>http://mufool.com/2017/11/16/python-mirrors/</id>
+    <published>2017-11-16T08:54:00.000Z</published>
+    <updated>2017-11-16T08:55:12.004Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="现象"><a href="#现象" class="headerlink" title="现象"></a>现象</h2><p>通过pip安装scipy、scikit-learn等库的时候，可能会报上面的错误</p><a id="more"></a><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ReadTimeoutError: HTTPSConnectionPool(host=&apos;pypi.python.org&apos;, port=443): Read timed out.</div></pre></td></tr></table></figure><h2 id="原因及解决方法"><a href="#原因及解决方法" class="headerlink" title="原因及解决方法"></a>原因及解决方法</h2><p>以上原因是因为默认使用国外源进行下载，下载速度慢导致超时。解决方法更换成国内园即可。</p><p>国内源：</p><ul><li><a href="http://pypi.douban.com/" target="_blank" rel="external">http://pypi.douban.com/</a>  豆瓣</li><li><a href="http://pypi.hustunique.com/" target="_blank" rel="external">http://pypi.hustunique.com/</a>  华中理工大学</li><li><a href="http://pypi.sdutlinux.org/" target="_blank" rel="external">http://pypi.sdutlinux.org/</a>  山东理工大学</li><li><a href="http://pypi.mirrors.ustc.edu.cn/" target="_blank" rel="external">http://pypi.mirrors.ustc.edu.cn/</a>  中国科学技术大学</li></ul><p>下载时指定源</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo pip  install --index https://pypi.mirrors.ustc.edu.cn/simple/  scikit-learn</div></pre></td></tr></table></figure><p>或者，更改默认的配置，创建~/.pip/pip.conf，添加</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">[global]</div><div class="line">index-url = https://pypi.mirrors.ustc.edu.cn/simple/</div></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;现象&quot;&gt;&lt;a href=&quot;#现象&quot; class=&quot;headerlink&quot; title=&quot;现象&quot;&gt;&lt;/a&gt;现象&lt;/h2&gt;&lt;p&gt;通过pip安装scipy、scikit-learn等库的时候，可能会报上面的错误&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="PYTHON" scheme="http://mufool.com/tags/PYTHON/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Zeppelin中文文档</title>
     <link href="http://mufool.com/2017/11/16/zeppelin/"/>
     <id>http://mufool.com/2017/11/16/zeppelin/</id>
     <published>2017-11-16T08:52:46.000Z</published>
-    <updated>2017-11-16T08:53:02.917Z</updated>
+    <updated>2017-11-16T08:55:48.116Z</updated>
     
     <content type="html"><![CDATA[<p><a href="http://cwiki.apachecn.org/display/Zeppelin/Index" target="_blank" rel="external">Apache Zeppelin 0.7.2 中文文档</a></p>]]></content>
     
@@ -35,6 +55,8 @@
     
     </summary>
     
+    
+      <category term="SPARK" scheme="http://mufool.com/tags/SPARK/"/>
     
   </entry>
   
@@ -401,30 +423,6 @@
     
     
       <category term="JAVA" scheme="http://mufool.com/tags/JAVA/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Spark工作机制</title>
-    <link href="http://mufool.com/2017/07/05/spark-mechanism/"/>
-    <id>http://mufool.com/2017/07/05/spark-mechanism/</id>
-    <published>2017-07-05T04:28:55.000Z</published>
-    <updated>2017-09-12T01:55:35.025Z</updated>
-    
-    <content type="html"><![CDATA[<p>参考：<br><a href="http://www.jianshu.com/p/c7eef3eb6225" target="_blank" rel="external">Spark-core-架构及工作机制综述</a></p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;参考：&lt;br&gt;&lt;a href=&quot;http://www.jianshu.com/p/c7eef3eb6225&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Spark-core-架构及工作机制综述&lt;/a&gt;&lt;/p&gt;
-
-      
-    
-    </summary>
-    
-    
-      <category term="SPARK" scheme="http://mufool.com/tags/SPARK/"/>
     
   </entry>
   
