@@ -104,13 +104,13 @@
 <meta property="og:description" content="Redis Cluster是3.0版本之后提供的新功能，采用了P2P的去中心化架构，而没有采用像Codis之类的Proxy解决方案中的中心协调节点设计。">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://i.imgur.com/O4QfdDF.jpg">
-<meta property="og:image" content="http://mufool.qiniudn.com/redis/redis-cluster0.jpg">
-<meta property="og:image" content="http://mufool.qiniudn.com/redis/redis-cluster1.jpg">
-<meta property="og:image" content="http://mufool.qiniudn.com/redis/redis-cluster2.jpg">
-<meta property="og:image" content="http://mufool.qiniudn.com/redis/redis-cluster3.jpg">
-<meta property="og:image" content="http://mufool.qiniudn.com/redis/redis-cluster4.jpg">
-<meta property="og:image" content="http://mufool.qiniudn.com/redis/redis-cluster5.jpg">
-<meta property="og:updated_time" content="2017-10-17T12:05:18.185Z">
+<meta property="og:image" content="http://pic-blog.bfvyun.com/redis/redis-cluster0.jpg">
+<meta property="og:image" content="http://pic-blog.bfvyun.com/redis/redis-cluster1.jpg">
+<meta property="og:image" content="http://pic-blog.bfvyun.com/redis/redis-cluster2.jpg">
+<meta property="og:image" content="http://pic-blog.bfvyun.com/redis/redis-cluster3.jpg">
+<meta property="og:image" content="http://pic-blog.bfvyun.com/redis/redis-cluster4.jpg">
+<meta property="og:image" content="http://pic-blog.bfvyun.com/redis/redis-cluster5.jpg">
+<meta property="og:updated_time" content="2019-03-20T03:10:18.062Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Centos安装redis集群">
 <meta name="twitter:description" content="Redis Cluster是3.0版本之后提供的新功能，采用了P2P的去中心化架构，而没有采用像Codis之类的Proxy解决方案中的中心协调节点设计。">
@@ -423,18 +423,18 @@
 <p>3、分别启动6个redis</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">cd redis-cluster/7000</div><div class="line">./redis-server redis.conf</div><div class="line">...</div><div class="line">cd redis-cluster/7005</div><div class="line">./redis-server redis.conf</div></pre></td></tr></table></figure>
 <p>4、查看进程</p>
-<p><img src="http://mufool.qiniudn.com/redis/redis-cluster0.jpg" alt="image"></p>
+<p><img src="http://pic-blog.bfvyun.com/redis/redis-cluster0.jpg" alt="image"></p>
 <h2 id="建立redis集群"><a href="#建立redis集群" class="headerlink" title="建立redis集群"></a>建立redis集群</h2><p>以上步骤分别创建了6个节点，并已经启动，这里要把这6个节点加入到一个集群里面。redis 已经为我们提供了集群操作的脚本 redis-trib.rb。</p>
 <h3 id="安装ruby"><a href="#安装ruby" class="headerlink" title="安装ruby"></a>安装ruby</h3><p>由于集群操作需要用到 ruby 脚本 redis-trib.rb , 所以要安装 ruby 和 rubygems<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">yum -y install ruby rubygems</div><div class="line">gem install redis --version 3.0.6</div></pre></td></tr></table></figure></p>
-<p><img src="http://mufool.qiniudn.com/redis/redis-cluster1.jpg" alt="image"></p>
+<p><img src="http://pic-blog.bfvyun.com/redis/redis-cluster1.jpg" alt="image"></p>
 <h3 id="创建集群"><a href="#创建集群" class="headerlink" title="创建集群"></a>创建集群</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">redis-trib.rb create --replicas 1 127.0.0.1:7000 127.0.0.1:7001 127.0.0.1:7002 127.0.0.1:7003 127.0.0.1:7004 127.0.0.1:7005</div></pre></td></tr></table></figure>
-<p>其中，命令create表示创建一个新的集群，选项–replicas 1表示未集群中的每个主节点创建一个从节点。即，上述命令运行后，redis-trib将创建一个包含三个主节点和三个从节点的集群。<br><img src="http://mufool.qiniudn.com/redis/redis-cluster2.jpg" alt="image"><br>上面信息中 M 表示 Master 节点， S 表示 Slave 节点，同时可以看到主备关系。随后输入yes即可创建完成。</p>
+<p>其中，命令create表示创建一个新的集群，选项–replicas 1表示未集群中的每个主节点创建一个从节点。即，上述命令运行后，redis-trib将创建一个包含三个主节点和三个从节点的集群。<br><img src="http://pic-blog.bfvyun.com/redis/redis-cluster2.jpg" alt="image"><br>上面信息中 M 表示 Master 节点， S 表示 Slave 节点，同时可以看到主备关系。随后输入yes即可创建完成。</p>
 <h2 id="集群测试"><a href="#集群测试" class="headerlink" title="集群测试"></a>集群测试</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">./src/redis-trib.rb check 127.0.0.1:7000</div></pre></td></tr></table></figure>
-<p><img src="http://mufool.qiniudn.com/redis/redis-cluster3.jpg" alt="image"><br> 其中可以看到每台master上的slot的分配个数，所有16384个slot都被covered，集群处于上线状态。</p>
+<p><img src="http://pic-blog.bfvyun.com/redis/redis-cluster3.jpg" alt="image"><br> 其中可以看到每台master上的slot的分配个数，所有16384个slot都被covered，集群处于上线状态。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">src/redis-cli -p 7000 cluster nodes</div></pre></td></tr></table></figure>
-<p><img src="http://mufool.qiniudn.com/redis/redis-cluster4.jpg" alt="image"> </p>
+<p><img src="http://pic-blog.bfvyun.com/redis/redis-cluster4.jpg" alt="image"> </p>
 <p>查看集群中各节点的信息。包括唯一的节点ID，主从关系，每个主节点分配的slots范围。</p>
-<p><img src="http://mufool.qiniudn.com/redis/redis-cluster5.jpg" alt="image"> </p>
+<p><img src="http://pic-blog.bfvyun.com/redis/redis-cluster5.jpg" alt="image"> </p>
 <p>在任意节点上增删数据都可以在集群的其他节点看到。若节点上没有查询的数据，-c参数指定查询时接收到MOVED指令自动跳转。</p>
 <p>参考：<br><a href="http://blog.dujiong.net/2017/01/15/Redis-Cluster/" target="_blank" rel="external">搭建Redis集群</a><br><a href="http://weizijun.cn/2016/01/08/redis%20cluster%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7redis-trib-rb%E8%AF%A6%E8%A7%A3/" target="_blank" rel="external">redis cluster管理工具redis-trib.rb详解</a></p>
 
@@ -720,7 +720,7 @@
         <div class="copyright" >
   
   &copy;  2015 - 
-  <span itemprop="copyrightYear">2018</span>
+  <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

@@ -103,14 +103,14 @@
 <meta property="og:site_name" content="Mufool">
 <meta property="og:description" content="准备cmake要升级要2.8.8 yasm要升级到1.2.0">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://mufool.qiniudn.com/ffmpeg/h265-1.png">
-<meta property="og:image" content="http://mufool.qiniudn.com/ffmpeg/h265-2.png">
-<meta property="og:image" content="http://mufool.qiniudn.com/ffmpeg/h265-3.png">
-<meta property="og:updated_time" content="2017-09-08T03:45:38.063Z">
+<meta property="og:image" content="http://pic-blog.bfvyun.com/ffmpeg/h265-1.png">
+<meta property="og:image" content="http://pic-blog.bfvyun.com/ffmpeg/h265-2.png">
+<meta property="og:image" content="http://pic-blog.bfvyun.com/ffmpeg/h265-3.png">
+<meta property="og:updated_time" content="2019-03-20T03:08:12.463Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="编译支持h265的ffmpeg">
 <meta name="twitter:description" content="准备cmake要升级要2.8.8 yasm要升级到1.2.0">
-<meta name="twitter:image" content="http://mufool.qiniudn.com/ffmpeg/h265-1.png">
+<meta name="twitter:image" content="http://pic-blog.bfvyun.com/ffmpeg/h265-1.png">
 
 
 
@@ -397,7 +397,7 @@
 <h2 id="安装x264"><a href="#安装x264" class="headerlink" title="安装x264"></a>安装x264</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">git clone git://git.videolan.org/x264.git</div><div class="line">cd x264</div><div class="line">./configure --enable-static --disable-opencl --disable-avs</div><div class="line">--disable-cli --disable-ffms --disable-gpac --disable-lavf</div><div class="line">--disable-swscale</div><div class="line">make</div><div class="line">sudo make install</div><div class="line">sudo ldconfig</div></pre></td></tr></table></figure>
 <h2 id="安装x265"><a href="#安装x265" class="headerlink" title="安装x265"></a>安装x265</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">hg <span class="built_in">clone</span> https://bitbucket.org/multicoreware/x265</div><div class="line">hg checkout 0.8</div><div class="line"><span class="built_in">cd</span> x265/build/linux</div><div class="line">./make-Makefiles.bash</div><div class="line"><span class="comment"># 这里将 LOG_CU_STATISTICS　设置为ON，然后，按下“c”，实现configure，按下“q”退出</span></div><div class="line">make</div><div class="line">sudo make install</div><div class="line">sudo ldconfig</div></pre></td></tr></table></figure>
 <h2 id="编译ffmpeg"><a href="#编译ffmpeg" class="headerlink" title="编译ffmpeg"></a>编译ffmpeg</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">./configure --enable-gpl --enable-libx264 --enable-libx265 --disable-stripping --disable-optimizations --extra-cflags=-g --enable-libfaac --enable-nonfree --enable-libspeex --extra-cflags=-I/usr/local/include --extra-ldflags=-L/usr/local/lib</div><div class="line">make</div></pre></td></tr></table></figure>
-<p>出错：<br><img src="http://mufool.qiniudn.com/ffmpeg/h265-1.png" alt=""></p>
+<p>出错：<br><img src="http://pic-blog.bfvyun.com/ffmpeg/h265-1.png" alt=""></p>
 <p>查看config.log</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">In file included from /tmp/ffconf.gFGcukGK.c:1:</div><div class="line">/usr/local/include/x264.h:40:4: warning: #warning You must include stdint.h or inttypes.h before x264.h</div><div class="line">check_pkg_config x265 x265.h x265_encoder_encode</div><div class="line">pkg-config --exists --print-errors x265</div><div class="line">Package x265 was not found in the pkg-config search path.</div><div class="line">Perhaps you should add the directory containing `x265.pc&apos;</div><div class="line">to the PKG_CONFIG_PATH environment variable</div><div class="line">No package &apos;x265&apos; found</div><div class="line">ERROR: x265 not found</div></pre></td></tr></table></figure>
 <p>提示找不到x265的链接库文件x265.pc, 将编译目录下的x265.pc拷贝到/usr/local/lib下：</p>
@@ -406,10 +406,10 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:/usr/local/lib/</div></pre></td></tr></table></figure>
 <p>查看是否已包含h265</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pkg-config --list-all | greo x265</div></pre></td></tr></table></figure>
-<p>重新编译ffmpeg，还是出错：<br><img src="http://mufool.qiniudn.com/ffmpeg/h265-2.png" alt=""></p>
+<p>重新编译ffmpeg，还是出错：<br><img src="http://pic-blog.bfvyun.com/ffmpeg/h265-2.png" alt=""></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">#ls  /usr/local/lib | grep libx264</div><div class="line">libx264.a</div><div class="line">libx264.so</div><div class="line">libx264.so.146</div></pre></td></tr></table></figure>
 <p>可能原先我做过编译，在/usr/local目录下面安装了x264，可能有冲突，把x264在/usr/local目录下的一些相关文件卸载掉，重新编译x264，再编译ffmpeg</p>
-<p>运行ffmpeg，已包含x265<br><img src="http://mufool.qiniudn.com/ffmpeg/h265-3.png" alt=""></p>
+<p>运行ffmpeg，已包含x265<br><img src="http://pic-blog.bfvyun.com/ffmpeg/h265-3.png" alt=""></p>
 <p>接下来转码一个h.265视频到h.264看看效果。<br>ffmpeg -i h265.mkv -c:v libx264 -preset medium -c:a aac -strict experimental -f mp4 -b:a 128k outputh264.mp4</p>
 <p>参考：<br><a href="http://scateu.me/2014/03/06/compile-ffmpeg-on-linux-with-x264-and-x265-support.html" target="_blank" rel="external">Linux编译FFmpeg，支持x264和x265(HEVC)</a></p>
 
@@ -695,7 +695,7 @@
         <div class="copyright" >
   
   &copy;  2015 - 
-  <span itemprop="copyrightYear">2018</span>
+  <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

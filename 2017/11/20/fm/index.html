@@ -103,19 +103,19 @@
 <meta property="og:site_name" content="Mufool">
 <meta property="og:description" content="简介FM算法，全称Factorization Machines,一般翻译为“因子分解机”。2010年，它由当时还在日本大阪大学的Steffen Rendle提出。此算法的主要作用是可以把所有特征进行高阶组合，减少人工参与特征组合的工作，工程师可以将精力集中在模型参数调优。FM只需要线性时间复杂度，可以应用于大规模机器学习。经过部分数据集试验，此算法在稀疏数据集合上的效果要明显好于SVM。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://mufool.qiniudn.com/fm/fm1.jpg">
-<meta property="og:image" content="http://mufool.qiniudn.com/fm/fm2.jpg">
-<meta property="og:image" content="http://mufool.qiniudn.com/fm/fm3.jpg">
-<meta property="og:image" content="http://mufool.qiniudn.com/fm/fm4.jpg">
-<meta property="og:image" content="http://mufool.qiniudn.com/fm/fm5.jpg">
-<meta property="og:image" content="http://mufool.qiniudn.com/fm/fm6.jpg">
-<meta property="og:image" content="http://mufool.qiniudn.com/fm/fm7.jpg">
-<meta property="og:image" content="http://mufool.qiniudn.com/fm/fm8.jpg">
-<meta property="og:updated_time" content="2017-11-20T11:35:29.597Z">
+<meta property="og:image" content="http://pic-blog.bfvyun.com/fm/fm1.jpg">
+<meta property="og:image" content="http://pic-blog.bfvyun.com/fm/fm2.jpg">
+<meta property="og:image" content="http://pic-blog.bfvyun.com/fm/fm3.jpg">
+<meta property="og:image" content="http://pic-blog.bfvyun.com/fm/fm4.jpg">
+<meta property="og:image" content="http://pic-blog.bfvyun.com/fm/fm5.jpg">
+<meta property="og:image" content="http://pic-blog.bfvyun.com/fm/fm6.jpg">
+<meta property="og:image" content="http://pic-blog.bfvyun.com/fm/fm7.jpg">
+<meta property="og:image" content="http://pic-blog.bfvyun.com/fm/fm8.jpg">
+<meta property="og:updated_time" content="2019-03-20T03:08:23.833Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="FM原理和使用">
 <meta name="twitter:description" content="简介FM算法，全称Factorization Machines,一般翻译为“因子分解机”。2010年，它由当时还在日本大阪大学的Steffen Rendle提出。此算法的主要作用是可以把所有特征进行高阶组合，减少人工参与特征组合的工作，工程师可以将精力集中在模型参数调优。FM只需要线性时间复杂度，可以应用于大规模机器学习。经过部分数据集试验，此算法在稀疏数据集合上的效果要明显好于SVM。">
-<meta name="twitter:image" content="http://mufool.qiniudn.com/fm/fm1.jpg">
+<meta name="twitter:image" content="http://pic-blog.bfvyun.com/fm/fm1.jpg">
 
 
 
@@ -401,16 +401,16 @@
 <a id="more"></a>
 <h2 id="模型形式"><a href="#模型形式" class="headerlink" title="模型形式"></a>模型形式</h2><p>在线性回归模型中，每个feature具有一个权重，参数求解过程相当于构造一个超平面将空间分为两部分。线性回归最大的优点是简单高效，只需要计算好每个feature的权重。但是缺点也是模型比较简单，只能建模线性关系（不过大部分时候也够用了，不够用时可以用特征工程）。</p>
 <p>传统线性回归基于以下模型，从模型方程易见，各特征分量xi和xj是相互独立。</p>
-<p><img src="http://mufool.qiniudn.com/fm/fm1.jpg" alt="image"><br>但是，一般线性模型无法学习到高阶组合特征，所以会将特征进行高阶组合，这里以二阶为例(理论上，FM可以组合任意高阶，但是由于计算复杂度，实际中常用二阶，后面也主要介绍二阶组合的内容)。模型形式为，</p>
-<p><img src="http://mufool.qiniudn.com/fm/fm2.jpg" alt="image"></p>
+<p><img src="http://pic-blog.bfvyun.com/fm/fm1.jpg" alt="image"><br>但是，一般线性模型无法学习到高阶组合特征，所以会将特征进行高阶组合，这里以二阶为例(理论上，FM可以组合任意高阶，但是由于计算复杂度，实际中常用二阶，后面也主要介绍二阶组合的内容)。模型形式为，</p>
+<p><img src="http://pic-blog.bfvyun.com/fm/fm2.jpg" alt="image"></p>
 <p>相比于线性模型而言，二阶模型多了n(n−1)2参数。比如有(n=)1000个特征（连续变量离散化，并one-hot编码，特征很容易到达此量级），增加近50万个参数。</p>
 <p>FM使用近似矩阵分解。将参数量级减少成线性量级。可以将所有参数Wij组合成一个矩阵。</p>
-<p><img src="http://mufool.qiniudn.com/fm/fm3.jpg" alt="image"></p>
-<p><img src="http://mufool.qiniudn.com/fm/fm4.jpg" alt="image"><br>很明显，实数矩阵W是对称的。所以，实对称矩阵W正定（至少半正定，这里假设正定）。根据矩阵的性质，正定矩阵可以分解。</p>
-<p>定理：当k足够大时，对于任意对称正定矩阵<br><img src="http://mufool.qiniudn.com/fm/fm5.jpg" alt="image"><br>存在矩阵</p>
-<p><img src="http://mufool.qiniudn.com/fm/fm6.jpg" alt="image"></p>
-<p>使得<br><img src="http://mufool.qiniudn.com/fm/fm7.jpg" alt="image"></p>
-<p>带入后，模型如下<br><img src="http://mufool.qiniudn.com/fm/fm8.jpg" alt="image"></p>
+<p><img src="http://pic-blog.bfvyun.com/fm/fm3.jpg" alt="image"></p>
+<p><img src="http://pic-blog.bfvyun.com/fm/fm4.jpg" alt="image"><br>很明显，实数矩阵W是对称的。所以，实对称矩阵W正定（至少半正定，这里假设正定）。根据矩阵的性质，正定矩阵可以分解。</p>
+<p>定理：当k足够大时，对于任意对称正定矩阵<br><img src="http://pic-blog.bfvyun.com/fm/fm5.jpg" alt="image"><br>存在矩阵</p>
+<p><img src="http://pic-blog.bfvyun.com/fm/fm6.jpg" alt="image"></p>
+<p>使得<br><img src="http://pic-blog.bfvyun.com/fm/fm7.jpg" alt="image"></p>
+<p>带入后，模型如下<br><img src="http://pic-blog.bfvyun.com/fm/fm8.jpg" alt="image"></p>
 <p>问题从求解矩阵W变成了求解矩阵V</p>
 <p>这样做的有点：</p>
 <ul>
@@ -784,7 +784,7 @@
         <div class="copyright" >
   
   &copy;  2015 - 
-  <span itemprop="copyrightYear">2018</span>
+  <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

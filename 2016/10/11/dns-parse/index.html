@@ -103,13 +103,13 @@
 <meta property="og:site_name" content="Mufool">
 <meta property="og:description" content="什么是DNSDNS（Domain Name System，域名系统），互联网上域名和IP地址相互映射的一个分布式数据库，能够使用户更方便的访问互联网，而不用去记住能够被机器直接读取的IP数串。通过主机名，最终得到该主机名对应的IP地址的过程叫做域名解析（或主机名解析）。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://mufool.qiniudn.com/dns/structure.jpg">
-<meta property="og:image" content="http://mufool.qiniudn.com/dns/dnsresolution.png">
-<meta property="og:updated_time" content="2017-09-08T03:45:38.063Z">
+<meta property="og:image" content="http://pic-blog.bfvyun.com/dns/structure.jpg">
+<meta property="og:image" content="http://pic-blog.bfvyun.com/dns/dnsresolution.png">
+<meta property="og:updated_time" content="2019-03-20T03:06:09.002Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="DNS解析原理">
 <meta name="twitter:description" content="什么是DNSDNS（Domain Name System，域名系统），互联网上域名和IP地址相互映射的一个分布式数据库，能够使用户更方便的访问互联网，而不用去记住能够被机器直接读取的IP数串。通过主机名，最终得到该主机名对应的IP地址的过程叫做域名解析（或主机名解析）。">
-<meta name="twitter:image" content="http://mufool.qiniudn.com/dns/structure.jpg">
+<meta name="twitter:image" content="http://pic-blog.bfvyun.com/dns/structure.jpg">
 
 
 
@@ -393,7 +393,7 @@
       
         <h2 id="什么是DNS"><a href="#什么是DNS" class="headerlink" title="什么是DNS"></a>什么是DNS</h2><p>DNS（Domain Name System，域名系统），互联网上域名和IP地址相互映射的一个分布式数据库，能够使用户更方便的访问互联网，而不用去记住能够被机器直接读取的IP数串。通过主机名，最终得到该主机名对应的IP地址的过程叫做域名解析（或主机名解析）。</p>
 <a id="more"></a>
-<h2 id="域名系统结构"><a href="#域名系统结构" class="headerlink" title="域名系统结构"></a>域名系统结构</h2><p><img src="http://mufool.qiniudn.com/dns/structure.jpg" alt=""></p>
+<h2 id="域名系统结构"><a href="#域名系统结构" class="headerlink" title="域名系统结构"></a>域名系统结构</h2><p><img src="http://pic-blog.bfvyun.com/dns/structure.jpg" alt=""></p>
 <ol>
 <li>根域名服务器：根域名服务器是最高层次的域名服务器，也是最重要的域名服务器。所有的根域名服务器都知道所有的顶级域名服务器的域名和IP地址。</li>
 <li>顶级域名服务器： 这些域名服务器负责管理在该顶级域名服务器注册的所有二级域名。当收到DNS查询请求时，就给出相应的回答(可能是最后的结果，也可能是下一步应当找的域名服务器的IP地址)。</li>
@@ -403,7 +403,7 @@
 <h2 id="域名记录类型"><a href="#域名记录类型" class="headerlink" title="域名记录类型"></a>域名记录类型</h2><p>A记录：子域名对应的目标主机地址。目标主机地址类型只能使用IP地址<br>MX记录：将以该域名为结尾的电子邮件指向对应的邮件服务器以进行处理。<br>NS记录：解析服务器记录。用来表明由哪台服务器对该域名进行解析。<br>CNAME 记录：通常称别名指向。目标主机地址只能使用主机名，不能使用IP地址。一个主机地址同时存在A记录和CNAME记录，则CNAME记录不生效。</p>
 <h2 id="常见的DNS"><a href="#常见的DNS" class="headerlink" title="常见的DNS"></a>常见的DNS</h2><p>权威DNS：权威DNS即最终决定域名解析结果的服务器，开发者可以在权威DNS上配置、变更、删除具体域名的对应解析结果信息。<br>递归DNS：递归DNS又称为Local DNS，它没有域名解析结果的决定权，但代理了用户向权威DNS获取域名解析结果的过程。递归DNS上有缓存模块，当目标域名存在缓存解析结果并且TTL未过期时（每个域名都有TTL时间，即有效生存时间，若域名解析结果缓存的时间超过TTL，需要重新向权威DNS获取解析结果），递归DNS会返回缓存结果，否则，递归DNS会一级一级地查询各个层级域名的权威DNS直至获取最终完整域名的解析结果。<br>公共DNS：公共DNS是递归DNS的一种特例，它是一种全网开放的递归DNS服务，而传统的递归DNS信息一般由运营商分发给用户。Google的8.8.8.8属于公共DNS。</p>
 <h2 id="DNS解析过程"><a href="#DNS解析过程" class="headerlink" title="DNS解析过程"></a>DNS解析过程</h2><p><a href="http://www.tcpipguide.com/free/t_DNSNameResolutionProcess-2.htm" target="_blank" rel="external">图片地址</a></p>
-<p><img src="http://mufool.qiniudn.com/dns/dnsresolution.png" alt=""></p>
+<p><img src="http://pic-blog.bfvyun.com/dns/dnsresolution.png" alt=""></p>
 <ol>
 <li>浏览器中输入“www.net.compsci.googleplex.edu”，发出解析请求。</li>
 <li>本机的域名解析器( resolver程序)查询本地缓存和host文件中是否为域名的映射关系，如果有则调用这个IP地址映射，完成解析。</li>
@@ -726,7 +726,7 @@
         <div class="copyright" >
   
   &copy;  2015 - 
-  <span itemprop="copyrightYear">2018</span>
+  <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
