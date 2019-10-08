@@ -1,0 +1,1215 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="PYTHON," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Mufool" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="[TOC] 重复元素判定以下方法可以检查给定列表是不是存在重复元素，它会使用 set() 函数来移除所有重复元素">
+<meta name="keywords" content="PYTHON">
+<meta property="og:type" content="article">
+<meta property="og:title" content="极简Python代码">
+<meta property="og:url" content="http://mufool.com/2019/10/08/python-mini/index.html">
+<meta property="og:site_name" content="Mufool">
+<meta property="og:description" content="[TOC] 重复元素判定以下方法可以检查给定列表是不是存在重复元素，它会使用 set() 函数来移除所有重复元素">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-10-08T09:43:50.007Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="极简Python代码">
+<meta name="twitter:description" content="[TOC] 重复元素判定以下方法可以检查给定列表是不是存在重复元素，它会使用 set() 函数来移除所有重复元素">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://mufool.com/2019/10/08/python-mini/"/>
+
+
+
+
+
+  <title>极简Python代码 | Mufool</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?a2b17a34748630d2b13839f4712009d1";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Mufool</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">my blog</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            技术
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://mufool.com/2019/10/08/python-mini/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Mufool">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/default_avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mufool">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">极简Python代码</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-10-08T17:40:36+08:00">
+                2019-10-08
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/10/08/python-mini/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2019/10/08/python-mini/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>[TOC]</p>
+<h2 id="重复元素判定"><a href="#重复元素判定" class="headerlink" title="重复元素判定"></a>重复元素判定</h2><p>以下方法可以检查给定列表是不是存在重复元素，它会使用 set() 函数来移除所有重复元素</p>
+<a id="more"></a>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">all_unique</span><span class="params">(lst)</span>:</span></div><div class="line">    <span class="keyword">return</span> len(lst) == len(set(lst))</div><div class="line"></div><div class="line"></div><div class="line">x = [<span class="number">1</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>]</div><div class="line">y = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>]</div><div class="line">all_unique(x) <span class="comment">## False</span></div><div class="line">all_unique(y) <span class="comment">## True</span></div></pre></td></tr></table></figure>
+<h2 id="字符元素组成判定"><a href="#字符元素组成判定" class="headerlink" title="字符元素组成判定"></a>字符元素组成判定</h2><p>检查两个字符串的组成元素是不是一样的</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">anagram</span><span class="params">(first, second)</span>:</span></div><div class="line">    <span class="keyword">return</span> Counter(first) == Counter(second)</div><div class="line"></div><div class="line">anagram(<span class="string">"abcd3"</span>, <span class="string">"3acdb"</span>) <span class="comment">## True</span></div></pre></td></tr></table></figure>
+<h2 id="内存占用"><a href="#内存占用" class="headerlink" title="内存占用"></a>内存占用</h2><p>下面的代码块可以检查变量 variable 所占用的内存</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">variable = <span class="number">30</span></div><div class="line">print(sys.getsizeof(variable)) <span class="comment">## 24</span></div></pre></td></tr></table></figure>
+<h2 id="字节占用"><a href="#字节占用" class="headerlink" title="字节占用"></a>字节占用</h2><p>下面的代码块可以检查字符串占用的字节数</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">byte_size</span><span class="params">(string)</span>:</span></div><div class="line">    <span class="keyword">return</span> len(string.encode(<span class="string">'utf-8'</span>))</div><div class="line"></div><div class="line">byte_size(<span class="string">''</span>) <span class="comment">## 4</span></div><div class="line">byte_size(<span class="string">'Hello World'</span>) <span class="comment">## 11</span></div></pre></td></tr></table></figure>
+<h2 id="打印-N-次字符串"><a href="#打印-N-次字符串" class="headerlink" title="打印 N 次字符串"></a>打印 N 次字符串</h2><p>该代码块不需要循环语句就能打印 N 次字符串</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">n = <span class="number">2</span></div><div class="line">s = <span class="string">"Programming"</span></div><div class="line">print(s * n)</div><div class="line"><span class="comment">## ProgrammingProgramming</span></div></pre></td></tr></table></figure>
+<h2 id="大写第一个字母"><a href="#大写第一个字母" class="headerlink" title="大写第一个字母"></a>大写第一个字母</h2><p>以下代码块会使用 title() 方法，从而大写字符串中每一个单词的首字母</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">s = <span class="string">"programming is awesome"</span></div><div class="line">print(s.title())</div><div class="line"><span class="comment">## Programming Is Awesome</span></div></pre></td></tr></table></figure>
+<h2 id="分块"><a href="#分块" class="headerlink" title="分块"></a>分块</h2><p>给定具体的大小，定义一个函数以按照这个大小切割列表</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">chunk</span><span class="params">(lst, size)</span>:</span></div><div class="line">    <span class="keyword">return</span> list(</div><div class="line">        map(<span class="keyword">lambda</span> x: lst[x * size:x * size + size],</div><div class="line">            list(range(<span class="number">0</span>, ceil(len(lst) / size)))))</div><div class="line"></div><div class="line">chunk([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>], <span class="number">2</span>)</div><div class="line"><span class="comment">## [[1,2],[3,4],5]</span></div></pre></td></tr></table></figure>
+<h2 id="压缩"><a href="#压缩" class="headerlink" title="压缩"></a>压缩</h2><p>这个方法可以将布尔型的值去掉，例如（False，None，0，“”），它使用 filter() 函数</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">compact</span><span class="params">(lst)</span>:</span></div><div class="line">    <span class="keyword">return</span> list(filter(bool, lst))</div><div class="line"></div><div class="line">compact([<span class="number">0</span>, <span class="number">1</span>, <span class="keyword">False</span>, <span class="number">2</span>, <span class="string">''</span>, <span class="number">3</span>, <span class="string">'a'</span>, <span class="string">'s'</span>, <span class="number">34</span>])</div><div class="line"><span class="comment">## [ 1, 2, 3, 'a', 's', 34 ]</span></div></pre></td></tr></table></figure>
+<h2 id="解包"><a href="#解包" class="headerlink" title="解包"></a>解包</h2><p>如下代码段可以将打包好的成对列表解开成两组不同的元组</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">array = [[<span class="string">'a'</span>, <span class="string">'b'</span>], [<span class="string">'c'</span>, <span class="string">'d'</span>], [<span class="string">'e'</span>, <span class="string">'f'</span>]]</div><div class="line">transposed = zip(*array)</div><div class="line">print(transposed)</div><div class="line"><span class="comment">## [('a', 'c', 'e'), ('b', 'd', 'f')]</span></div></pre></td></tr></table></figure>
+<h2 id="链式对比"><a href="#链式对比" class="headerlink" title="链式对比"></a>链式对比</h2><p>我们可以在一行代码中使用不同的运算符对比多个不同的元素</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">a = <span class="number">3</span></div><div class="line">print(<span class="number">2</span> &lt; a &lt; <span class="number">8</span>) <span class="comment">## True</span></div><div class="line">print(<span class="number">1</span> == a &lt; <span class="number">2</span>) <span class="comment">## False</span></div></pre></td></tr></table></figure>
+<h2 id="逗号连接"><a href="#逗号连接" class="headerlink" title="逗号连接"></a>逗号连接</h2><p>下面的代码可以将列表连接成单个字符串，且每一个元素间的分隔方式设置为了逗号</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">hobbies = [<span class="string">"basketball"</span>, <span class="string">"football"</span>, <span class="string">"swimming"</span>]</div><div class="line">print(<span class="string">"My hobbies are: "</span> + <span class="string">", "</span>.join(hobbies))</div><div class="line"><span class="comment">## My hobbies are: basketball, football, swimming</span></div></pre></td></tr></table></figure>
+<h2 id="元音统计"><a href="#元音统计" class="headerlink" title="元音统计"></a>元音统计</h2><p>以下方法将统计字符串中的元音 (‘a’, ‘e’, ‘i’, ‘o’, ‘u’) 的个数，它是通过正则表达式做的</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">count_vowels</span><span class="params">(str)</span>:</span></div><div class="line">    <span class="keyword">return</span> len(len(re.findall(<span class="string">r'[aeiou]'</span>, str, re.IGNORECASE)))</div><div class="line"></div><div class="line">count_vowels(<span class="string">'foobar'</span>) <span class="comment">## 3</span></div><div class="line">count_vowels(<span class="string">'gym'</span>) <span class="comment">## 0</span></div></pre></td></tr></table></figure>
+<h2 id="首字母小写"><a href="#首字母小写" class="headerlink" title="首字母小写"></a>首字母小写</h2><p>如下方法将令给定字符串的第一个字符统一为小写</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">decapitalize</span><span class="params">(string)</span>:</span></div><div class="line">    <span class="keyword">return</span> str[:<span class="number">1</span>].lower() + str[<span class="number">1</span>:]</div><div class="line"></div><div class="line">decapitalize(<span class="string">'FooBar'</span>) <span class="comment">## 'fooBar'</span></div><div class="line">decapitalize(<span class="string">'FooBar'</span>) <span class="comment">## 'fooBar'</span></div></pre></td></tr></table></figure>
+<h2 id="展开列表"><a href="#展开列表" class="headerlink" title="展开列表"></a>展开列表</h2><p>该方法将通过递归的方式将列表的嵌套展开为单个列表</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">spread</span><span class="params">(arg)</span>:</span></div><div class="line">    ret = []</div><div class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> arg:</div><div class="line">        <span class="keyword">if</span> isinstance(i, list):</div><div class="line">            ret.extend(i)</div><div class="line">    <span class="keyword">else</span>:</div><div class="line">        ret.append(i)</div><div class="line">    <span class="keyword">return</span> ret</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">deep_flatten</span><span class="params">(lst)</span>:</span></div><div class="line">    result = []</div><div class="line">    result.extend(</div><div class="line">        spread(list(map(<span class="keyword">lambda</span> x: deep_flatten(x) <span class="keyword">if</span> type(x) == list <span class="keyword">else</span> x, lst))))</div><div class="line">    <span class="keyword">return</span> result</div><div class="line"></div><div class="line">deep_flatten([<span class="number">1</span>, [<span class="number">2</span>], [[<span class="number">3</span>], <span class="number">4</span>], <span class="number">5</span>]) <span class="comment">## [1,2,3,4,5]</span></div></pre></td></tr></table></figure>
+<h2 id="列表的差"><a href="#列表的差" class="headerlink" title="列表的差"></a>列表的差</h2><p>该方法将返回第一个列表的元素，其不在第二个列表内。如果同时要反馈第二个列表独有的元素，还需要加一句 <code>set_b.difference(set_a)</code></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">difference</span><span class="params">(a, b)</span>:</span></div><div class="line">    set_a = set(a)</div><div class="line">    set_b = set(b)</div><div class="line">    comparison = set_a.difference(set_b)</div><div class="line">    <span class="keyword">return</span> list(comparison)</div><div class="line"></div><div class="line">difference([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>], [<span class="number">1</span>, <span class="number">2</span>, <span class="number">4</span>]) <span class="comment">## [3]</span></div></pre></td></tr></table></figure>
+<h2 id="通过函数取差"><a href="#通过函数取差" class="headerlink" title="通过函数取差"></a>通过函数取差</h2><p>如下方法首先会应用一个给定的函数，然后再返回应用函数后结果有差别的列表元素</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">difference_by</span><span class="params">(a, b, fn)</span>:</span></div><div class="line">    b = set(map(fn, b))</div><div class="line">    <span class="keyword">return</span> [item <span class="keyword">for</span> item <span class="keyword">in</span> a <span class="keyword">if</span> fn(item) <span class="keyword">not</span> <span class="keyword">in</span> b]</div><div class="line"></div><div class="line">difference_by([<span class="number">2.1</span>, <span class="number">1.2</span>], [<span class="number">2.3</span>, <span class="number">3.4</span>], floor) <span class="comment">## [1.2]</span></div><div class="line">difference_by([&#123;<span class="string">'x'</span>: <span class="number">2</span>&#125;, &#123;<span class="string">'x'</span>: <span class="number">1</span>&#125;], [&#123;<span class="string">'x'</span>: <span class="number">1</span>&#125;], <span class="keyword">lambda</span> v: v[<span class="string">'x'</span>])</div><div class="line"><span class="comment">## [ &#123; x: 2 &#125; ]</span></div></pre></td></tr></table></figure>
+<h2 id="链式函数调用"><a href="#链式函数调用" class="headerlink" title="链式函数调用"></a>链式函数调用</h2><p>你可以在一行代码内调用多个函数</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">add</span><span class="params">(a, b)</span>:</span></div><div class="line">    <span class="keyword">return</span> a + b</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">subtract</span><span class="params">(a, b)</span>:</span></div><div class="line">    <span class="keyword">return</span> a - b</div><div class="line"></div><div class="line">a, b = <span class="number">4</span>, <span class="number">5</span></div><div class="line">print((subtract <span class="keyword">if</span> a &gt; b <span class="keyword">else</span> add)(a, b)) <span class="comment">## 9</span></div></pre></td></tr></table></figure>
+<h2 id="检查重复项"><a href="#检查重复项" class="headerlink" title="检查重复项"></a>检查重复项</h2><p>如下代码将检查两个列表是不是有重复项</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">has_duplicates</span><span class="params">(lst)</span>:</span></div><div class="line">    <span class="keyword">return</span> len(lst) != len(set(lst))</div><div class="line"></div><div class="line">x = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">5</span>]</div><div class="line">y = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>]</div><div class="line">has_duplicates(x) <span class="comment">## True</span></div><div class="line">has_duplicates(y) <span class="comment">## False</span></div></pre></td></tr></table></figure>
+<h2 id="合并两个字典"><a href="#合并两个字典" class="headerlink" title="合并两个字典"></a>合并两个字典</h2><p>下面的方法将用于合并两个字典</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">merge_two_dicts</span><span class="params">(a, b)</span>:</span></div><div class="line">    c = a.copy() <span class="comment">## make a copy of a</span></div><div class="line">    c.update(b) <span class="comment">## modify keys and values of a with the ones from b</span></div><div class="line">    <span class="keyword">return</span> c</div><div class="line"></div><div class="line">a = &#123;<span class="string">'x'</span>: <span class="number">1</span>, <span class="string">'y'</span>: <span class="number">2</span>&#125;</div><div class="line">b = &#123;<span class="string">'y'</span>: <span class="number">3</span>, <span class="string">'z'</span>: <span class="number">4</span>&#125;</div><div class="line">print(merge_two_dicts(a, b))</div><div class="line"><span class="comment">## &#123;'y': 3, 'x': 1, 'z': 4&#125;</span></div></pre></td></tr></table></figure>
+<p>在 Python 3.5 或更高版本中，我们也可以用以下方式合并字典<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">merge_dictionaries</span><span class="params">(a, b)</span>:</span></div><div class="line">    <span class="keyword">return</span> &#123;**a, **b&#125;</div><div class="line"></div><div class="line">a = &#123;<span class="string">'x'</span>: <span class="number">1</span>, <span class="string">'y'</span>: <span class="number">2</span>&#125;</div><div class="line">b = &#123;<span class="string">'y'</span>: <span class="number">3</span>, <span class="string">'z'</span>: <span class="number">4</span>&#125;</div><div class="line">print(merge_dictionaries(a, b))</div><div class="line"><span class="comment">## &#123;'y': 3, 'x': 1, 'z': 4&#125;</span></div></pre></td></tr></table></figure></p>
+<h2 id="将两个列表转化为字典"><a href="#将两个列表转化为字典" class="headerlink" title="将两个列表转化为字典"></a>将两个列表转化为字典</h2><p>如下方法将会把两个列表转化为单个字典</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">to_dictionary</span><span class="params">(keys, values)</span>:</span></div><div class="line">    <span class="keyword">return</span> dict(zip(keys, values))</div><div class="line"></div><div class="line">keys = [<span class="string">"a"</span>, <span class="string">"b"</span>, <span class="string">"c"</span>]</div><div class="line">values = [<span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>]</div><div class="line">print(to_dictionary(keys, values))</div><div class="line"><span class="comment">## &#123;'a': 2, 'c': 4, 'b': 3&#125;</span></div></pre></td></tr></table></figure>
+<h2 id="使用枚举"><a href="#使用枚举" class="headerlink" title="使用枚举"></a>使用枚举</h2><p>我们常用 For 循环来遍历某个列表，同样我们也能枚举列表的索引与值</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">list = [<span class="string">"a"</span>, <span class="string">"b"</span>, <span class="string">"c"</span>, <span class="string">"d"</span>]</div><div class="line"><span class="keyword">for</span> index, element <span class="keyword">in</span> enumerate(list):</div><div class="line">    print(<span class="string">"Value"</span>, element, <span class="string">"Index "</span>, index, )</div><div class="line"><span class="comment">## ('Value', 'a', 'Index ', 0)</span></div><div class="line"><span class="comment">## ('Value', 'b', 'Index ', 1)</span></div><div class="line"><span class="comment">## ('Value', 'c', 'Index ', 2)</span></div><div class="line"><span class="comment">## ('Value', 'd', 'Index ', 3)</span></div></pre></td></tr></table></figure>
+<h2 id="执行时间"><a href="#执行时间" class="headerlink" title="执行时间"></a>执行时间</h2><p>如下代码块可以用来计算执行特定代码所花费的时间</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">start_time = time.time()</div><div class="line">a = <span class="number">1</span></div><div class="line">b = <span class="number">2</span></div><div class="line">c = a + b</div><div class="line">print(c) <span class="comment">## 3</span></div><div class="line">end_time = time.time()</div><div class="line">total_time = end_time - start_time</div><div class="line">print(<span class="string">"Time: "</span>, total_time)</div><div class="line"><span class="comment">## ('Time: ', 1.1205673217773438e-05)</span></div></pre></td></tr></table></figure>
+<h2 id="Try-else"><a href="#Try-else" class="headerlink" title="Try else"></a>Try else</h2><p>我们在使用 try/except 语句的时候也可以加一个 else 子句，如果没有触发错误的话，这个子句就会被运行</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">try</span>:</div><div class="line">    <span class="number">2</span> * <span class="number">3</span></div><div class="line"><span class="keyword">except</span> TypeError:</div><div class="line">    print(<span class="string">"An exception was raised"</span>)</div><div class="line"><span class="keyword">else</span>:</div><div class="line">    print(<span class="string">"Thank God, no exceptions were raised."</span>)</div><div class="line"></div><div class="line"><span class="comment">## Thank God, no exceptions were raised.</span></div></pre></td></tr></table></figure>
+<h2 id="元素频率"><a href="#元素频率" class="headerlink" title="元素频率"></a>元素频率</h2><p>下面的方法会根据元素频率取列表中最常见的元素</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">most_frequent</span><span class="params">(list)</span>:</span></div><div class="line">    <span class="keyword">return</span> max(set(list), key=list.count)</div><div class="line"></div><div class="line">list = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">2</span>, <span class="number">1</span>, <span class="number">4</span>, <span class="number">2</span>]</div><div class="line">most_frequent(list)</div></pre></td></tr></table></figure>
+<h2 id="回文序列"><a href="#回文序列" class="headerlink" title="回文序列"></a>回文序列</h2><p>以下方法会检查给定的字符串是不是回文序列，它首先会把所有字母转化为小写，并移除非英文字母符号。最后，它会对比字符串与反向字符串是否相等，相等则表示为回文序列。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">palindrome</span><span class="params">(string)</span>:</span></div><div class="line">    <span class="keyword">from</span> re <span class="keyword">import</span> sub</div><div class="line">    s = sub(<span class="string">'[\W_]'</span>, <span class="string">''</span>, string.lower())</div><div class="line">    <span class="keyword">return</span> s == s[::<span class="number">-1</span>]</div><div class="line"></div><div class="line">palindrome(<span class="string">'taco cat'</span>) <span class="comment">## True</span></div></pre></td></tr></table></figure>
+<h2 id="不使用-if-else-的计算子"><a href="#不使用-if-else-的计算子" class="headerlink" title="不使用 if-else 的计算子"></a>不使用 if-else 的计算子</h2><p>这一段代码可以不使用条件语句就实现加减乘除、求幂操作，它通过字典这一数据结构实现：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> operator</div><div class="line"></div><div class="line">action = &#123;</div><div class="line">    <span class="string">"+"</span>: operator.add,</div><div class="line">    <span class="string">"-"</span>: operator.sub,</div><div class="line">    <span class="string">"/"</span>: operator.truediv,</div><div class="line">    <span class="string">"*"</span>: operator.mul,</div><div class="line">    <span class="string">"**"</span>: pow</div><div class="line">&#125;</div><div class="line">print(action[<span class="string">'-'</span>](<span class="number">50</span>, <span class="number">25</span>)) <span class="comment">## 25</span></div></pre></td></tr></table></figure>
+<h2 id="Shuffle"><a href="#Shuffle" class="headerlink" title="Shuffle"></a>Shuffle</h2><p>该算法会打乱列表元素的顺序，它主要会通过 Fisher-Yates 算法对新列表进行排序：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> copy <span class="keyword">import</span> deepcopy</div><div class="line"><span class="keyword">from</span> random <span class="keyword">import</span> randint</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">shuffle</span><span class="params">(lst)</span>:</span></div><div class="line">    temp_lst = deepcopy(lst)</div><div class="line">    m = len(temp_lst)</div><div class="line">    <span class="keyword">while</span> (m):</div><div class="line">        m -= <span class="number">1</span></div><div class="line">    i = randint(<span class="number">0</span>, m)</div><div class="line">    temp_lst[m], temp_lst[i] = temp_lst[i], temp_lst[m]</div><div class="line">    <span class="keyword">return</span> temp_lst</div><div class="line"></div><div class="line">foo = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</div><div class="line">shuffle(foo) <span class="comment">## [2,3,1] , foo = [1,2,3]</span></div></pre></td></tr></table></figure>
+<h2 id="展开列表-1"><a href="#展开列表-1" class="headerlink" title="展开列表"></a>展开列表</h2><p>将列表内的所有元素，包括子列表，都展开成一个列表</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">spread</span><span class="params">(arg)</span>:</span></div><div class="line">    ret = []</div><div class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> arg:</div><div class="line">        <span class="keyword">if</span> isinstance(i, list):</div><div class="line">            ret.extend(i)</div><div class="line">    <span class="keyword">else</span>:</div><div class="line">        ret.append(i)</div><div class="line">    <span class="keyword">return</span> ret</div><div class="line"></div><div class="line">spread([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, [<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>], [<span class="number">7</span>], <span class="number">8</span>, <span class="number">9</span>]) <span class="comment">## [1,2,3,4,5,6,7,8,9]</span></div></pre></td></tr></table></figure>
+<h2 id="交换值"><a href="#交换值" class="headerlink" title="交换值"></a>交换值</h2><p>不需要额外的操作就能交换两个变量的值</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">swap</span><span class="params">(a, b)</span>:</span></div><div class="line">    <span class="keyword">return</span> b, a</div><div class="line"></div><div class="line">a, b = <span class="number">-1</span>, <span class="number">14</span></div><div class="line">swap(a, b) <span class="comment">## (14, -1)</span></div><div class="line">spread([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, [<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>], [<span class="number">7</span>], <span class="number">8</span>, <span class="number">9</span>]) <span class="comment">## [1,2,3,4,5,6,7,8,9]</span></div></pre></td></tr></table></figure>
+<h2 id="字典默认值"><a href="#字典默认值" class="headerlink" title="字典默认值"></a>字典默认值</h2><p>通过 Key 取对应的 Value 值，可以通过以下方式设置默认值。如果 get() 方法没有设置默认值，那么如果遇到不存在的 Key，则会返回 None</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">d = &#123;<span class="string">'a'</span>: <span class="number">1</span>, <span class="string">'b'</span>: <span class="number">2</span>&#125;</div><div class="line">print(d.get(<span class="string">'c'</span>, <span class="number">3</span>)) <span class="comment">## 3</span></div></pre></td></tr></table></figure>
+<p>参考：<br><a href="https://towardsdatascience.com/30-helpful-python-snippets-that-you-can-learn-in-30-seconds-or-less-69bb49204172" target="_blank" rel="external">towardsdatascience</a></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/PYTHON/" rel="tag"># PYTHON</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/09/29/chrome-plugin-vimium/" rel="next" title="Vimium使用">
+                <i class="fa fa-chevron-left"></i> Vimium使用
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_cqq"></a>
+  <a class="jiathis_button_douban"></a>
+  <a class="jiathis_button_renren"></a>
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a class="jiathis_button_copy"></a>
+  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+  var jiathis_config={
+    hideMore:false
+  }
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/default_avatar.jpg"
+               alt="Mufool" />
+          <p class="site-author-name" itemprop="name">Mufool</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">76</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">38</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/mufool/" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="your-weibo-url" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  Weibo
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="your-zhihu-url" target="_blank" title="ZhiHu">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  ZhiHu
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+          <div class="cc-license motion-element" itemprop="license">
+            <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" target="_blank">
+              <img src="/images/cc-by-nc-sa.svg" alt="Creative Commons" />
+            </a>
+          </div>
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#重复元素判定"><span class="nav-number">1.</span> <span class="nav-text">重复元素判定</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#字符元素组成判定"><span class="nav-number">2.</span> <span class="nav-text">字符元素组成判定</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#内存占用"><span class="nav-number">3.</span> <span class="nav-text">内存占用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#字节占用"><span class="nav-number">4.</span> <span class="nav-text">字节占用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#打印-N-次字符串"><span class="nav-number">5.</span> <span class="nav-text">打印 N 次字符串</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#大写第一个字母"><span class="nav-number">6.</span> <span class="nav-text">大写第一个字母</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#分块"><span class="nav-number">7.</span> <span class="nav-text">分块</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#压缩"><span class="nav-number">8.</span> <span class="nav-text">压缩</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解包"><span class="nav-number">9.</span> <span class="nav-text">解包</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#链式对比"><span class="nav-number">10.</span> <span class="nav-text">链式对比</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#逗号连接"><span class="nav-number">11.</span> <span class="nav-text">逗号连接</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#元音统计"><span class="nav-number">12.</span> <span class="nav-text">元音统计</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#首字母小写"><span class="nav-number">13.</span> <span class="nav-text">首字母小写</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#展开列表"><span class="nav-number">14.</span> <span class="nav-text">展开列表</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#列表的差"><span class="nav-number">15.</span> <span class="nav-text">列表的差</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#通过函数取差"><span class="nav-number">16.</span> <span class="nav-text">通过函数取差</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#链式函数调用"><span class="nav-number">17.</span> <span class="nav-text">链式函数调用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#检查重复项"><span class="nav-number">18.</span> <span class="nav-text">检查重复项</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#合并两个字典"><span class="nav-number">19.</span> <span class="nav-text">合并两个字典</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#将两个列表转化为字典"><span class="nav-number">20.</span> <span class="nav-text">将两个列表转化为字典</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用枚举"><span class="nav-number">21.</span> <span class="nav-text">使用枚举</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#执行时间"><span class="nav-number">22.</span> <span class="nav-text">执行时间</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Try-else"><span class="nav-number">23.</span> <span class="nav-text">Try else</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#元素频率"><span class="nav-number">24.</span> <span class="nav-text">元素频率</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#回文序列"><span class="nav-number">25.</span> <span class="nav-text">回文序列</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#不使用-if-else-的计算子"><span class="nav-number">26.</span> <span class="nav-text">不使用 if-else 的计算子</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Shuffle"><span class="nav-number">27.</span> <span class="nav-text">Shuffle</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#展开列表-1"><span class="nav-number">28.</span> <span class="nav-text">展开列表</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#交换值"><span class="nav-number">29.</span> <span class="nav-text">交换值</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#字典默认值"><span class="nav-number">30.</span> <span class="nav-text">字典默认值</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Mufool</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+  
+  <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://www-mufool-com.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://mufool.com/2019/10/08/python-mini/';
+          this.page.identifier = '2019/10/08/python-mini/';
+          this.page.title = '极简Python代码';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://www-mufool-com.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
