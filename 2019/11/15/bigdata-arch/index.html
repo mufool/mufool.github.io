@@ -103,27 +103,27 @@
 <meta property="og:site_name" content="Mufool">
 <meta property="og:description" content="[TOC] 大数据平台架构演进经典数仓架构在类似于Hadoop系列的大数据分析系统大行其道之前，数据分析工作已经经历了长足的发展，尤其是以BI系统为主的数据分析，已经有了非常成熟和稳定的技术方案和生态系统，对于BI系统来说，大概的架构图如下：">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://mufool.com/2019/11/15/bigdata-arch/index_files/33ec90c2-5af5-4890-ba8a-3b1e6c4ef308.jpg">
-<meta property="og:image" content="http://mufool.com/2019/11/15/bigdata-arch/index_files/f2e45286-90f3-406f-b41b-f3ed2c91b5ad.jpg">
-<meta property="og:image" content="http://mufool.com/2019/11/15/bigdata-arch/index_files/d25852dd-5630-40f3-a869-b8da8a04632f.jpg">
-<meta property="og:image" content="http://mufool.com/2019/11/15/bigdata-arch/index_files/062a8ce0-0234-4ff0-a841-90caf5d5f147.jpg">
-<meta property="og:image" content="http://mufool.com/2019/11/15/bigdata-arch/index_files/06dbac82-5e05-4c75-9b6e-c5d2dbcf77f1.jpg">
-<meta property="og:image" content="http://mufool.com/2019/11/15/bigdata-arch/index_files/2ee1801d-6df4-41e5-ac78-251e5b27a769.jpg">
-<meta property="og:image" content="http://mufool.com/2019/11/15/bigdata-arch/index_files/676ce0e1-33e5-4d6b-b9d2-fd2f3230447a.jpg">
-<meta property="og:image" content="http://mufool.com/2019/11/15/bigdata-arch/index_files/d1d1abbd-f5f4-4a98-8982-03a58df0d29e.jpg">
-<meta property="og:image" content="http://mufool.com/2019/11/15/bigdata-arch/index_files/0052454c-adb1-450d-92c9-f03e3a06715a.jpg">
-<meta property="og:image" content="http://mufool.com/2019/11/15/bigdata-arch/index_files/c30fe1a6-e43e-412e-aebe-7166398c21d2.jpg">
-<meta property="og:image" content="http://mufool.com/2019/11/15/bigdata-arch/index_files/0d049969-c592-4801-8be5-3477087a5a33.jpg">
-<meta property="og:image" content="http://mufool.com/2019/11/15/bigdata-arch/index_files/e7b21201-0491-4a63-9917-eb6379582802.jpg">
-<meta property="og:image" content="http://mufool.com/2019/11/15/bigdata-arch/index_files/51fe93ff-603f-4a29-944d-6118c79710b9.jpg">
-<meta property="og:image" content="http://mufool.com/2019/11/15/bigdata-arch/index_files/74393c7a-9302-467a-86e9-afd19f4870d2.jpg">
-<meta property="og:image" content="http://mufool.com/2019/11/15/bigdata-arch/index_files/b1156a4f-9232-4013-9bac-ff330ad5d39f.jpg">
-<meta property="og:image" content="http://mufool.com/2019/11/15/bigdata-arch/index_files/f4473243-dd26-4e2e-8340-0df8587c329f.jpg">
-<meta property="og:updated_time" content="2019-11-15T04:07:11.533Z">
+<meta property="og:image" content="http://vipkshttp0.wiz.cn/ks/share/resources/fd990112-4dfa-11e0-afe0-051e8648d75b/2b8b91fd-3dba-45bc-ba62-65a5004a96b5/index_files/33ec90c2-5af5-4890-ba8a-3b1e6c4ef308.jpg">
+<meta property="og:image" content="http://vipkshttp0.wiz.cn/ks/share/resources/fd990112-4dfa-11e0-afe0-051e8648d75b/2b8b91fd-3dba-45bc-ba62-65a5004a96b5/index_files/f2e45286-90f3-406f-b41b-f3ed2c91b5ad.jpg">
+<meta property="og:image" content="http://vipkshttp0.wiz.cn/ks/share/resources/fd990112-4dfa-11e0-afe0-051e8648d75b/2b8b91fd-3dba-45bc-ba62-65a5004a96b5/index_files/d25852dd-5630-40f3-a869-b8da8a04632f.jpg">
+<meta property="og:image" content="http://vipkshttp0.wiz.cn/ks/share/resources/fd990112-4dfa-11e0-afe0-051e8648d75b/2b8b91fd-3dba-45bc-ba62-65a5004a96b5/index_files/062a8ce0-0234-4ff0-a841-90caf5d5f147.jpg">
+<meta property="og:image" content="http://vipkshttp0.wiz.cn/ks/share/resources/fd990112-4dfa-11e0-afe0-051e8648d75b/2b8b91fd-3dba-45bc-ba62-65a5004a96b5/index_files/06dbac82-5e05-4c75-9b6e-c5d2dbcf77f1.jpg">
+<meta property="og:image" content="http://vipkshttp0.wiz.cn/ks/share/resources/fd990112-4dfa-11e0-afe0-051e8648d75b/2b8b91fd-3dba-45bc-ba62-65a5004a96b5/index_files/2ee1801d-6df4-41e5-ac78-251e5b27a769.jpg">
+<meta property="og:image" content="http://vipkshttp0.wiz.cn/ks/share/resources/fd990112-4dfa-11e0-afe0-051e8648d75b/2b8b91fd-3dba-45bc-ba62-65a5004a96b5/index_files/676ce0e1-33e5-4d6b-b9d2-fd2f3230447a.jpg">
+<meta property="og:image" content="http://vipkshttp0.wiz.cn/ks/share/resources/fd990112-4dfa-11e0-afe0-051e8648d75b/2b8b91fd-3dba-45bc-ba62-65a5004a96b5/index_files/d1d1abbd-f5f4-4a98-8982-03a58df0d29e.jpg">
+<meta property="og:image" content="http://vipkshttp0.wiz.cn/ks/share/resources/fd990112-4dfa-11e0-afe0-051e8648d75b/2b8b91fd-3dba-45bc-ba62-65a5004a96b5/index_files/0052454c-adb1-450d-92c9-f03e3a06715a.jpg">
+<meta property="og:image" content="http://vipkshttp0.wiz.cn/ks/share/resources/fd990112-4dfa-11e0-afe0-051e8648d75b/2b8b91fd-3dba-45bc-ba62-65a5004a96b5/index_files/c30fe1a6-e43e-412e-aebe-7166398c21d2.jpg">
+<meta property="og:image" content="http://vipkshttp0.wiz.cn/ks/share/resources/fd990112-4dfa-11e0-afe0-051e8648d75b/2b8b91fd-3dba-45bc-ba62-65a5004a96b5/index_files/0d049969-c592-4801-8be5-3477087a5a33.jpg">
+<meta property="og:image" content="http://vipkshttp0.wiz.cn/ks/share/resources/fd990112-4dfa-11e0-afe0-051e8648d75b/2b8b91fd-3dba-45bc-ba62-65a5004a96b5/index_files/e7b21201-0491-4a63-9917-eb6379582802.jpg">
+<meta property="og:image" content="http://vipkshttp0.wiz.cn/ks/share/resources/fd990112-4dfa-11e0-afe0-051e8648d75b/2b8b91fd-3dba-45bc-ba62-65a5004a96b5/index_files/51fe93ff-603f-4a29-944d-6118c79710b9.jpg">
+<meta property="og:image" content="http://vipkshttp0.wiz.cn/ks/share/resources/fd990112-4dfa-11e0-afe0-051e8648d75b/2b8b91fd-3dba-45bc-ba62-65a5004a96b5/index_files/74393c7a-9302-467a-86e9-afd19f4870d2.jpg">
+<meta property="og:image" content="http://vipkshttp0.wiz.cn/ks/share/resources/fd990112-4dfa-11e0-afe0-051e8648d75b/2b8b91fd-3dba-45bc-ba62-65a5004a96b5/index_files/b1156a4f-9232-4013-9bac-ff330ad5d39f.jpg">
+<meta property="og:image" content="http://vipkshttp0.wiz.cn/ks/share/resources/fd990112-4dfa-11e0-afe0-051e8648d75b/2b8b91fd-3dba-45bc-ba62-65a5004a96b5/index_files/f4473243-dd26-4e2e-8340-0df8587c329f.jpg">
+<meta property="og:updated_time" content="2019-11-15T04:40:03.520Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="大数据平台架构">
 <meta name="twitter:description" content="[TOC] 大数据平台架构演进经典数仓架构在类似于Hadoop系列的大数据分析系统大行其道之前，数据分析工作已经经历了长足的发展，尤其是以BI系统为主的数据分析，已经有了非常成熟和稳定的技术方案和生态系统，对于BI系统来说，大概的架构图如下：">
-<meta name="twitter:image" content="http://mufool.com/2019/11/15/bigdata-arch/index_files/33ec90c2-5af5-4890-ba8a-3b1e6c4ef308.jpg">
+<meta name="twitter:image" content="http://vipkshttp0.wiz.cn/ks/share/resources/fd990112-4dfa-11e0-afe0-051e8648d75b/2b8b91fd-3dba-45bc-ba62-65a5004a96b5/index_files/33ec90c2-5af5-4890-ba8a-3b1e6c4ef308.jpg">
 
 
 
@@ -407,7 +407,7 @@
       
         <p>[TOC]</p>
 <h2 id="大数据平台架构演进"><a href="#大数据平台架构演进" class="headerlink" title="大数据平台架构演进"></a>大数据平台架构演进</h2><h3 id="经典数仓架构"><a href="#经典数仓架构" class="headerlink" title="经典数仓架构"></a>经典数仓架构</h3><p>在类似于Hadoop系列的大数据分析系统大行其道之前，数据分析工作已经经历了长足的发展，尤其是以BI系统为主的数据分析，已经有了非常成熟和稳定的技术方案和生态系统，对于BI系统来说，大概的架构图如下：</p>
-<p><img src="index_files/33ec90c2-5af5-4890-ba8a-3b1e6c4ef308.jpg" alt=""></p>
+<p><img src="http://vipkshttp0.wiz.cn/ks/share/resources/fd990112-4dfa-11e0-afe0-051e8648d75b/2b8b91fd-3dba-45bc-ba62-65a5004a96b5/index_files/33ec90c2-5af5-4890-ba8a-3b1e6c4ef308.jpg" alt=""></p>
 <a id="more"></a>
 <p>可以看到在BI系统里面，核心的模块是Cube，Cube是一个更高层的业务模型抽象，在Cube之上可以进行多种操作，例如上钻、下钻、切片等操作。大部分BI系统都基于关系型数据库，关系型数据库使用SQL语句进行操作，但是SQL在多维操作和分析的表示能力上相对较弱，所以Cube有自己独有的查询语言MDX，MDX表达式具有更强的多维表现能力，所以以Cube为核心的分析系统基本占据着数据统计分析的半壁江山，大多数的数据库服务厂商直接提供了BI套装软件服务，轻易便可搭建出一套Olap分析系统。不过BI的问题也随着时间的推移逐渐显露出来：</p>
 <ul>
@@ -441,7 +441,7 @@
 </li>
 </ul>
 <p>总的来说，目前围绕Hadoop体系的大数据架构大概有以下几种：</p>
-<h3 id="传统大数据架构"><a href="#传统大数据架构" class="headerlink" title="传统大数据架构"></a>传统大数据架构</h3><p><img src="index_files/f2e45286-90f3-406f-b41b-f3ed2c91b5ad.jpg" alt=""></p>
+<h3 id="传统大数据架构"><a href="#传统大数据架构" class="headerlink" title="传统大数据架构"></a>传统大数据架构</h3><p><img src="http://vipkshttp0.wiz.cn/ks/share/resources/fd990112-4dfa-11e0-afe0-051e8648d75b/2b8b91fd-3dba-45bc-ba62-65a5004a96b5/index_files/f2e45286-90f3-406f-b41b-f3ed2c91b5ad.jpg" alt=""></p>
 <p>之所以叫传统大数据架构，是因为其定位是为了解决传统BI的问题，简单来说，数据分析的业务没有发生任何变化，但是因为数据量、性能等问题导致系统无法正常使用，需要进行升级改造，那么此类架构便是为了解决这个问题。可以看到，其依然保留了ETL的动作，将数据经过ETL动作进入数据存储。</p>
 <ul>
 <li><p>优点：简单，易懂，对于BI系统来说，基本思想没有发生变化，变化的仅仅是技术选型，用大数据架构替换掉BI的组件。</p>
@@ -451,7 +451,7 @@
 <li><p>适用场景：数据分析需求依旧以BI场景为主，但是因为数据量、性能等问题无法满足日常使用。</p>
 </li>
 </ul>
-<h3 id="流式架构"><a href="#流式架构" class="headerlink" title="流式架构"></a>流式架构</h3><p><img src="index_files/d25852dd-5630-40f3-a869-b8da8a04632f.jpg" alt=""></p>
+<h3 id="流式架构"><a href="#流式架构" class="headerlink" title="流式架构"></a>流式架构</h3><p><img src="http://vipkshttp0.wiz.cn/ks/share/resources/fd990112-4dfa-11e0-afe0-051e8648d75b/2b8b91fd-3dba-45bc-ba62-65a5004a96b5/index_files/d25852dd-5630-40f3-a869-b8da8a04632f.jpg" alt=""></p>
 <p>在传统大数据架构的基础上，流式架构非常激进，直接拔掉了批处理，数据全程以流的形式处理，所以在数据接入端没有了ETL，转而替换为数据通道。经过流处理加工后的数据，以消息的形式直接推送给了消费者。虽然有一个存储部分，但是该存储更多的以窗口的形式进行存储，所以该存储并非发生在数据湖，而是在外围系统。</p>
 <ul>
 <li><p>优点：没有臃肿的ETL过程，数据的实效性非常高。</p>
@@ -461,10 +461,10 @@
 <li><p>适用场景：预警，监控，对数据有有效期要求的情况。</p>
 </li>
 </ul>
-<h3 id="Lambda架构"><a href="#Lambda架构" class="headerlink" title="Lambda架构"></a>Lambda架构</h3><p><img src="index_files/062a8ce0-0234-4ff0-a841-90caf5d5f147.jpg" alt=""></p>
+<h3 id="Lambda架构"><a href="#Lambda架构" class="headerlink" title="Lambda架构"></a>Lambda架构</h3><p><img src="http://vipkshttp0.wiz.cn/ks/share/resources/fd990112-4dfa-11e0-afe0-051e8648d75b/2b8b91fd-3dba-45bc-ba62-65a5004a96b5/index_files/062a8ce0-0234-4ff0-a841-90caf5d5f147.jpg" alt=""></p>
 <p>Lambda架构算是大数据系统里面举足轻重的架构，大多数架构基本都是Lambda架构或者基于其变种的架构。Lambda的数据通道分为两条分支：实时流和离线。</p>
 <p>实时流依照流式架构，保障了其实时性，而离线则以批处理方式为主，保障了最终一致性。什么意思呢？流式通道处理为保障实效性更多的以增量计算为主辅助参考，而批处理层则对数据进行全量运算，保障其最终的一致性，因此Lambda最外层有一个实时层和离线层合并的动作，此动作是Lambda里非常重要的一个动作，大概的合并思路如下：</p>
-<p><img src="index_files/06dbac82-5e05-4c75-9b6e-c5d2dbcf77f1.jpg" alt=""></p>
+<p><img src="http://vipkshttp0.wiz.cn/ks/share/resources/fd990112-4dfa-11e0-afe0-051e8648d75b/2b8b91fd-3dba-45bc-ba62-65a5004a96b5/index_files/06dbac82-5e05-4c75-9b6e-c5d2dbcf77f1.jpg" alt=""></p>
 <ul>
 <li><p>优点：既有实时又有离线，对于数据分析场景涵盖的非常到位。</p>
 </li>
@@ -473,7 +473,7 @@
 <li><p>适用场景：同时存在实时和离线需求的情况。</p>
 </li>
 </ul>
-<h3 id="Kappa架构"><a href="#Kappa架构" class="headerlink" title="Kappa架构"></a>Kappa架构</h3><p><img src="index_files/2ee1801d-6df4-41e5-ac78-251e5b27a769.jpg" alt=""></p>
+<h3 id="Kappa架构"><a href="#Kappa架构" class="headerlink" title="Kappa架构"></a>Kappa架构</h3><p><img src="http://vipkshttp0.wiz.cn/ks/share/resources/fd990112-4dfa-11e0-afe0-051e8648d75b/2b8b91fd-3dba-45bc-ba62-65a5004a96b5/index_files/2ee1801d-6df4-41e5-ac78-251e5b27a769.jpg" alt=""></p>
 <p>Kappa架构在Lambda 的基础上进行了优化，将实时和流部分进行了合并，将数据通道以消息队列进行替代。因此对于Kappa架构来说，依旧以流处理为主，但是数据却在数据湖层面进行了存储，当需要进行离线分析或者再次计算的时候，则将数据湖的数据再次经过消息队列重播一次则可。</p>
 <ul>
 <li><p>优点：Kappa架构解决了Lambda架构里面的冗余部分，以数据可重播的超凡脱俗的思想进行了设计，整个架构非常简洁。</p>
@@ -483,7 +483,7 @@
 <li><p>适用场景：和Lambda类似，改架构是针对Lambda的优化。</p>
 </li>
 </ul>
-<h3 id="Unifield架构"><a href="#Unifield架构" class="headerlink" title="Unifield架构"></a>Unifield架构</h3><p><img src="index_files/676ce0e1-33e5-4d6b-b9d2-fd2f3230447a.jpg" alt=""></p>
+<h3 id="Unifield架构"><a href="#Unifield架构" class="headerlink" title="Unifield架构"></a>Unifield架构</h3><p><img src="http://vipkshttp0.wiz.cn/ks/share/resources/fd990112-4dfa-11e0-afe0-051e8648d75b/2b8b91fd-3dba-45bc-ba62-65a5004a96b5/index_files/676ce0e1-33e5-4d6b-b9d2-fd2f3230447a.jpg" alt=""></p>
 <p>以上的种种架构都围绕海量数据处理为主，Unifield架构则更激进，将机器学习和数据处理揉为一体，从核心上来说，Unifield依旧以Lambda为主，不过对其进行了改造，在流处理层新增了机器学习层。可以看到数据在经过数据通道进入数据湖后，新增了模型训练部分，并且将其在流式层进行使用。同时流式层不单使用模型，也包含着对模型的持续训练。</p>
 <ul>
 <li><p>优点：Unifield架构提供了一套数据分析和机器学习结合的架构方案，非常好的解决了机器学习如何与数据平台进行结合的问题。</p>
@@ -494,7 +494,7 @@
 </li>
 </ul>
 <h3 id="IOTA架构"><a href="#IOTA架构" class="headerlink" title="IOTA架构"></a>IOTA架构</h3><p>在IOT大潮下，智能手机、PC、智能硬件设备的计算能力越来越强，而业务需求要求数据实时响应需求能力也越来越强，过去传统的中心化、非实时化数据处理的思路已经不适应现在的大数据分析需求，我提出新一代的大数据IOTA架构来解决上述问题，整体思路是设定标准数据模型，通过边缘计算技术把所有的计算过程分散在数据产生、计算和查询过程当中，以统一的数据模型贯穿始终，从而提高整体的预算效率，同时满足即时计算的需要，可以使用各种Ad-hoc Query来查询底层数据。</p>
-<p><img src="index_files/d1d1abbd-f5f4-4a98-8982-03a58df0d29e.jpg" alt=""></p>
+<p><img src="http://vipkshttp0.wiz.cn/ks/share/resources/fd990112-4dfa-11e0-afe0-051e8648d75b/2b8b91fd-3dba-45bc-ba62-65a5004a96b5/index_files/d1d1abbd-f5f4-4a98-8982-03a58df0d29e.jpg" alt=""></p>
 <p>优点：</p>
 <ul>
 <li><p>去ETL化：ETL和相关开发一直是大数据处理的痛点。TA架构通过Common Data Model的设计，专注在某一个具体领域的数据计算，从而可以从SDK端开始计算，中央端只做采集、建立索引和查询，提高整体数据分析的效率</p>
@@ -504,19 +504,19 @@
 <li><p>边缘计算（Edge-Computing）：将过去统一到中央进行整体计算，分散到数据产生、存储和查询端，数据产生既符合Common Data Model。同时，也给与Realtime model feedback，让客户端传送数据的同时马上进行反馈，而不需要所有事件都要到中央端处理之后再进行下发。</p>
 </li>
 </ul>
-<h2 id="互联网公司大数据平台架构"><a href="#互联网公司大数据平台架构" class="headerlink" title="互联网公司大数据平台架构"></a>互联网公司大数据平台架构</h2><h3 id="阿里巴巴"><a href="#阿里巴巴" class="headerlink" title="阿里巴巴"></a>阿里巴巴</h3><p><img src="index_files/0052454c-adb1-450d-92c9-f03e3a06715a.jpg" alt=""></p>
-<p><img src="index_files/c30fe1a6-e43e-412e-aebe-7166398c21d2.jpg" alt=""></p>
+<h2 id="互联网公司大数据平台架构"><a href="#互联网公司大数据平台架构" class="headerlink" title="互联网公司大数据平台架构"></a>互联网公司大数据平台架构</h2><h3 id="阿里巴巴"><a href="#阿里巴巴" class="headerlink" title="阿里巴巴"></a>阿里巴巴</h3><p><img src="http://vipkshttp0.wiz.cn/ks/share/resources/fd990112-4dfa-11e0-afe0-051e8648d75b/2b8b91fd-3dba-45bc-ba62-65a5004a96b5/index_files/0052454c-adb1-450d-92c9-f03e3a06715a.jpg" alt=""></p>
+<p><img src="http://vipkshttp0.wiz.cn/ks/share/resources/fd990112-4dfa-11e0-afe0-051e8648d75b/2b8b91fd-3dba-45bc-ba62-65a5004a96b5/index_files/c30fe1a6-e43e-412e-aebe-7166398c21d2.jpg" alt=""></p>
 <p><a href="https://zhuanlan.zhihu.com/p/82258807" target="_blank" rel="external">阿里巴巴飞天大数据架构体系与Hadoop生态系统</a><br><a href="https://mp.weixin.qq.com/s/PUM-uA55E24LSHq4InQwSg" target="_blank" rel="external">大数据架构体系与Hadoop生态系统</a></p>
-<h3 id="酷狗音乐的大数据平台架构"><a href="#酷狗音乐的大数据平台架构" class="headerlink" title="酷狗音乐的大数据平台架构"></a>酷狗音乐的大数据平台架构</h3><p><img src="index_files/0d049969-c592-4801-8be5-3477087a5a33.jpg" alt=""></p>
+<h3 id="酷狗音乐的大数据平台架构"><a href="#酷狗音乐的大数据平台架构" class="headerlink" title="酷狗音乐的大数据平台架构"></a>酷狗音乐的大数据平台架构</h3><p><img src="http://vipkshttp0.wiz.cn/ks/share/resources/fd990112-4dfa-11e0-afe0-051e8648d75b/2b8b91fd-3dba-45bc-ba62-65a5004a96b5/index_files/0d049969-c592-4801-8be5-3477087a5a33.jpg" alt=""></p>
 <p><a href="https://www.infoq.cn/article/kugou-big-data-platform-restructure" target="_blank" rel="external">经典大数据架构案例：酷狗音乐的大数据平台重构</a></p>
-<p><img src="index_files/e7b21201-0491-4a63-9917-eb6379582802.jpg" alt=""></p>
-<h3 id="滴滴大数据平台架构"><a href="#滴滴大数据平台架构" class="headerlink" title="滴滴大数据平台架构"></a>滴滴大数据平台架构</h3><p><img src="index_files/51fe93ff-603f-4a29-944d-6118c79710b9.jpg" alt=""></p>
+<p><img src="http://vipkshttp0.wiz.cn/ks/share/resources/fd990112-4dfa-11e0-afe0-051e8648d75b/2b8b91fd-3dba-45bc-ba62-65a5004a96b5/index_files/e7b21201-0491-4a63-9917-eb6379582802.jpg" alt=""></p>
+<h3 id="滴滴大数据平台架构"><a href="#滴滴大数据平台架构" class="headerlink" title="滴滴大数据平台架构"></a>滴滴大数据平台架构</h3><p><img src="http://vipkshttp0.wiz.cn/ks/share/resources/fd990112-4dfa-11e0-afe0-051e8648d75b/2b8b91fd-3dba-45bc-ba62-65a5004a96b5/index_files/51fe93ff-603f-4a29-944d-6118c79710b9.jpg" alt=""></p>
 <p><a href="https://myslide.cn/slides/15307#" target="_blank" rel="external">罗李：滴滴大数据离线和实时平台架构和实践</a></p>
-<h3 id="知乎大数据平台架构"><a href="#知乎大数据平台架构" class="headerlink" title="知乎大数据平台架构"></a>知乎大数据平台架构</h3><p><img src="index_files/74393c7a-9302-467a-86e9-afd19f4870d2.jpg" alt=""></p>
+<h3 id="知乎大数据平台架构"><a href="#知乎大数据平台架构" class="headerlink" title="知乎大数据平台架构"></a>知乎大数据平台架构</h3><p><img src="http://vipkshttp0.wiz.cn/ks/share/resources/fd990112-4dfa-11e0-afe0-051e8648d75b/2b8b91fd-3dba-45bc-ba62-65a5004a96b5/index_files/74393c7a-9302-467a-86e9-afd19f4870d2.jpg" alt=""></p>
 <p><a href="https://myslide.cn/slides/15294#" target="_blank" rel="external">知乎大数据平台架构和实践优化</a></p>
-<h3 id="美团大数据平台架构"><a href="#美团大数据平台架构" class="headerlink" title="美团大数据平台架构"></a>美团大数据平台架构</h3><p><img src="index_files/b1156a4f-9232-4013-9bac-ff330ad5d39f.jpg" alt=""></p>
+<h3 id="美团大数据平台架构"><a href="#美团大数据平台架构" class="headerlink" title="美团大数据平台架构"></a>美团大数据平台架构</h3><p><img src="http://vipkshttp0.wiz.cn/ks/share/resources/fd990112-4dfa-11e0-afe0-051e8648d75b/2b8b91fd-3dba-45bc-ba62-65a5004a96b5/index_files/b1156a4f-9232-4013-9bac-ff330ad5d39f.jpg" alt=""></p>
 <p><a href="https://zhuanlan.zhihu.com/p/26359613" target="_blank" rel="external">美团的大数据平台架构实践</a></p>
-<h3 id="爱奇艺"><a href="#爱奇艺" class="headerlink" title="爱奇艺"></a>爱奇艺</h3><p><img src="index_files/f4473243-dd26-4e2e-8340-0df8587c329f.jpg" alt=""></p>
+<h3 id="爱奇艺"><a href="#爱奇艺" class="headerlink" title="爱奇艺"></a>爱奇艺</h3><p><img src="http://vipkshttp0.wiz.cn/ks/share/resources/fd990112-4dfa-11e0-afe0-051e8648d75b/2b8b91fd-3dba-45bc-ba62-65a5004a96b5/index_files/f4473243-dd26-4e2e-8340-0df8587c329f.jpg" alt=""></p>
 <p><a href="https://mp.weixin.qq.com/s/weHYPEZEzxsaJlP-zd7euQ" target="_blank" rel="external">爱奇艺大数据分析平台的演进之路</a></p>
 <p>参考：<br><a href="https://mp.weixin.qq.com/s/SkGdlNqx7VU25YeZ7KOhqg" target="_blank" rel="external">Lambda架构已死，去ETL化的IOTA才是未来</a><br><a href="https://zhuanlan.zhihu.com/p/71969484" target="_blank" rel="external">数据仓库介绍与实时数仓案例–阿里</a></p>
 
